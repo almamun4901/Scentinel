@@ -3,13 +3,21 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Scentinel Fragrance Intelligence API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: Auth
+    description: Browser and mobile authentication endpoints.
+  - name: fragrance
+    description: Fragrance search, dupes, context, and scoring
+  - name: profile
+    description: User profile and collection management
+  - name: weather
+    description: Weather proxy
 paths:
   /healthz:
     get:
@@ -24,7 +32,301 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /auth/user:
+    get:
+      tags: [Auth]
+      operationId: getCurrentAuthUser
+      summary: Get the currently authenticated user
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      responses:
+        '200':
+          description: Auth status resolved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserEnvelope'
+  /login:
+    get:
+      tags: [Auth]
+      operationId: beginBrowserLogin
+      summary: Start the browser OIDC login flow
+      parameters:
+        - name: returnTo
+          in: query
+          required: false
+          description: Relative path to redirect to after login (must start with `/`). Defaults to `/`.
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the OIDC authorization endpoint.
+  /callback:
+    get:
+      tags: [Auth]
+      operationId: handleBrowserLoginCallback
+      summary: Complete the browser OIDC login flow
+      parameters:
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: iss
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uri
+      responses:
+        '302':
+          description: Redirect to the `returnTo` path on success or `/api/login` on failure.
+  /logout:
+    get:
+      tags: [Auth]
+      operationId: logoutBrowserSession
+      summary: Clear the session and begin OIDC logout
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      responses:
+        '302':
+          description: Redirect to the OIDC provider logout URL.
+  /mobile-auth/token-exchange:
+    post:
+      tags: [Auth]
+      operationId: exchangeMobileAuthorizationCode
+      summary: Exchange a mobile OIDC code for a session token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobileTokenExchangeRequest'
+      responses:
+        '200':
+          description: Session created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileTokenExchangeSuccess'
+        '400':
+          description: Missing or invalid required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Token did not contain usable claims.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Token exchange failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /mobile-auth/logout:
+    post:
+      tags: [Auth]
+      operationId: logoutMobileSession
+      summary: Delete a mobile session token
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+      responses:
+        '200':
+          description: Logout processed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutSuccess'
+
+  /search:
+    get:
+      operationId: searchFragrances
+      tags: [fragrance]
+      summary: Fuzzy search fragrances
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query (name or house)
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Fragrance"
+
+  /dupes:
+    post:
+      operationId: findDupes
+      tags: [fragrance]
+      summary: Find dupe fragrances by cosine similarity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FindDupesRequest"
+      responses:
+        "200":
+          description: Top dupe matches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DupeResult"
+        "404":
+          description: Fragrance not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /context:
+    post:
+      operationId: getContextRecommendations
+      tags: [fragrance]
+      summary: Get context-aware fragrance recommendations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContextBody"
+      responses:
+        "200":
+          description: Top context picks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContextPick"
+
+  /score:
+    post:
+      operationId: getBlindBuyScore
+      tags: [fragrance]
+      summary: Get AI-powered blind buy score via Claude
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScoreBody"
+      responses:
+        "200":
+          description: Blind buy score
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BlindBuyScore"
+        "404":
+          description: Fragrance not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /weather:
+    get:
+      operationId: getWeather
+      tags: [weather]
+      summary: Proxy to OpenWeatherMap
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Current weather
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WeatherData"
+        "503":
+          description: Weather service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+
+  /profile:
+    get:
+      operationId: getProfile
+      tags: [profile]
+      summary: Get current user's profile
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      responses:
+        "200":
+          description: User profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+    put:
+      operationId: saveProfile
+      tags: [profile]
+      summary: Save current user's profile
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaveProfileRequest"
+      responses:
+        "200":
+          description: Profile saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfile"
+
 components:
+  parameters:
+    AuthorizationSessionHeader:
+      name: Authorization
+      in: header
+      required: false
+      description: Opaque session token — `Bearer <sid>`.
+      schema:
+        type: string
+    SessionCookie:
+      name: sid
+      in: cookie
+      required: false
+      description: Browser session cookie.
+      schema:
+        type: string
   schemas:
     HealthStatus:
       type: object
@@ -34,3 +336,268 @@ components:
       required:
         - status
 
+    AuthUser:
+      type: object
+      required: [id, email, firstName, lastName, profileImageUrl]
+      properties:
+        id:
+          type: string
+        email:
+          type: [string, 'null']
+          format: email
+        firstName:
+          type: [string, 'null']
+        lastName:
+          type: [string, 'null']
+        profileImageUrl:
+          type: [string, 'null']
+    AuthUserEnvelope:
+      type: object
+      required: [user]
+      properties:
+        user:
+          oneOf:
+            - $ref: '#/components/schemas/AuthUser'
+            - type: 'null'
+    MobileTokenExchangeRequest:
+      type: object
+      required: [code, code_verifier, redirect_uri, state]
+      properties:
+        code:
+          type: string
+          minLength: 1
+        code_verifier:
+          type: string
+          minLength: 1
+        redirect_uri:
+          type: string
+          minLength: 1
+          format: uri
+        state:
+          type: string
+          minLength: 1
+        nonce:
+          type: string
+          minLength: 1
+    MobileTokenExchangeSuccess:
+      type: object
+      required: [token]
+      properties:
+        token:
+          type: string
+    LogoutSuccess:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+          const: true
+    ErrorEnvelope:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+
+    FragranceNotes:
+      type: object
+      required: [top, heart, base]
+      properties:
+        top:
+          type: array
+          items:
+            type: string
+        heart:
+          type: array
+          items:
+            type: string
+        base:
+          type: array
+          items:
+            type: string
+
+    Fragrance:
+      type: object
+      required: [id, name, house, year, concentration, accords, notes, longevity, sillage, price_gbp]
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        house:
+          type: string
+        year:
+          type: integer
+        concentration:
+          type: string
+          enum: [EDP, EDT, Parfum, EDC]
+        accords:
+          type: array
+          items:
+            type: string
+        notes:
+          $ref: "#/components/schemas/FragranceNotes"
+        longevity:
+          type: integer
+          minimum: 1
+          maximum: 5
+        sillage:
+          type: integer
+          minimum: 1
+          maximum: 5
+        price_gbp:
+          type: number
+
+    FindDupesRequest:
+      type: object
+      required: [fragranceName]
+      properties:
+        fragranceName:
+          type: string
+        priceCeiling:
+          type: number
+          nullable: true
+
+    DupeResult:
+      type: object
+      required: [name, house, similarity_pct, price_gbp, price_delta, accords]
+      properties:
+        name:
+          type: string
+        house:
+          type: string
+        similarity_pct:
+          type: number
+        price_gbp:
+          type: number
+        price_delta:
+          type: number
+        accords:
+          type: array
+          items:
+            type: string
+
+    ContextBody:
+      type: object
+      required: [fragranceName, weatherTemp, weatherDesc, occasion, timeOfDay, ownedFragrances]
+      properties:
+        fragranceName:
+          type: string
+        weatherTemp:
+          type: number
+        weatherDesc:
+          type: string
+        occasion:
+          type: string
+        timeOfDay:
+          type: string
+        ownedFragrances:
+          type: array
+          items:
+            type: string
+
+    ContextPick:
+      type: object
+      required: [rank, name, house, reason, match_pct]
+      properties:
+        rank:
+          type: integer
+        name:
+          type: string
+        house:
+          type: string
+        reason:
+          type: string
+        match_pct:
+          type: number
+
+    ScoreBody:
+      type: object
+      required: [fragranceName]
+      properties:
+        fragranceName:
+          type: string
+        ownedFragrances:
+          type: array
+          items:
+            type: string
+        budget:
+          type: number
+          nullable: true
+
+    ScoreBreakdown:
+      type: object
+      required: [accord_compatibility, community_longevity, batch_consistency, price_value]
+      properties:
+        accord_compatibility:
+          type: number
+        community_longevity:
+          type: number
+        batch_consistency:
+          type: number
+        price_value:
+          type: number
+
+    RiskFlag:
+      type: object
+      required: [level, message]
+      properties:
+        level:
+          type: string
+          enum: [warn, info, ok]
+        message:
+          type: string
+
+    BlindBuyScore:
+      type: object
+      required: [overall_score, breakdown, verdict, risk_flags, recommendation]
+      properties:
+        overall_score:
+          type: number
+        breakdown:
+          $ref: "#/components/schemas/ScoreBreakdown"
+        verdict:
+          type: string
+          enum: ["Strong buy", "Buy", "Try first", "Avoid"]
+        risk_flags:
+          type: array
+          items:
+            $ref: "#/components/schemas/RiskFlag"
+        recommendation:
+          type: string
+
+    WeatherData:
+      type: object
+      required: [temp_c, description, humidity]
+      properties:
+        temp_c:
+          type: number
+        description:
+          type: string
+        humidity:
+          type: number
+
+    UserProfile:
+      type: object
+      required: [ownedFragrances, budget]
+      properties:
+        ownedFragrances:
+          type: array
+          items:
+            type: string
+        budget:
+          type: string
+          enum: ["under_50", "50_150", "150_300", "no_limit"]
+          nullable: true
+
+    SaveProfileRequest:
+      type: object
+      required: [ownedFragrances]
+      properties:
+        ownedFragrances:
+          type: array
+          items:
+            type: string
+        budget:
+          type: string
+          nullable: true

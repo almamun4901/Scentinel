@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Scentinel"
+version = "1.0.0"
+id = "artifacts/scentinel"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25575
+
+[services.development]
+run = "pnpm --filter @workspace/scentinel run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/scentinel", "run", "build" ]
+publicDir = "artifacts/scentinel/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25575"
+BASE_PATH = "/"

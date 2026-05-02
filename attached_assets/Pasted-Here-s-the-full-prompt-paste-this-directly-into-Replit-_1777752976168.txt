@@ -1,0 +1,74 @@
+Here's the full prompt — paste this directly into Replit Agent:
+
+---
+
+**Build a full-stack fragrance intelligence app called Scentinel.**
+
+**Stack:** React (Vite) frontend + Node.js/Express backend, monorepo structure with `/client` and `/server` folders. Use Replit DB for data persistence. Enable Replit Auth for user sessions.
+
+---
+
+**Project structure:**
+```
+/client          React + Vite frontend
+/server          Express API
+/server/data     fragrance-data.json (seed data)
+/server/tools    find-dupes.js, context-recommender.js, blind-buy-scorer.js
+```
+
+---
+
+**Backend — build these Express endpoints:**
+
+`GET /api/search?q=` — fuzzy search fragrances by name or house using fuse.js. Returns top 10 matches with name, house, year, concentration, accords array, notes (top/heart/base), longevity (1–5), sillage (1–5), price_gbp.
+
+`POST /api/dupes` — body: `{ fragranceName, priceCeiling }`. Loads all fragrances from fragrance-data.json. Computes cosine similarity between accord vectors of the target fragrance and every other fragrance in the dataset. Returns top 5 matches sorted by similarity score descending, each with: name, house, similarity_pct (0–100), price_gbp, price_delta (savings vs original), accords.
+
+`POST /api/context` — body: `{ fragranceName, weatherTemp, weatherDesc, occasion, timeOfDay, ownedFragrances[] }`. Scores each fragrance in ownedFragrances against the context using these weighted rules: longevity fit for occasion (office = medium preferred), sillage fit (office = low/medium), season fit based on temp (>22°C = fresh/citrus bonus, <12°C = woody/spicy bonus), time fit (morning = fresh, evening = oriental/woody). Returns top 3 ranked picks with name, house, match_pct, reason (one sentence).
+
+`POST /api/score` — body: `{ fragranceName, ownedFragrances[], budget }`. Calls the Anthropic Claude API (claude-sonnet-4-6) to generate a blind buy score. Send Claude a structured prompt with the fragrance's accords, notes, longevity, sillage, price, and the user's owned fragrances. Ask Claude to return JSON only with: overall_score (0–100), breakdown (accord_compatibility, community_longevity, batch_consistency, price_value each 0–100), verdict (one of: "Strong buy", "Buy with confidence", "Consider a sample first", "High risk"), flags array (each flag has type: "warn"|"info"|"ok", title, body).
+
+`GET /api/weather?lat=&lon=` — proxy to OpenWeatherMap free API. Returns temp_c, description, humidity. Use env var OPENWEATHER_KEY.
+
+**Seed fragrance-data.json with these 12 fragrances** (invent plausible accord/note data):
+Creed Aventus, Dior Sauvage EDP, Bleu de Chanel EDP, Tom Ford Oud Wood, YSL Y EDP, Parfums de Marly Layton, Amouage Jubilation XXV, Armaf Club de Nuit Intense Man, Acqua di Gio Profondo, Paco Rabanne Invictus Platinum, Jo Malone Wood Sage & Sea Salt, Maison Margiela Replica Jazz Club.
+
+---
+
+**Frontend — build these views:**
+
+**App shell:** Three-column layout. Left sidebar (200px) with logo "Scentinel", nav items (Explore, Dupes, Collection), and a collection preview showing initials dots for owned fragrances. Top bar with search input (italic serif font placeholder "Search any fragrance…"), context chips for weather + occasion, and a mode toggle (All / Dupes / Context). Right panel (280px) is always the blind buy scorer. Main area scrolls.
+
+**Search flow:** On typing in the search bar, hit `/api/search` with debounce 300ms. Show a dropdown of results. On selecting a fragrance, load the fragrance hero card and trigger all three tool calls simultaneously (dupes, context, blind buy score) in parallel using Promise.all.
+
+**Fragrance hero card:** Shows house name, fragrance name (large serif), meta pills (EDP/EDT, year, longevity label, sillage label, price), accord chips color-coded by dominance, and a notes pyramid showing top/heart/base notes.
+
+**Dupes section:** Grid of 3 cards. Each card shows house, name, similarity bar (animated fill on load), similarity percentage, price, and savings amount. Top pick card has a gold top border accent.
+
+**Context picks section:** Shows 3 signal chips (weather, occasion, time). Below that, a ranked list of 3 picks. Each pick shows rank number, name, house, one-line reason, and match percentage. Best match has a teal tinted background.
+
+**Right panel — blind buy scorer:** Score ring SVG (animated stroke-dashoffset on load from 0 to score value). Score number centered in ring. Verdict badge below. Breakdown section with 4 rows (label + score). Risk flags with warn/info/ok styling using left border accent colors. Two CTA buttons at bottom: "Find the best price →" and "Order a sample instead".
+
+**Onboarding modal:** On first visit (no owned fragrances), show a 3-step modal. Step 1: pick 3+ fragrances you own from a checklist of the 12 seeded fragrances. Step 2: set rough budget (under £50 / £50–150 / £150–300 / no limit). Step 3: confirm. Save to Replit DB under the user's session key. Skip button available.
+
+---
+
+**Styling:** Dark luxury theme. Background #090807. Card surfaces #181511. Gold accent #c49a3c. Serif display font (Cormorant Garamond from Google Fonts) for fragrance names and headings. Mono font (DM Mono) for scores, prices, percentages. Sans (DM Sans) for body. All border strokes 0.5px. No gradients except one linear on the score ring stroke.
+
+**Env vars needed:** `ANTHROPIC_API_KEY`, `OPENWEATHER_KEY`. Add placeholder comments in .env.example.
+
+**Run config:** `npm run dev` should start both client (port 5173) and server (port 3001) concurrently using the `concurrently` package. Client proxies `/api` to `http://localhost:3001`.
+
+---
+
+Build the complete working app. Every endpoint should return real data (from the seed JSON or the Claude API call). The UI should handle loading states with skeleton placeholders and error states gracefully. Make it demeable end-to-end: searching "Aventus" should trigger all three panels and return populated results.
+
+---
+
+That's it — paste that whole thing as one prompt into Replit Agent and let it run. A few tips for when it comes back:
+
+The first thing to verify is that `Promise.all` on the three tool calls is actually parallel and not sequential — that's the difference between a snappy 1.5 second load and a slow 4.5 second one. Check the network tab.
+
+The Claude API call for the blind buy scorer is the most likely to need prompt iteration. If the risk flags come back too generic, tighten the system prompt to include specific fragrance knowledge (batch variation, longevity in different weather, skin type interaction). I can write that prompt for you separately.
+
+Also add your `ANTHROPIC_API_KEY` and `OPENWEATHER_KEY` to Replit Secrets (not `.env`) — Replit Secrets are encrypted and won't get committed. Want me to write the Claude system prompt for the blind buy scorer next?

@@ -1,0 +1,194 @@
+[
+  {
+    "id": "creed-aventus",
+    "name": "Aventus",
+    "house": "Creed",
+    "year": 2010,
+    "concentration": "EDP",
+    "accords": ["fruity", "woody", "smoky", "fresh", "citrus"],
+    "notes": {
+      "top": ["blackcurrant", "bergamot", "apple", "pineapple"],
+      "heart": ["birch", "patchouli", "jasmine", "rose"],
+      "base": ["oakmoss", "ambergris", "musk", "sandalwood"]
+    },
+    "longevity": 4,
+    "sillage": 4,
+    "price_gbp": 365
+  },
+  {
+    "id": "dior-sauvage-edp",
+    "name": "Sauvage EDP",
+    "house": "Dior",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["spicy", "woody", "fresh", "lavender", "vanilla"],
+    "notes": {
+      "top": ["bergamot", "pepper", "nutmeg"],
+      "heart": ["lavender", "star anise", "vetiver"],
+      "base": ["ambroxan", "vanilla", "cedar", "sandalwood"]
+    },
+    "longevity": 5,
+    "sillage": 5,
+    "price_gbp": 105
+  },
+  {
+    "id": "bleu-de-chanel-edp",
+    "name": "Bleu de Chanel EDP",
+    "house": "Chanel",
+    "year": 2014,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "citrus", "spicy", "fresh"],
+    "notes": {
+      "top": ["grapefruit", "lemon", "mint", "pink pepper"],
+      "heart": ["ginger", "nutmeg", "jasmine", "iso e super"],
+      "base": ["cedar", "sandalwood", "patchouli", "incense"]
+    },
+    "longevity": 4,
+    "sillage": 3,
+    "price_gbp": 130
+  },
+  {
+    "id": "tom-ford-oud-wood",
+    "name": "Oud Wood",
+    "house": "Tom Ford",
+    "year": 2007,
+    "concentration": "EDP",
+    "accords": ["oud", "woody", "smoky", "spicy", "earthy"],
+    "notes": {
+      "top": ["oud", "rosewood", "cardamom"],
+      "heart": ["sandalwood", "vetiver", "tonka bean"],
+      "base": ["amber", "musk", "vanilla", "papyrus"]
+    },
+    "longevity": 4,
+    "sillage": 3,
+    "price_gbp": 195
+  },
+  {
+    "id": "ysl-y-edp",
+    "name": "Y EDP",
+    "house": "YSL",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["fresh", "woody", "aromatic", "fougere", "citrus"],
+    "notes": {
+      "top": ["bergamot", "grapefruit", "apple"],
+      "heart": ["sage", "geranium", "juniper"],
+      "base": ["cedar", "amberwood", "tonka bean", "vetiver"]
+    },
+    "longevity": 4,
+    "sillage": 3,
+    "price_gbp": 90
+  },
+  {
+    "id": "pdm-layton",
+    "name": "Layton",
+    "house": "Parfums de Marly",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["aromatic", "sweet", "woody", "spicy", "fresh"],
+    "notes": {
+      "top": ["apple", "lavender", "bergamot"],
+      "heart": ["jasmine", "geranium", "violet"],
+      "base": ["sandalwood", "vanilla", "pepper", "musk"]
+    },
+    "longevity": 4,
+    "sillage": 4,
+    "price_gbp": 200
+  },
+  {
+    "id": "amouage-jubilation-xxv",
+    "name": "Jubilation XXV",
+    "house": "Amouage",
+    "year": 2007,
+    "concentration": "EDP",
+    "accords": ["oud", "resinous", "spicy", "woody", "smoky"],
+    "notes": {
+      "top": ["blackberry", "frankincense", "cinnamon", "myrrh"],
+      "heart": ["oud", "patchouli", "labdanum", "orris"],
+      "base": ["musk", "oakmoss", "amber", "sandalwood"]
+    },
+    "longevity": 5,
+    "sillage": 4,
+    "price_gbp": 310
+  },
+  {
+    "id": "armaf-cdni",
+    "name": "Club de Nuit Intense Man",
+    "house": "Armaf",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["fruity", "woody", "smoky", "fresh", "citrus"],
+    "notes": {
+      "top": ["blackcurrant", "apple", "pineapple", "bergamot"],
+      "heart": ["birch", "jasmine", "rose", "patchouli"],
+      "base": ["ambergris", "musk", "sandalwood", "vanilla"]
+    },
+    "longevity": 4,
+    "sillage": 4,
+    "price_gbp": 35
+  },
+  {
+    "id": "adg-profondo",
+    "name": "Acqua di Gio Profondo",
+    "house": "Giorgio Armani",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["aquatic", "woody", "fresh", "citrus", "mineral"],
+    "notes": {
+      "top": ["bergamot", "green mandarin", "aquatic notes"],
+      "heart": ["rosemary", "cypress", "mineral accord"],
+      "base": ["mastic", "ambroxan", "patchouli", "vetiver"]
+    },
+    "longevity": 4,
+    "sillage": 3,
+    "price_gbp": 80
+  },
+  {
+    "id": "pr-invictus-platinum",
+    "name": "Invictus Platinum",
+    "house": "Paco Rabanne",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "fresh", "citrus", "spicy"],
+    "notes": {
+      "top": ["lemon", "cardamom", "pink pepper"],
+      "heart": ["laurel", "jasmine", "iris"],
+      "base": ["vetiver", "driftwood", "ambergris", "musk"]
+    },
+    "longevity": 4,
+    "sillage": 3,
+    "price_gbp": 85
+  },
+  {
+    "id": "jm-wood-sage-sea-salt",
+    "name": "Wood Sage & Sea Salt",
+    "house": "Jo Malone",
+    "year": 2014,
+    "concentration": "EDC",
+    "accords": ["aquatic", "woody", "aromatic", "earthy", "fresh"],
+    "notes": {
+      "top": ["sea salt", "ambrette seeds"],
+      "heart": ["sage", "rock rose"],
+      "base": ["driftwood", "orris"]
+    },
+    "longevity": 2,
+    "sillage": 2,
+    "price_gbp": 110
+  },
+  {
+    "id": "mm-replica-jazz-club",
+    "name": "Replica Jazz Club",
+    "house": "Maison Margiela",
+    "year": 2013,
+    "concentration": "EDT",
+    "accords": ["woody", "smoky", "sweet", "spicy", "aromatic"],
+    "notes": {
+      "top": ["rum", "bergamot", "pink pepper"],
+      "heart": ["tobacco leaf", "vetiver", "musk"],
+      "base": ["vanilla", "sandalwood", "styrax"]
+    },
+    "longevity": 3,
+    "sillage": 3,
+    "price_gbp": 120
+  }
+]
