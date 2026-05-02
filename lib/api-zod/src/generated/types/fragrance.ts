@@ -27,4 +27,6 @@ export interface Fragrance {
    */
   sillage: number;
   price_gbp: number;
+  /** URL to the bottle product image */
+  image_url?: string;
 }

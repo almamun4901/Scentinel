@@ -15,6 +15,7 @@ export interface Fragrance {
   longevity: number;
   sillage: number;
   price_gbp: number;
+  image_url?: string;
 }
 
 export interface DupeResult {

@@ -125,6 +125,10 @@ export const SearchFragrancesResponseItem = zod.object({
   longevity: zod.number().min(1).max(searchFragrancesResponseLongevityMax),
   sillage: zod.number().min(1).max(searchFragrancesResponseSillageMax),
   price_gbp: zod.number(),
+  image_url: zod
+    .string()
+    .optional()
+    .describe("URL to the bottle product image"),
 });
 export const SearchFragrancesResponse = zod.array(SearchFragrancesResponseItem);
 

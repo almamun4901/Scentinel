@@ -447,6 +447,9 @@ components:
           maximum: 5
         price_gbp:
           type: number
+        image_url:
+          type: string
+          description: URL to the bottle product image
 
     FindDupesRequest:
       type: object

@@ -13,7 +13,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_gbp": 365
+    "price_gbp": 365,
+    "image_url": "https://i.ebayimg.com/images/g/fd8AAOSwZB9m6jk-/s-l1600.jpg"
   },
   {
     "id": "dior-sauvage-edp",
@@ -29,7 +30,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_gbp": 105
+    "price_gbp": 105,
+    "image_url": "https://b.thumbs.redditmedia.com/rwOOFwQtd-0Avnhyq46mWyXbxu5P5QJPCapVGZwfXOo.jpg"
   },
   {
     "id": "bleu-de-chanel-edp",
@@ -45,7 +47,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_gbp": 130
+    "price_gbp": 130,
+    "image_url": "https://b.thumbs.redditmedia.com/4S-jDtX5v8ER_yBnONFd_owV0fC5D2GSlV9bhn7P0CY.jpg"
   },
   {
     "id": "tom-ford-oud-wood",
@@ -61,7 +64,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_gbp": 195
+    "price_gbp": 195,
+    "image_url": "https://i.pinimg.com/originals/fe/86/60/fe8660b7fb23692fdef11f8505bfe966.jpg"
   },
   {
     "id": "ysl-y-edp",
@@ -77,7 +81,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_gbp": 90
+    "price_gbp": 90,
+    "image_url": "https://www.yslbeautyus.com/on/demandware.static/-/Sites-ysl-us-Library/default/dwf25ec6c0/pdp/images/727YSL/Y%20EDP%20Bottle%20Image.jpg"
   },
   {
     "id": "pdm-layton",
@@ -93,7 +98,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_gbp": 200
+    "price_gbp": 200,
+    "image_url": "https://microperfumes.com/cdn/shop/files/mp-2200-1000px.jpg?v=1762201302&width=540"
   },
   {
     "id": "amouage-jubilation-xxv",
@@ -109,7 +115,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_gbp": 310
+    "price_gbp": 310,
+    "image_url": "https://img.fragrancex.com/images/products/sku/large/ajm10sg.jpg"
   },
   {
     "id": "armaf-cdni",
@@ -125,7 +132,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_gbp": 35
+    "price_gbp": 35,
+    "image_url": "https://scentgrail.com/wp-content/uploads/2021/06/Armaf-Club-De-Nuit-Intense-Man-bottle-front.jpg"
   },
   {
     "id": "adg-profondo",
@@ -141,7 +149,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_gbp": 80
+    "price_gbp": 80,
+    "image_url": "https://www.giorgioarmanibeauty-usa.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-armani-us-Library/default/dwf03cd41a/images/pdp/ww-00846-arm/ADG-PROFONDO-PARFUM.jpg?sw=500&sh=500&sm=cut&q=85"
   },
   {
     "id": "pr-invictus-platinum",
@@ -157,7 +166,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_gbp": 85
+    "price_gbp": 85,
+    "image_url": "https://www.scentdecant.com/cdn/shop/files/Invictus_Platinum_m_400x.jpg?v=1734315516"
   },
   {
     "id": "jm-wood-sage-sea-salt",
@@ -173,7 +183,8 @@
     },
     "longevity": 2,
     "sillage": 2,
-    "price_gbp": 110
+    "price_gbp": 110,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/jo-malone-wood-sage-sea-salt-cologne-perfume-cologne-629131.jpg?v=1707341343&width=820"
   },
   {
     "id": "mm-replica-jazz-club",
@@ -189,6 +200,7 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_gbp": 120
+    "price_gbp": 120,
+    "image_url": "https://i.ebayimg.com/images/g/xGQAAeSwplNn3Un-/s-l500.webp"
   }
 ]
