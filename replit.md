@@ -10,7 +10,7 @@
 | Scentinel Web | `artifacts/scentinel` | `/` | 25575 |
 
 **Shared libraries:**
-- `lib/db` — Drizzle ORM + PostgreSQL schema (auth sessions, user profiles)
+- `lib/db` — Drizzle ORM + PostgreSQL schema (auth sessions, user profiles, ai_fragrances cache)
 - `lib/api-spec` — OpenAPI spec + Orval codegen
 - `lib/api-client-react` — Generated React Query hooks
 - `lib/api-zod` — Generated Zod validation schemas
@@ -30,8 +30,12 @@
 
 ## Fragrance Data
 
-12 seed fragrances in `artifacts/api-server/data/fragrance-data.json`:
-Creed Aventus, Dior Sauvage EDP, Bleu de Chanel EDP, Tom Ford Oud Wood, YSL Y EDP, Parfums de Marly Layton, Amouage Jubilation XXV, Armaf Club de Nuit Intense Man, Acqua di Gio Profondo, Paco Rabanne Invictus Platinum, Jo Malone Wood Sage & Sea Salt, Maison Margiela Replica Jazz Club.
+**44 seed fragrances** in `artifacts/api-server/data/fragrance-data.json` covering designer, niche, and budget:
+Creed (Aventus, Green Irish Tweed, Silver Mountain Water), Dior (Sauvage EDP, Miss Dior), Chanel (Bleu EDP, No 5, Coco Mademoiselle, Chance Eau Tendre), Tom Ford (Oud Wood, Tobacco Vanille, Tuscan Leather, Black Orchid), YSL (Y EDP, Libre), Parfums de Marly (Layton, Percival, Godolphin), Amouage (Jubilation XXV), MFK (Baccarat Rouge 540), Initio (Oud for Greatness, Side Effect), Xerjoff (Naxos), Armaf (CDNI), Giorgio Armani (AdG EDT, AdG Profondo), Paco Rabanne (Invictus Platinum, 1 Million), Versace (Eros), D&G (The One), Jean Paul Gaultier (Le Male), Montblanc (Explorer), Burberry (Hero), Givenchy (Gentleman Boisée), Lancôme (La Vie est Belle), Viktor & Rolf (Spicebomb Extreme), Thierry Mugler (A*Men), Davidoff (Cool Water), Azzaro (Chrome), Byredo (Bal d'Afrique), Le Labo (Santal 33), Memo Paris (Irish Leather), Jo Malone (Wood Sage & Sea Salt), Maison Margiela (Replica Jazz Club).
+
+**AI-powered dynamic lookup**: When a search query finds no local matches, Claude generates a complete fragrance profile (notes, accords, longevity, sillage, price, image_url) on demand and caches it in the `ai_fragrances` PostgreSQL table. This gives effectively unlimited fragrance coverage.
+
+Image URLs use official brand CDNs (Dior, Chanel, Tom Ford, YSL, Jo Malone) and high-quality retailer CDNs (myperfumeshop.com, microperfumes.com, fragrancex.com).
 
 ## Environment Secrets
 

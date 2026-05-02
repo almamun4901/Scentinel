@@ -3,7 +3,10 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import Fuse from "fuse.js";
+import { sql, ilike, or } from "drizzle-orm";
 import { anthropic } from "@workspace/integrations-anthropic-ai";
+import { db, aiFragrancesTable } from "@workspace/db";
+import type { CachedFragrance } from "@workspace/db";
 import {
   SearchFragrancesQueryParams,
   FindDupesBody,
@@ -31,6 +34,7 @@ interface Fragrance {
   longevity: number;
   sillage: number;
   price_gbp: number;
+  image_url?: string;
 }
 
 const fragrancesPath = join(__dirname, "../data/fragrance-data.json");
@@ -62,22 +66,127 @@ const allAccords = [
   "oriental", "floral", "amber",
 ];
 
+const AI_SYSTEM_PROMPT = `You are a fragrance database expert with encyclopedic knowledge of perfumery. Given a search query, identify the fragrance and return complete, accurate structured data.
+
+Return ONLY valid JSON in this exact structure, or the literal string "null" if the query is not a recognisable fragrance:
+{
+  "id": "<house-name-as-kebab-slug>",
+  "name": "<fragrance name only, no house>",
+  "house": "<brand/house name>",
+  "year": <integer year of release>,
+  "concentration": "<EDP|EDT|Parfum|EDC>",
+  "accords": ["<accord>", ...],
+  "notes": {
+    "top": ["<note>", ...],
+    "heart": ["<note>", ...],
+    "base": ["<note>", ...]
+  },
+  "longevity": <1-5>,
+  "sillage": <1-5>,
+  "price_gbp": <typical UK 100ml retail price as integer>,
+  "image_url": "<reliable CDN URL if you know it with certainty, otherwise null>"
+}
+
+Valid accords (use only these): fruity, woody, smoky, fresh, citrus, spicy, lavender, vanilla, aromatic, aquatic, mineral, earthy, oud, resinous, sweet, fougere, oriental, floral, amber
+Longevity/sillage scale: 1=poor, 2=weak, 3=moderate, 4=long/strong, 5=extreme/enormous
+Only include image_url if you are highly confident the URL is real and current — do not guess.`;
+
+async function generateFragranceProfile(
+  query: string,
+  log: (msg: string) => void
+): Promise<Fragrance | null> {
+  try {
+    const message = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 2048,
+      system: AI_SYSTEM_PROMPT,
+      messages: [{ role: "user", content: `Search query: "${query}"` }],
+    });
+
+    const content = message.content[0];
+    if (content.type !== "text") return null;
+
+    const raw = content.text.trim().replace(/^```json\n?/, "").replace(/\n?```$/, "");
+    if (raw === "null" || raw === "") return null;
+
+    const parsed = JSON.parse(raw) as Fragrance;
+    if (!parsed.id || !parsed.name || !parsed.house) return null;
+
+    // Null out image_url if it looks suspicious
+    if (parsed.image_url && (parsed.image_url.includes("example.com") || parsed.image_url.length < 20)) {
+      parsed.image_url = undefined;
+    }
+
+    // Persist to DB cache
+    try {
+      await db
+        .insert(aiFragrancesTable)
+        .values({ id: parsed.id, searchQuery: query.toLowerCase(), data: parsed })
+        .onConflictDoNothing();
+    } catch (dbErr) {
+      log(`DB insert failed for AI fragrance: ${dbErr}`);
+    }
+
+    return parsed;
+  } catch (err) {
+    log(`AI fragrance generation failed: ${err}`);
+    return null;
+  }
+}
+
 const router = Router();
 
 // GET /search?q=
-router.get("/search", (req, res) => {
+router.get("/search", async (req, res) => {
   const parsed = SearchFragrancesQueryParams.safeParse(req.query);
   if (!parsed.success) {
     res.status(400).json({ error: "Missing or invalid query parameter q" });
     return;
   }
   const { q } = parsed.data;
-  const results = fuse.search(q).slice(0, 10).map((r) => r.item);
-  res.json(results);
+
+  // 1. Check local JSON with Fuse.js
+  const localResults = fuse.search(q).slice(0, 10).map((r) => r.item);
+  if (localResults.length > 0) {
+    res.json(localResults);
+    return;
+  }
+
+  // 2. Check PostgreSQL cache for previously generated fragrances
+  try {
+    const cached = await db
+      .select()
+      .from(aiFragrancesTable)
+      .where(
+        or(
+          ilike(sql`${aiFragrancesTable.data}->>'name'`, `%${q}%`),
+          ilike(sql`${aiFragrancesTable.data}->>'house'`, `%${q}%`),
+          ilike(aiFragrancesTable.searchQuery, `%${q}%`)
+        )
+      )
+      .limit(5);
+
+    if (cached.length > 0) {
+      res.json(cached.map((r) => r.data));
+      return;
+    }
+  } catch (dbErr) {
+    req.log.warn({ err: dbErr }, "DB cache check failed, falling through to AI");
+  }
+
+  // 3. AI fallback — generate with Claude and cache
+  req.log.info({ q }, "No local results; generating fragrance profile with AI");
+  const generated = await generateFragranceProfile(q, (msg) => req.log.warn(msg));
+
+  if (generated) {
+    res.json([generated]);
+  } else {
+    res.json([]);
+  }
 });
 
 // POST /dupes
-router.post("/dupes", (req, res) => {
+router.post("/dupes", async (req, res) => {
   const parsed = FindDupesBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: "Invalid request body" });
@@ -85,10 +194,29 @@ router.post("/dupes", (req, res) => {
   }
   const { fragranceName, priceCeiling } = parsed.data;
 
-  const target = fragrances.find(
-    (f) => f.name.toLowerCase() === fragranceName.toLowerCase() ||
+  // Check local + DB cache
+  let target: Fragrance | undefined = fragrances.find(
+    (f) =>
+      f.name.toLowerCase() === fragranceName.toLowerCase() ||
       `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase()
   );
+
+  if (!target) {
+    try {
+      const cached = await db
+        .select()
+        .from(aiFragrancesTable)
+        .where(
+          or(
+            ilike(sql`${aiFragrancesTable.data}->>'name'`, fragranceName),
+            ilike(sql`${aiFragrancesTable.data}->>'house' || ' ' || ${aiFragrancesTable.data}->>'name'`, fragranceName)
+          )
+        )
+        .limit(1);
+      if (cached[0]) target = cached[0].data as Fragrance;
+    } catch { /* ignore */ }
+  }
+
   if (!target) {
     res.status(404).json({ error: `Fragrance not found: ${fragranceName}` });
     return;
@@ -97,7 +225,7 @@ router.post("/dupes", (req, res) => {
   const targetVec = buildAccordVector(target, allAccords);
 
   const results = fragrances
-    .filter((f) => f.id !== target.id)
+    .filter((f) => f.id !== target!.id)
     .filter((f) => priceCeiling == null || f.price_gbp <= priceCeiling)
     .map((f) => {
       const vec = buildAccordVector(f, allAccords);
@@ -107,7 +235,7 @@ router.post("/dupes", (req, res) => {
         house: f.house,
         similarity_pct: Math.round(sim * 100),
         price_gbp: f.price_gbp,
-        price_delta: target.price_gbp - f.price_gbp,
+        price_delta: target!.price_gbp - f.price_gbp,
         accords: f.accords,
       };
     })
@@ -137,7 +265,6 @@ router.post("/context", (req, res) => {
   const scored = candidates.map((f) => {
     let score = 50;
 
-    // Occasion scoring
     if (occasion?.toLowerCase().includes("office")) {
       if (f.longevity >= 2 && f.longevity <= 3) score += 15;
       if (f.sillage <= 2) score += 15;
@@ -148,7 +275,6 @@ router.post("/context", (req, res) => {
       if (f.accords.some((a) => ["fresh", "citrus", "aquatic"].includes(a))) score += 15;
     }
 
-    // Season/temp scoring
     const temp = weatherTemp ?? 15;
     if (temp > 22) {
       if (f.accords.some((a) => ["fresh", "citrus", "aquatic"].includes(a))) score += 20;
@@ -160,7 +286,6 @@ router.post("/context", (req, res) => {
       score += 10;
     }
 
-    // Time of day scoring
     if (timeOfDay?.toLowerCase().includes("morning")) {
       if (f.accords.some((a) => ["fresh", "citrus", "aromatic"].includes(a))) score += 15;
     } else if (timeOfDay?.toLowerCase().includes("evening") || timeOfDay?.toLowerCase().includes("night")) {
@@ -207,11 +332,28 @@ router.post("/score", async (req, res) => {
   }
   const { fragranceName, ownedFragrances, budget } = parsed.data;
 
-  const target = fragrances.find(
+  let target: Fragrance | undefined = fragrances.find(
     (f) =>
       f.name.toLowerCase() === fragranceName.toLowerCase() ||
       `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase()
   );
+
+  if (!target) {
+    try {
+      const cached = await db
+        .select()
+        .from(aiFragrancesTable)
+        .where(
+          or(
+            ilike(sql`${aiFragrancesTable.data}->>'name'`, fragranceName),
+            ilike(sql`${aiFragrancesTable.data}->>'house' || ' ' || ${aiFragrancesTable.data}->>'name'`, fragranceName)
+          )
+        )
+        .limit(1);
+      if (cached[0]) target = cached[0].data as Fragrance;
+    } catch { /* ignore */ }
+  }
+
   if (!target) {
     res.status(404).json({ error: `Fragrance not found: ${fragranceName}` });
     return;
