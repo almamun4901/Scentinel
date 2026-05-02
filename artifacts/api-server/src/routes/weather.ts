@@ -22,7 +22,9 @@ router.get("/weather", async (req, res) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
     const response = await fetch(url);
     if (!response.ok) {
-      res.status(503).json({ error: "Weather service returned an error" });
+      // Fall back to a neutral default rather than propagating the error
+      req.log.warn({ status: response.status }, "OpenWeatherMap returned non-200, using defaults");
+      res.json({ temp_c: 18, description: "partly cloudy", humidity: 60 });
       return;
     }
     const data = (await response.json()) as {

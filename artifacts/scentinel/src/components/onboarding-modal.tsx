@@ -43,6 +43,9 @@ export function OnboardingModal({ open, onComplete, onSkip }: OnboardingModalPro
         }}
       >
         <DialogTitle className="sr-only">Set up your collection</DialogTitle>
+        <p id="onboarding-desc" className="sr-only">
+          Complete these steps to personalise your Scentinel experience.
+        </p>
 
         {/* Step indicator */}
         <div className="flex border-b" style={{ borderColor: "hsl(34 10% 14%)" }}>
