@@ -63,7 +63,7 @@ export default function Home() {
   });
   const profile: UserProfile = profileData ?? { ownedFragrances: [], budget: null };
 
-  const weatherParams = { lat: "51.5", lon: "-0.12" };
+  const weatherParams = { lat: "40.71", lon: "-74.01" };
   const { data: weatherData } = useGetWeather(weatherParams, {
     query: { queryKey: getGetWeatherQueryKey(weatherParams) },
   });
