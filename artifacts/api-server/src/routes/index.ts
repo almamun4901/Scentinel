@@ -6,6 +6,8 @@ import weatherRouter from "./weather";
 import profileRouter from "./profile";
 import chatRouter from "./chat";
 import mcpRouter from "./mcp";
+import wishlistRouter from "./wishlist";
+import chatSessionsRouter from "./chat-sessions";
 
 const router: IRouter = Router();
 
@@ -16,5 +18,7 @@ router.use(weatherRouter);
 router.use(profileRouter);
 router.use(chatRouter);
 router.use(mcpRouter);
+router.use(wishlistRouter);
+router.use(chatSessionsRouter);
 
 export default router;

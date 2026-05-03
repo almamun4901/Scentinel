@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { Send } from "lucide-react";
+import { Send, Plus } from "lucide-react";
+import { useUser } from "@clerk/react";
 import { DupeResult, ContextPick, BlindBuyScore, UserProfile } from "@/types";
+import { useChatSessions, type StoredMessage } from "@/hooks/use-chat-sessions";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -227,7 +229,6 @@ function MessageRow({ msg }: { msg: ChatMessage }) {
 
   return (
     <div className={`flex gap-3 ${isUser ? "flex-row-reverse" : ""}`} style={{ animation: "fadeUp 0.2s ease" }}>
-      {/* Avatar */}
       <div
         className="shrink-0 rounded-full flex items-center justify-center font-mono mt-0.5"
         style={{
@@ -240,9 +241,7 @@ function MessageRow({ msg }: { msg: ChatMessage }) {
         {isUser ? "U" : "S"}
       </div>
 
-      {/* Body */}
       <div className={`flex flex-col gap-2 min-w-0 max-w-[85%] ${isUser ? "items-end" : "items-start"}`}>
-        {/* Loading dots */}
         {msg.isLoading && (
           <div
             className="px-4 py-3 rounded-xl border flex gap-1.5 items-center"
@@ -262,12 +261,10 @@ function MessageRow({ msg }: { msg: ChatMessage }) {
           </div>
         )}
 
-        {/* Tool calls (done) */}
         {!msg.isLoading && msg.toolCalls?.map((tc, i) => (
           <ToolCallChip key={i} label={tc.label} done />
         ))}
 
-        {/* Text bubble */}
         {msg.content && !msg.isLoading && (
           <div
             className="px-4 py-3 rounded-xl border text-sm leading-relaxed"
@@ -282,7 +279,6 @@ function MessageRow({ msg }: { msg: ChatMessage }) {
           />
         )}
 
-        {/* Rich results */}
         {!msg.isLoading && msg.toolCalls?.map((tc, i) => (
           <ToolResult key={i} tc={tc} />
         ))}
@@ -315,7 +311,6 @@ function WelcomeScreen({
         </p>
       </div>
 
-      {/* Context chips */}
       <div className="flex flex-wrap gap-2 justify-center">
         <div
           className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs"
@@ -335,7 +330,6 @@ function WelcomeScreen({
         )}
       </div>
 
-      {/* Prompt pills */}
       <div className="flex flex-wrap gap-2 justify-center" style={{ maxWidth: 520 }}>
         {SUGGESTIONS.map((s) => (
           <button
@@ -366,11 +360,16 @@ function WelcomeScreen({
 // ─── Chat Page ────────────────────────────────────────────────────────────────
 
 export default function ChatPage({ profile, weatherTemp, weatherDesc, onMessageSent }: ChatProps) {
+  const { isSignedIn } = useUser();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
+  const [sessionLoaded, setSessionLoaded] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const sessionIdRef = useRef<string | null>(null);
+
+  const { createSession, saveMessages, loadLatestSession, startNewSession } = useChatSessions();
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -378,12 +377,38 @@ export default function ChatPage({ profile, weatherTemp, weatherDesc, onMessageS
 
   useEffect(() => { scrollToBottom(); }, [messages, scrollToBottom]);
 
+  // T002: Load latest session on mount when signed in
+  useEffect(() => {
+    if (!isSignedIn || sessionLoaded) return;
+    setSessionLoaded(true);
+    loadLatestSession().then((session) => {
+      if (session && session.messages.length > 0) {
+        sessionIdRef.current = session.id;
+        setMessages(
+          session.messages.map((m) => ({
+            id: m.id,
+            role: m.role,
+            content: m.content,
+            toolCalls: m.toolCalls as ToolCall[] | undefined,
+          })),
+        );
+      }
+    }).catch(() => {});
+  }, [isSignedIn, sessionLoaded, loadLatestSession]);
+
   const autoResize = useCallback(() => {
     const ta = textareaRef.current;
     if (!ta) return;
     ta.style.height = "auto";
     ta.style.height = Math.min(ta.scrollHeight, 120) + "px";
   }, []);
+
+  const handleNewChat = useCallback(() => {
+    startNewSession();
+    sessionIdRef.current = null;
+    setMessages([]);
+    setInput("");
+  }, [startNewSession]);
 
   const sendMessage = useCallback(
     async (text: string) => {
@@ -419,13 +444,39 @@ export default function ChatPage({ profile, weatherTemp, weatherDesc, onMessageS
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = (await res.json()) as { text: string; toolCalls: ToolCall[] };
 
+        const assistantId = uid();
         setMessages((prev) =>
           prev.map((m) =>
             m.isLoading
-              ? { ...m, id: uid(), isLoading: false, content: data.text, toolCalls: data.toolCalls }
+              ? { ...m, id: assistantId, isLoading: false, content: data.text, toolCalls: data.toolCalls }
               : m
           )
         );
+
+        // T002: Persist conversation to DB for signed-in users
+        if (isSignedIn) {
+          const allMsgs: StoredMessage[] = [
+            ...historyForApi.map((m) => ({
+              id: uid(),
+              role: m.role as "user" | "assistant",
+              content: m.content,
+              createdAt: new Date().toISOString(),
+            })),
+            { id: userMsg.id, role: "user" as const, content: trimmed, createdAt: new Date().toISOString() },
+            { id: assistantId, role: "assistant" as const, content: data.text, toolCalls: data.toolCalls, createdAt: new Date().toISOString() },
+          ];
+
+          if (!sessionIdRef.current) {
+            createSession(trimmed.slice(0, 60)).then((session) => {
+              if (session) {
+                sessionIdRef.current = session.id;
+                saveMessages(session.id, allMsgs);
+              }
+            }).catch(() => {});
+          } else {
+            saveMessages(sessionIdRef.current, allMsgs);
+          }
+        }
       } catch {
         setMessages((prev) =>
           prev.map((m) =>
@@ -438,7 +489,7 @@ export default function ChatPage({ profile, weatherTemp, weatherDesc, onMessageS
         setSending(false);
       }
     },
-    [messages, sending, profile, weatherTemp, weatherDesc]
+    [messages, sending, profile, weatherTemp, weatherDesc, isSignedIn, createSession, saveMessages]
   );
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -474,7 +525,6 @@ export default function ChatPage({ profile, weatherTemp, weatherDesc, onMessageS
 
       {/* Input bar */}
       <div className="shrink-0 px-5 pb-4 pt-3 border-t" style={{ borderColor: "hsl(34 10% 12%)" }}>
-        {/* Quick suggestions (only when has messages) */}
         {hasMessages && (
           <div className="flex gap-2 mb-3 flex-wrap">
             {activeSuggestions.map((s) => (
@@ -502,6 +552,23 @@ export default function ChatPage({ profile, weatherTemp, weatherDesc, onMessageS
         )}
 
         <div className="flex items-end gap-2.5">
+          {isSignedIn && hasMessages && (
+            <button
+              onClick={handleNewChat}
+              title="New conversation"
+              className="shrink-0 rounded-xl flex items-center justify-center transition-all"
+              style={{
+                width: 42, height: 42,
+                background: "hsl(34 12% 9%)",
+                border: "1px solid hsl(34 10% 18%)",
+                color: "hsl(40 10% 45%)",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "hsl(42 54% 55%)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = "hsl(40 10% 45%)"; }}
+            >
+              <Plus size={15} />
+            </button>
+          )}
           <textarea
             ref={textareaRef}
             rows={1}
@@ -536,11 +603,10 @@ export default function ChatPage({ profile, weatherTemp, weatherDesc, onMessageS
         </div>
 
         <p className="text-center mt-2" style={{ fontSize: 10.5, color: "hsl(40 10% 28%)", letterSpacing: "0.02em" }}>
-          Knows your collection · Weather is live · Powered by Claude
+          {isSignedIn ? "Conversation saved · " : ""}Knows your collection · Weather is live · Powered by Claude
         </p>
       </div>
 
-      {/* Keyframe animations */}
       <style>{`
         @keyframes scentinel-pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
         @keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }

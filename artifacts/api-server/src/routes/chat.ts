@@ -3,11 +3,14 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import Fuse from "fuse.js";
-import { sql, ilike, or } from "drizzle-orm";
+import { sql, ilike, or, eq } from "drizzle-orm";
 import { anthropic } from "@workspace/integrations-anthropic-ai";
-import { db, aiFragrancesTable } from "@workspace/db";
+import { getAuth } from "@clerk/express";
+import { db, aiFragrancesTable, userProfilesTable } from "@workspace/db";
 import type { MessageParam, Tool, ToolResultBlockParam } from "@anthropic-ai/sdk/resources/messages";
 import { searchFragranceDiscussion, searchDupeDiscussion, summarisePosts } from "../lib/reddit.js";
+import { aiRateLimit } from "../middlewares/rateLimiter.js";
+import { computeScentDNA } from "../lib/scent-dna.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -167,7 +170,6 @@ async function execScoreBlindBuy(fragranceName: string, ownedFragrances: string[
   const redditPosts = await searchFragranceDiscussion(`${target.house} ${target.name} review`);
   let communityContext = summarisePosts(redditPosts, 1000);
 
-  // If live Reddit is unavailable, use Claude's knowledge of r/fragrance
   if (!communityContext) {
     try {
       const sentimentMsg = await anthropic.messages.create({
@@ -224,7 +226,6 @@ async function execCommunityDiscussion(query: string) {
     };
   }
 
-  // Live Reddit unavailable — use Claude's training knowledge of r/fragrance
   try {
     const msg = await anthropic.messages.create({
       model: "claude-sonnet-4-6",
@@ -369,8 +370,15 @@ function formatToolLabel(name: string, input: Record<string, unknown>, result: u
 
 const router = Router();
 
-router.post("/chat", async (req, res) => {
-  const { message, history = [], profile = {}, weatherTemp = 18, weatherDesc = "partly cloudy" } = req.body as {
+// ─── POST /chat (T005 rate limit + T007 scent DNA injection) ─────────────────
+router.post("/chat", aiRateLimit, async (req, res) => {
+  const {
+    message,
+    history = [],
+    profile = {},
+    weatherTemp = 18,
+    weatherDesc = "partly cloudy",
+  } = req.body as {
     message: string;
     history: Array<{ role: "user" | "assistant"; content: string }>;
     profile: { ownedFragrances?: string[]; budget?: string | null };
@@ -388,12 +396,38 @@ router.post("/chat", async (req, res) => {
   const budgetMap: Record<string, number> = { under_50: 65, "50_150": 200, "150_300": 400, no_limit: 9999 };
   const budget: number | null = budgetRaw ? (budgetMap[budgetRaw] ?? null) : null;
 
+  // T007: Derive scent DNA from user's collection
+  const { userId } = getAuth(req);
+  let scentDNASummary = "";
+  if (userId && ownedFragrances.length > 0) {
+    try {
+      const dna = computeScentDNA(ownedFragrances, fragrances);
+      if (dna) {
+        scentDNASummary = `\n- Scent DNA (inferred from collection): ${dna.summary}`;
+      }
+    } catch { /* non-fatal */ }
+    // Also try to get full profile from DB for accuracy
+    if (!scentDNASummary) {
+      try {
+        const [dbProfile] = await db
+          .select()
+          .from(userProfilesTable)
+          .where(eq(userProfilesTable.userId, userId))
+          .limit(1);
+        if (dbProfile?.ownedFragrances.length) {
+          const dna = computeScentDNA(dbProfile.ownedFragrances, fragrances);
+          if (dna) scentDNASummary = `\n- Scent DNA: ${dna.summary}`;
+        }
+      } catch { /* non-fatal */ }
+    }
+  }
+
   const systemPrompt = `You are Scentinel, an expert fragrance intelligence assistant with encyclopedic knowledge of perfumery. You are direct, opinionated, and concise — you give real recommendations, not hedged non-answers.
 
 Current context:
 - Weather: ${weatherTemp}°C, ${weatherDesc}
 - User's collection (${ownedFragrances.length} fragrances): ${ownedFragrances.length ? ownedFragrances.join(", ") : "none added yet"}
-- Budget: ${budget ? `up to $${budget}` : "not specified"}
+- Budget: ${budget ? `up to $${budget}` : "not specified"}${scentDNASummary}
 
 Use tools whenever relevant. After tool results, give a short, direct synthesis — don't just repeat the data. Highlight the single best choice when asked. Mention prices in USD. Do not mention tool names in your response. Keep responses concise.
 

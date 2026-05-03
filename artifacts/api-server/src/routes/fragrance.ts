@@ -3,9 +3,10 @@ import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import Fuse from "fuse.js";
-import { sql, ilike, or } from "drizzle-orm";
+import { sql, ilike, or, eq } from "drizzle-orm";
 import { anthropic } from "@workspace/integrations-anthropic-ai";
-import { db, aiFragrancesTable } from "@workspace/db";
+import { getAuth } from "@clerk/express";
+import { db, aiFragrancesTable, fragrancesTable, userProfilesTable } from "@workspace/db";
 import type { CachedFragrance } from "@workspace/db";
 import {
   SearchFragrancesQueryParams,
@@ -13,6 +14,10 @@ import {
   GetContextRecommendationsBody,
   GetBlindBuyScoreBody,
 } from "@workspace/api-zod";
+import { makeHash, getCached, setCached, evictExpired } from "../lib/ai-cache.js";
+import { aiRateLimit } from "../middlewares/rateLimiter.js";
+import { computeScentDNA } from "../lib/scent-dna.js";
+import { logger } from "../lib/logger.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -64,7 +69,6 @@ const fuse = new Fuse(fragrances, {
   includeScore: true,
 });
 
-// Cosine similarity between two accord vectors
 function cosineSimilarity(vecA: number[], vecB: number[]): number {
   const dot = vecA.reduce((sum, a, i) => sum + a * (vecB[i] ?? 0), 0);
   const magA = Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0));
@@ -73,7 +77,6 @@ function cosineSimilarity(vecA: number[], vecB: number[]): number {
   return dot / (magA * magB);
 }
 
-// Build accord vector across all known accords
 function buildAccordVector(fragrance: Fragrance, allAccords: string[]): number[] {
   return allAccords.map((accord) => (fragrance.accords.includes(accord) ? 1 : 0));
 }
@@ -84,6 +87,50 @@ const allAccords = [
   "oriental", "floral", "amber",
 ];
 
+// ─── T006: Stale TTL ──────────────────────────────────────────────────────────
+const FRAG_STALE_MS = 30 * 24 * 60 * 60 * 1000;
+function isFragStale(createdAt: Date): boolean {
+  return Date.now() - createdAt.getTime() > FRAG_STALE_MS;
+}
+
+// ─── T003: Seed fragrances from JSON → DB on startup ─────────────────────────
+async function seedFragrancesDB(): Promise<void> {
+  try {
+    const [existing] = await db
+      .select({ id: fragrancesTable.id })
+      .from(fragrancesTable)
+      .limit(1);
+    if (existing) return;
+    await db
+      .insert(fragrancesTable)
+      .values(
+        fragrances.map((f) => ({
+          id: f.id,
+          name: f.name,
+          house: f.house,
+          year: f.year,
+          concentration: f.concentration,
+          accords: f.accords,
+          notes: f.notes,
+          longevity: f.longevity,
+          sillage: f.sillage,
+          priceUsd: f.price_usd,
+          imageUrl: f.image_url ?? null,
+          source: "seed",
+        })),
+      )
+      .onConflictDoNothing();
+    logger.info({ count: fragrances.length }, "Seeded fragrances to DB");
+  } catch (err) {
+    logger.warn({ err }, "Failed to seed fragrances to DB — continuing without");
+  }
+}
+seedFragrancesDB();
+
+// ─── T004: Evict expired AI cache entries every hour ─────────────────────────
+setInterval(() => evictExpired(), 60 * 60 * 1000);
+
+// ─── AI generation ────────────────────────────────────────────────────────────
 const AI_SYSTEM_PROMPT = `You are a fragrance database expert with encyclopedic knowledge of perfumery. Given a search query, identify the fragrance and return complete, accurate structured data.
 
 Return ONLY valid JSON in this exact structure, or the literal string "null" if the query is not a recognisable fragrance:
@@ -111,7 +158,7 @@ Prices should be in USD. Only include image_url if you are highly confident the 
 
 async function generateFragranceProfile(
   query: string,
-  log: (msg: string) => void
+  log: (msg: string) => void,
 ): Promise<Fragrance | null> {
   try {
     const message = await anthropic.messages.create({
@@ -130,17 +177,21 @@ async function generateFragranceProfile(
     const parsed = JSON.parse(raw) as Fragrance;
     if (!parsed.id || !parsed.name || !parsed.house) return null;
 
-    // Null out image_url if it looks suspicious
-    if (parsed.image_url && (parsed.image_url.includes("example.com") || parsed.image_url.length < 20)) {
+    if (
+      parsed.image_url &&
+      (parsed.image_url.includes("example.com") || parsed.image_url.length < 20)
+    ) {
       parsed.image_url = undefined;
     }
 
-    // Persist to DB cache
     try {
       await db
         .insert(aiFragrancesTable)
         .values({ id: parsed.id, searchQuery: query.toLowerCase(), data: parsed })
-        .onConflictDoNothing();
+        .onConflictDoUpdate({
+          target: aiFragrancesTable.id,
+          set: { data: parsed, searchQuery: query.toLowerCase(), createdAt: new Date() },
+        });
     } catch (dbErr) {
       log(`DB insert failed for AI fragrance: ${dbErr}`);
     }
@@ -152,9 +203,39 @@ async function generateFragranceProfile(
   }
 }
 
+// ─── T006: Cache lookup with staleness refresh ────────────────────────────────
+async function findFragranceInDB(
+  name: string,
+  log: (msg: string) => void,
+): Promise<Fragrance | null> {
+  try {
+    const cached = await db
+      .select()
+      .from(aiFragrancesTable)
+      .where(
+        or(
+          ilike(sql`${aiFragrancesTable.data}->>'name'`, name),
+          ilike(
+            sql`${aiFragrancesTable.data}->>'house' || ' ' || ${aiFragrancesTable.data}->>'name'`,
+            name,
+          ),
+        ),
+      )
+      .limit(1);
+
+    if (cached[0]) {
+      if (isFragStale(cached[0].createdAt)) {
+        generateFragranceProfile(name, log).catch(() => {});
+      }
+      return cached[0].data as Fragrance;
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
 const router = Router();
 
-// GET /search?q=
+// ─── GET /search ──────────────────────────────────────────────────────────────
 router.get("/search", async (req, res) => {
   const parsed = SearchFragrancesQueryParams.safeParse(req.query);
   if (!parsed.success) {
@@ -163,14 +244,12 @@ router.get("/search", async (req, res) => {
   }
   const { q } = parsed.data;
 
-  // 1. Check local JSON with Fuse.js
   const localResults = fuse.search(q).slice(0, 10).map((r) => r.item);
   if (localResults.length > 0) {
     res.json(localResults);
     return;
   }
 
-  // 2. Check PostgreSQL cache for previously generated fragrances
   try {
     const cached = await db
       .select()
@@ -179,12 +258,18 @@ router.get("/search", async (req, res) => {
         or(
           ilike(sql`${aiFragrancesTable.data}->>'name'`, `%${q}%`),
           ilike(sql`${aiFragrancesTable.data}->>'house'`, `%${q}%`),
-          ilike(aiFragrancesTable.searchQuery, `%${q}%`)
-        )
+          ilike(aiFragrancesTable.searchQuery, `%${q}%`),
+        ),
       )
       .limit(5);
 
     if (cached.length > 0) {
+      // T006: background refresh any stale entries
+      for (const row of cached) {
+        if (isFragStale(row.createdAt)) {
+          generateFragranceProfile(row.searchQuery, (msg) => req.log.warn(msg)).catch(() => {});
+        }
+      }
       res.json(cached.map((r) => r.data));
       return;
     }
@@ -192,18 +277,12 @@ router.get("/search", async (req, res) => {
     req.log.warn({ err: dbErr }, "DB cache check failed, falling through to AI");
   }
 
-  // 3. AI fallback — generate with Claude and cache
   req.log.info({ q }, "No local results; generating fragrance profile with AI");
   const generated = await generateFragranceProfile(q, (msg) => req.log.warn(msg));
-
-  if (generated) {
-    res.json([generated]);
-  } else {
-    res.json([]);
-  }
+  res.json(generated ? [generated] : []);
 });
 
-// POST /dupes
+// ─── POST /dupes ──────────────────────────────────────────────────────────────
 router.post("/dupes", async (req, res) => {
   const parsed = FindDupesBody.safeParse(req.body);
   if (!parsed.success) {
@@ -212,27 +291,15 @@ router.post("/dupes", async (req, res) => {
   }
   const { fragranceName, priceCeiling } = parsed.data;
 
-  // Check local + DB cache
   let target: Fragrance | undefined = fragrances.find(
     (f) =>
       f.name.toLowerCase() === fragranceName.toLowerCase() ||
-      `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase()
+      `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase(),
   );
 
   if (!target) {
-    try {
-      const cached = await db
-        .select()
-        .from(aiFragrancesTable)
-        .where(
-          or(
-            ilike(sql`${aiFragrancesTable.data}->>'name'`, fragranceName),
-            ilike(sql`${aiFragrancesTable.data}->>'house' || ' ' || ${aiFragrancesTable.data}->>'name'`, fragranceName)
-          )
-        )
-        .limit(1);
-      if (cached[0]) target = cached[0].data as Fragrance;
-    } catch { /* ignore */ }
+    const fromDB = await findFragranceInDB(fragranceName, (msg) => req.log.warn(msg));
+    if (fromDB) target = fromDB;
   }
 
   if (!target) {
@@ -262,7 +329,6 @@ router.post("/dupes", async (req, res) => {
     .sort((a, b) => b.similarity_pct - a.similarity_pct)
     .slice(0, 5);
 
-  // Inject Dua clones — exact match for this specific fragrance
   const duaClones = findDuaClones(target.name, target.house);
   const duaResults = duaClones.slice(0, 2).map((clone) => ({
     name: clone.name,
@@ -275,14 +341,12 @@ router.post("/dupes", async (req, res) => {
     is_dua: true,
   }));
 
-  // Merge: Dua clones first (if any), then cosine results, deduplicated, max 6
   const merged = [...duaResults, ...results].slice(0, 6);
-
   res.json(merged);
 });
 
-// POST /context
-router.post("/context", (req, res) => {
+// ─── POST /context ────────────────────────────────────────────────────────────
+router.post("/context", async (req, res) => {
   const parsed = GetContextRecommendationsBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: "Invalid request body" });
@@ -294,8 +358,8 @@ router.post("/context", (req, res) => {
     ownedFragrances.some(
       (owned) =>
         f.name.toLowerCase() === owned.toLowerCase() ||
-        `${f.house} ${f.name}`.toLowerCase() === owned.toLowerCase()
-    )
+        `${f.house} ${f.name}`.toLowerCase() === owned.toLowerCase(),
+    ),
   );
 
   const scored = candidates.map((f) => {
@@ -304,10 +368,16 @@ router.post("/context", (req, res) => {
     if (occasion?.toLowerCase().includes("office")) {
       if (f.longevity >= 2 && f.longevity <= 3) score += 15;
       if (f.sillage <= 2) score += 15;
-    } else if (occasion?.toLowerCase().includes("date") || occasion?.toLowerCase().includes("evening")) {
+    } else if (
+      occasion?.toLowerCase().includes("date") ||
+      occasion?.toLowerCase().includes("evening")
+    ) {
       if (f.sillage >= 3) score += 15;
       if (f.accords.some((a) => ["oriental", "oud", "woody", "spicy"].includes(a))) score += 10;
-    } else if (occasion?.toLowerCase().includes("casual") || occasion?.toLowerCase().includes("outdoor")) {
+    } else if (
+      occasion?.toLowerCase().includes("casual") ||
+      occasion?.toLowerCase().includes("outdoor")
+    ) {
       if (f.accords.some((a) => ["fresh", "citrus", "aquatic"].includes(a))) score += 15;
     }
 
@@ -324,7 +394,10 @@ router.post("/context", (req, res) => {
 
     if (timeOfDay?.toLowerCase().includes("morning")) {
       if (f.accords.some((a) => ["fresh", "citrus", "aromatic"].includes(a))) score += 15;
-    } else if (timeOfDay?.toLowerCase().includes("evening") || timeOfDay?.toLowerCase().includes("night")) {
+    } else if (
+      timeOfDay?.toLowerCase().includes("evening") ||
+      timeOfDay?.toLowerCase().includes("night")
+    ) {
       if (f.accords.some((a) => ["oriental", "woody", "oud", "smoky"].includes(a))) score += 15;
     }
 
@@ -335,7 +408,10 @@ router.post("/context", (req, res) => {
       reasons.push("perfect for cold conditions");
     if (occasion?.toLowerCase().includes("office") && f.sillage <= 2)
       reasons.push("subtle enough for the office");
-    if (timeOfDay?.toLowerCase().includes("evening") && f.accords.some((a) => ["woody", "oud"].includes(a)))
+    if (
+      timeOfDay?.toLowerCase().includes("evening") &&
+      f.accords.some((a) => ["woody", "oud"].includes(a))
+    )
       reasons.push("ideal for evening wear");
 
     return {
@@ -359,8 +435,8 @@ router.post("/context", (req, res) => {
   res.json(top3);
 });
 
-// POST /score
-router.post("/score", async (req, res) => {
+// ─── POST /score (T004 cache + T005 rate limit) ───────────────────────────────
+router.post("/score", aiRateLimit, async (req, res) => {
   const parsed = GetBlindBuyScoreBody.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: "Invalid request body" });
@@ -371,27 +447,29 @@ router.post("/score", async (req, res) => {
   let target: Fragrance | undefined = fragrances.find(
     (f) =>
       f.name.toLowerCase() === fragranceName.toLowerCase() ||
-      `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase()
+      `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase(),
   );
 
   if (!target) {
-    try {
-      const cached = await db
-        .select()
-        .from(aiFragrancesTable)
-        .where(
-          or(
-            ilike(sql`${aiFragrancesTable.data}->>'name'`, fragranceName),
-            ilike(sql`${aiFragrancesTable.data}->>'house' || ' ' || ${aiFragrancesTable.data}->>'name'`, fragranceName)
-          )
-        )
-        .limit(1);
-      if (cached[0]) target = cached[0].data as Fragrance;
-    } catch { /* ignore */ }
+    const fromDB = await findFragranceInDB(fragranceName, (msg) => req.log.warn(msg));
+    if (fromDB) target = fromDB;
   }
 
   if (!target) {
     res.status(404).json({ error: `Fragrance not found: ${fragranceName}` });
+    return;
+  }
+
+  // T004: Check response cache (7-day TTL for stable scores)
+  const cachePayload = {
+    f: fragranceName.toLowerCase(),
+    o: [...(ownedFragrances ?? [])].sort(),
+    b: budget ?? null,
+  };
+  const cacheKey = makeHash("score", cachePayload);
+  const cached = await getCached(cacheKey);
+  if (cached) {
+    res.json(cached);
     return;
   }
 
@@ -400,8 +478,8 @@ router.post("/score", async (req, res) => {
       ownedFragrances?.some(
         (owned) =>
           f.name.toLowerCase() === owned.toLowerCase() ||
-          `${f.house} ${f.name}`.toLowerCase() === owned.toLowerCase()
-      )
+          `${f.house} ${f.name}`.toLowerCase() === owned.toLowerCase(),
+      ),
     )
     .map((f) => `${f.house} ${f.name} (accords: ${f.accords.join(", ")})`);
 
@@ -463,6 +541,10 @@ Respond with ONLY this JSON structure:
 
     const jsonText = content.text.trim().replace(/^```json\n?/, "").replace(/\n?```$/, "");
     const scoreData = JSON.parse(jsonText);
+
+    // T004: Cache for 7 days
+    await setCached(cacheKey, "score", cachePayload, scoreData, 7 * 24);
+
     res.json(scoreData);
   } catch (err) {
     req.log.error({ err }, "Failed to get blind buy score from Claude");
@@ -470,30 +552,53 @@ Respond with ONLY this JSON structure:
   }
 });
 
-// POST /semantic-search  — natural language fragrance discovery
-router.post("/semantic-search", async (req, res) => {
+// ─── POST /semantic-search (T004 cache + T005 rate limit + T007 scent DNA) ───
+router.post("/semantic-search", aiRateLimit, async (req, res) => {
   const { query } = req.body as { query: string };
   if (!query?.trim()) {
     res.status(400).json({ error: "query required" });
     return;
   }
 
-  let profile: {
+  // T007: Get user's scent DNA to personalise the interpretation
+  const { userId } = getAuth(req);
+  let scentContext = "";
+  if (userId) {
+    try {
+      const [userProfile] = await db
+        .select()
+        .from(userProfilesTable)
+        .where(eq(userProfilesTable.userId, userId))
+        .limit(1);
+      if (userProfile?.ownedFragrances.length) {
+        const dna = computeScentDNA(userProfile.ownedFragrances, fragrances);
+        if (dna) {
+          scentContext = ` This user's collection suggests a preference for ${dna.topAccords.slice(0, 3).join(", ")} accords with ${dna.intensity} intensity. Lean toward options that complement rather than duplicate their existing taste.`;
+        }
+      }
+    } catch { /* non-fatal */ }
+  }
+
+  // T004: Cache AI profile interpretation (query-specific, 24h TTL)
+  const profileCacheKey = makeHash("semantic-profile", { q: query.toLowerCase().trim() });
+  let profile = (await getCached(profileCacheKey)) as {
     interpretation: string;
     target_accords: string[];
     avoid_accords: string[];
     longevity_min: number;
     intensity: string;
-  };
+  } | null;
 
-  try {
-    const msg = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: 512,
-      system: "You are a fragrance expert. Interpret a natural language fragrance vibe and extract structured accord parameters. Respond ONLY with valid JSON, no markdown.",
-      messages: [{
-        role: "user",
-        content: `Interpret: "${query}"
+  if (!profile) {
+    try {
+      const msg = await anthropic.messages.create({
+        model: "claude-sonnet-4-6",
+        max_tokens: 512,
+        system: `You are a fragrance expert.${scentContext} Interpret a natural language fragrance vibe and extract structured accord parameters. Respond ONLY with valid JSON, no markdown.`,
+        messages: [
+          {
+            role: "user",
+            content: `Interpret: "${query}"
 
 You MUST only use accords from this exact list: fruity, woody, smoky, fresh, citrus, spicy, lavender, vanilla, aromatic, aquatic, mineral, earthy, oud, resinous, sweet, fougere, oriental, floral, amber
 
@@ -507,21 +612,32 @@ Return JSON:
   "longevity_min": 1,
   "intensity": "light|moderate|strong"
 }`,
-      }],
-    });
+          },
+        ],
+      });
 
-    const content = msg.content[0];
-    if (content.type !== "text") throw new Error("unexpected response");
-    const raw = content.text.trim().replace(/^```json\n?/, "").replace(/\n?```$/, "");
-    profile = JSON.parse(raw);
-  } catch (err) {
-    req.log.error({ err }, "Semantic search AI failed");
-    res.status(500).json({ error: "Failed to interpret query" });
-    return;
+      const content = msg.content[0];
+      if (content.type !== "text") throw new Error("unexpected response");
+      const raw = content.text.trim().replace(/^```json\n?/, "").replace(/\n?```$/, "");
+      profile = JSON.parse(raw);
+
+      // T004: Cache interpretation for 24h
+      await setCached(
+        profileCacheKey,
+        "semantic-profile",
+        { q: query.toLowerCase().trim() },
+        profile,
+        24,
+      );
+    } catch (err) {
+      req.log.error({ err }, "Semantic search AI failed");
+      res.status(500).json({ error: "Failed to interpret query" });
+      return;
+    }
   }
 
-  const targetAccords: string[] = profile.target_accords ?? [];
-  const avoidAccords: string[] = profile.avoid_accords ?? [];
+  const targetAccords: string[] = profile!.target_accords ?? [];
+  const avoidAccords: string[] = profile!.avoid_accords ?? [];
 
   const scored = fragrances.map((f) => {
     const matched = f.accords.filter((a) => targetAccords.includes(a));
@@ -530,16 +646,17 @@ Return JSON:
     let score = 0;
     if (targetAccords.length > 0) score += (matched.length / targetAccords.length) * 78;
     score -= avoided.length * 20;
-    if (f.longevity >= (profile.longevity_min ?? 1)) score += 8;
-    if (profile.intensity === "strong" && f.sillage >= 3) score += 10;
-    if (profile.intensity === "light" && f.sillage <= 2) score += 10;
-    if (profile.intensity === "moderate" && f.sillage >= 2 && f.sillage <= 3) score += 8;
+    if (f.longevity >= (profile!.longevity_min ?? 1)) score += 8;
+    if (profile!.intensity === "strong" && f.sillage >= 3) score += 10;
+    if (profile!.intensity === "light" && f.sillage <= 2) score += 10;
+    if (profile!.intensity === "moderate" && f.sillage >= 2 && f.sillage <= 3) score += 8;
 
     score = Math.max(0, Math.min(100, Math.round(score)));
 
-    const reason = matched.length > 0
-      ? `Shares ${matched.slice(0, 3).join(", ")} accord${matched.length > 1 ? "s" : ""} with your vibe`
-      : "Partial mood match";
+    const reason =
+      matched.length > 0
+        ? `Shares ${matched.slice(0, 3).join(", ")} accord${matched.length > 1 ? "s" : ""} with your vibe`
+        : "Partial mood match";
 
     return { ...f, match_score: score, match_reason: reason };
   });
@@ -549,10 +666,10 @@ Return JSON:
     .sort((a, b) => b.match_score - a.match_score)
     .slice(0, 9);
 
-  res.json({ interpretation: profile.interpretation, accords: targetAccords, results });
+  res.json({ interpretation: profile!.interpretation, accords: targetAccords, results });
 });
 
-// POST /similar — pure cosine-similarity matches (no price bias, no Dua clones)
+// ─── POST /similar ────────────────────────────────────────────────────────────
 router.post("/similar", async (req, res) => {
   const { fragranceName } = req.body as { fragranceName?: string };
   if (!fragranceName?.trim()) {
@@ -563,23 +680,12 @@ router.post("/similar", async (req, res) => {
   let target: Fragrance | undefined = fragrances.find(
     (f) =>
       f.name.toLowerCase() === fragranceName.toLowerCase() ||
-      `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase()
+      `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase(),
   );
 
   if (!target) {
-    try {
-      const cached = await db
-        .select()
-        .from(aiFragrancesTable)
-        .where(
-          or(
-            ilike(sql`${aiFragrancesTable.data}->>'name'`, fragranceName),
-            ilike(sql`${aiFragrancesTable.data}->>'house' || ' ' || ${aiFragrancesTable.data}->>'name'`, fragranceName)
-          )
-        )
-        .limit(1);
-      if (cached[0]) target = cached[0].data as Fragrance;
-    } catch { /* ignore */ }
+    const fromDB = await findFragranceInDB(fragranceName, (msg) => req.log.warn(msg));
+    if (fromDB) target = fromDB;
   }
 
   if (!target) {
@@ -615,11 +721,19 @@ router.post("/similar", async (req, res) => {
   res.json(results);
 });
 
-// POST /community — AI-synthesised r/fragrance community sentiment for a fragrance
-router.post("/community", async (req, res) => {
+// ─── POST /community (T004 cache + T005 rate limit) ──────────────────────────
+router.post("/community", aiRateLimit, async (req, res) => {
   const { fragranceName } = req.body as { fragranceName?: string };
   if (!fragranceName?.trim()) {
     res.status(400).json({ error: "fragranceName required" });
+    return;
+  }
+
+  // T004: Check cache (48h TTL — community opinions change slowly)
+  const cacheKey = makeHash("community", { fn: fragranceName.toLowerCase().trim() });
+  const cached = await getCached(cacheKey);
+  if (cached) {
+    res.json(cached);
     return;
   }
 
@@ -627,15 +741,18 @@ router.post("/community", async (req, res) => {
     const msg = await anthropic.messages.create({
       model: "claude-sonnet-4-6",
       max_tokens: 600,
-      system: "You are a fragrance community expert with comprehensive knowledge of r/fragrance discussions, common opinions, batch variation reports, and community consensus on popular fragrances.",
-      messages: [{
-        role: "user",
-        content: `Summarise what the r/fragrance community says about "${fragranceName}" in exactly 4 bullet points.
+      system:
+        "You are a fragrance community expert with comprehensive knowledge of r/fragrance discussions, common opinions, batch variation reports, and community consensus on popular fragrances.",
+      messages: [
+        {
+          role: "user",
+          content: `Summarise what the r/fragrance community says about "${fragranceName}" in exactly 4 bullet points.
 
 Cover these angles: overall reception & consensus, real-world longevity/projection reports from users, any reformulation or batch consistency concerns, and value vs. alternatives.
 
 Format: one bullet per line starting with "•". Be specific, opinionated, and realistic — no generic filler. If the fragrance is obscure or little discussed, say so honestly.`,
-      }],
+        },
+      ],
     });
 
     const content = msg.content[0];
@@ -646,7 +763,18 @@ Format: one bullet per line starting with "•". Be specific, opinionated, and r
       .filter((l) => l.startsWith("•"))
       .map((l) => l.replace(/^•\s*/, ""));
 
-    res.json({ summary: text, bullets });
+    const result = { summary: text, bullets };
+
+    // T004: Cache for 48h
+    await setCached(
+      cacheKey,
+      "community",
+      { fn: fragranceName.toLowerCase().trim() },
+      result,
+      48,
+    );
+
+    res.json(result);
   } catch (err) {
     req.log.error({ err }, "Community sentiment generation failed");
     res.status(500).json({ error: "Failed to generate community sentiment" });
