@@ -246,6 +246,22 @@
   }
 }
 
+/* Section slide transitions */
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+@keyframes slideFromLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+.slide-from-right {
+  animation: slideFromRight 280ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+.slide-from-left {
+  animation: slideFromLeft 280ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
 /* Infinite moving cards scroll animation */
 @keyframes scroll {
   to {

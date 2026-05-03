@@ -39,6 +39,7 @@ export default function Home() {
   const [contextPicks, setContextPicks] = useState<ContextPick[] | null>(null);
   const [blindBuyScore, setBlindBuyScore] = useState<BlindBuyScore | null>(null);
   const [activeSection, setActiveSection] = useState("explore");
+  const [slideDir, setSlideDir] = useState<"right" | "left" | null>(null);
   const [occasion, setOccasion] = useState("casual");
   const [timeOfDay, setTimeOfDay] = useState("daytime");
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -81,7 +82,7 @@ export default function Home() {
       setDupes(null);
       setContextPicks(null);
       setBlindBuyScore(null);
-      if (activeSection === "discover") setActiveSection("explore");
+      if (activeSection === "discover") { setSlideDir("right"); setActiveSection("explore"); }
 
       const ownedFragrances = profile.ownedFragrances ?? [];
 
@@ -117,7 +118,18 @@ export default function Home() {
     } catch { /* ignore */ }
   }, [handleFragranceSelect]);
 
+  const NAV_ORDER = ["chat", "discover", "explore", "dupes", "collection", "wishlist"];
+
+  const handleSectionChange = useCallback((section: string) => {
+    if (section === activeSection) return;
+    const prevIdx = NAV_ORDER.indexOf(activeSection);
+    const nextIdx = NAV_ORDER.indexOf(section);
+    setSlideDir(nextIdx >= prevIdx ? "right" : "left");
+    setActiveSection(section);
+  }, [activeSection]); // eslint-disable-line
+
   const handleHomeClick = useCallback(() => {
+    setSlideDir("left");
     setSelectedFragrance(null);
     setFragranceHistory([]);
     setDupes(null);
@@ -150,7 +162,7 @@ export default function Home() {
   const sidebarProps = {
     ownedFragrances: profile.ownedFragrances,
     activeSection,
-    onSectionChange: setActiveSection,
+    onSectionChange: handleSectionChange,
     onOpenOnboarding: () => setShowOnboarding(true),
     recentChats,
     wishlistCount: wishlistItems.length,
@@ -169,6 +181,13 @@ export default function Home() {
       <Sidebar {...sidebarProps} />
 
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <div
+          key={activeSection}
+          className={[
+            "flex-1 flex flex-col overflow-hidden",
+            slideDir === "right" ? "slide-from-right" : slideDir === "left" ? "slide-from-left" : "",
+          ].filter(Boolean).join(" ")}
+        >
         {/* Top bar */}
         {!isChat && !isWishlist && !isDiscover && (
           <header
@@ -352,6 +371,7 @@ export default function Home() {
             )}
           </div>
         )}
+        </div>
       </main>
 
       {/* Right panel — Blind Buy Scorer */}
