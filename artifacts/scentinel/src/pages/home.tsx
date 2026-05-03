@@ -17,6 +17,7 @@ import { Sidebar, SidebarContent } from "@/components/sidebar";
 import { OnboardingModal } from "@/components/onboarding-modal";
 import { WishlistPage } from "@/components/wishlist-page";
 import { SemanticSearchView } from "@/components/semantic-search-view";
+import { ShootingStars } from "@/components/shooting-stars";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import ChatPage from "@/pages/chat";
 import { useWishlist } from "@/hooks/use-wishlist";
@@ -161,7 +162,9 @@ export default function Home() {
   const isExplore = !isChat && !isWishlist && !isDiscover;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "hsl(30 14% 3%)" }}>
+    <div className="flex h-screen overflow-hidden relative" style={{ background: "hsl(30 14% 3%)" }}>
+      <ShootingStars minSpeed={8} maxSpeed={20} minDelay={800} maxDelay={4000} />
+      <div className="relative flex flex-1 overflow-hidden" style={{ zIndex: 1 }}>
       <Sidebar {...sidebarProps} />
 
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
@@ -376,6 +379,7 @@ export default function Home() {
         onComplete={handleOnboardingComplete}
         onSkip={handleOnboardingSkip}
       />
+      </div>
     </div>
   );
 }
