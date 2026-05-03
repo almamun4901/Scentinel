@@ -16,6 +16,7 @@ import { BlindBuyScorer } from "@/components/blind-buy-scorer";
 import { Sidebar, SidebarContent } from "@/components/sidebar";
 import { OnboardingModal } from "@/components/onboarding-modal";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
+import ChatPage from "@/pages/chat";
 import {
   Fragrance,
   DupeResult,
@@ -34,6 +35,9 @@ export default function Home() {
   const [timeOfDay, setTimeOfDay] = useState("daytime");
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [recentChats, setRecentChats] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem("scentinel-recent-chats") ?? "[]"); } catch { return []; }
+  });
   const [onboardingDismissed, setOnboardingDismissed] = useState(
     () => localStorage.getItem("scentinel-onboarding-done") === "1"
   );
@@ -115,155 +119,214 @@ export default function Home() {
     setShowOnboarding(false);
   };
 
+  const handleChatMessageSent = useCallback((message: string) => {
+    setRecentChats((prev) => {
+      const next = [message, ...prev.filter((m) => m !== message)].slice(0, 8);
+      localStorage.setItem("scentinel-recent-chats", JSON.stringify(next));
+      return next;
+    });
+  }, []);
+
   const sidebarProps = {
     ownedFragrances: profile.ownedFragrances,
     activeSection,
     onSectionChange: setActiveSection,
     onOpenOnboarding: () => setShowOnboarding(true),
+    recentChats,
   };
+
+  const isChat = activeSection === "chat";
 
   return (
     <div className="flex h-screen overflow-hidden" style={{ background: "hsl(30 14% 3%)" }}>
-      {/* Left Sidebar — hidden on mobile, shown on md+ */}
+      {/* Left Sidebar */}
       <Sidebar {...sidebarProps} />
 
       {/* Main content */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-        {/* Top bar */}
-        <header
-          className="shrink-0 flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-3 border-b"
-          style={{ borderColor: "hsl(34 10% 12%)" }}
-        >
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden shrink-0 p-1.5 rounded transition-colors"
-            style={{ color: "hsl(40 10% 48%)" }}
-            onClick={() => setMobileSidebarOpen(true)}
-            aria-label="Open menu"
+        {/* Top bar — hidden in chat mode (chat has its own context display) */}
+        {!isChat && (
+          <header
+            className="shrink-0 flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-3 border-b"
+            style={{ borderColor: "hsl(34 10% 12%)" }}
           >
-            <Menu size={20} />
-          </button>
-
-          {/* Mobile logo (hidden on md+ since sidebar shows it) */}
-          <div className="md:hidden shrink-0 mr-1">
-            <span className="font-serif text-lg tracking-wide" style={{ color: "hsl(42 54% 55%)" }}>
-              Scentinel
-            </span>
-          </div>
-
-          {/* Search bar — full remaining width */}
-          <div className="flex-1 min-w-0">
-            <SearchBar onSelect={handleFragranceSelect} />
-          </div>
-
-          {/* Context chips — temp always, desc hidden on small screens */}
-          <div className="flex items-center gap-1.5 shrink-0">
-            <div
-              className="text-xs px-2 py-1.5 rounded border font-mono"
-              style={{
-                borderColor: "hsl(34 10% 18%)",
-                color: "hsl(40 10% 48%)",
-                background: "hsl(34 12% 9%)",
-              }}
+            <button
+              className="md:hidden shrink-0 p-1.5 rounded transition-colors"
+              style={{ color: "hsl(40 10% 48%)" }}
+              onClick={() => setMobileSidebarOpen(true)}
+              aria-label="Open menu"
             >
-              {weatherTemp}°C
+              <Menu size={20} />
+            </button>
+
+            <div className="md:hidden shrink-0 mr-1">
+              <span className="font-serif text-lg tracking-wide" style={{ color: "hsl(42 54% 55%)" }}>
+                Scentinel
+              </span>
             </div>
-            <div
-              className="hidden sm:block text-xs px-2.5 py-1.5 rounded border capitalize"
-              style={{
-                borderColor: "hsl(34 10% 18%)",
-                color: "hsl(40 10% 48%)",
-                background: "hsl(34 12% 9%)",
-              }}
-            >
-              {weatherDesc}
+
+            <div className="flex-1 min-w-0">
+              <SearchBar onSelect={handleFragranceSelect} />
             </div>
-          </div>
-        </header>
 
-        {/* Scrollable main area */}
-        <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
-          {!selectedFragrance ? (
-            <EmptyState onFragranceSelect={handleFragranceSelect} />
-          ) : (
-            <div className="max-w-3xl">
-              <FragranceHero fragrance={selectedFragrance} />
-
-              <DupesSection
-                dupes={dupes}
-                isLoading={dupesMutation.isPending}
-              />
-
-              <ContextPicks
-                picks={contextPicks}
-                isLoading={contextMutation.isPending}
-                weatherTemp={weatherTemp}
-                weatherDesc={weatherDesc}
-                occasion={occasion}
-                timeOfDay={timeOfDay}
-                onOccasionChange={(v) => {
-                  setOccasion(v);
-                  if (selectedFragrance) {
-                    contextMutation.mutate(
-                      {
-                        data: {
-                          fragranceName: selectedFragrance.name,
-                          weatherTemp,
-                          weatherDesc,
-                          occasion: v,
-                          timeOfDay,
-                          ownedFragrances: profile.ownedFragrances,
-                        },
-                      },
-                      { onSuccess: (data) => setContextPicks(data as ContextPick[]) }
-                    );
-                  }
+            <div className="flex items-center gap-1.5 shrink-0">
+              <div
+                className="text-xs px-2 py-1.5 rounded border font-mono"
+                style={{
+                  borderColor: "hsl(34 10% 18%)",
+                  color: "hsl(40 10% 48%)",
+                  background: "hsl(34 12% 9%)",
                 }}
-                onTimeOfDayChange={(v) => {
-                  setTimeOfDay(v);
-                  if (selectedFragrance) {
-                    contextMutation.mutate(
-                      {
-                        data: {
-                          fragranceName: selectedFragrance.name,
-                          weatherTemp,
-                          weatherDesc,
-                          occasion,
-                          timeOfDay: v,
-                          ownedFragrances: profile.ownedFragrances,
-                        },
-                      },
-                      { onSuccess: (data) => setContextPicks(data as ContextPick[]) }
-                    );
-                  }
+              >
+                {weatherTemp}°C
+              </div>
+              <div
+                className="hidden sm:block text-xs px-2.5 py-1.5 rounded border capitalize"
+                style={{
+                  borderColor: "hsl(34 10% 18%)",
+                  color: "hsl(40 10% 48%)",
+                  background: "hsl(34 12% 9%)",
                 }}
-              />
-
-              {/* Blind Buy Scorer — inline on mobile/tablet, hidden when right panel shows */}
-              <div className="xl:hidden mb-6">
-                <BlindBuyScorer
-                  inline
-                  score={blindBuyScore}
-                  isLoading={scoreMutation.isPending}
-                  fragranceName={selectedFragrance?.name}
-                />
+              >
+                {weatherDesc}
               </div>
             </div>
-          )}
-        </div>
+          </header>
+        )}
+
+        {/* Chat mode top bar */}
+        {isChat && (
+          <header
+            className="shrink-0 flex items-center gap-3 px-5 py-3 border-b"
+            style={{ borderColor: "hsl(34 10% 12%)" }}
+          >
+            <button
+              className="md:hidden shrink-0 p-1.5 rounded"
+              style={{ color: "hsl(40 10% 48%)" }}
+              onClick={() => setMobileSidebarOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu size={20} />
+            </button>
+
+            <p className="font-serif flex-1" style={{ fontSize: 17, color: "hsl(40 20% 80%)" }}>
+              Ask Scentinel anything
+            </p>
+
+            <div className="flex items-center gap-2">
+              <div
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs"
+                style={{ background: "hsl(34 12% 9%)", borderColor: "hsl(34 10% 16%)", color: "hsl(40 10% 48%)" }}
+              >
+                <span className="rounded-full" style={{ width: 5, height: 5, background: "#7ab866" }} />
+                {weatherTemp}°C · {weatherDesc}
+              </div>
+              {profile.ownedFragrances.length > 0 && (
+                <div
+                  className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs"
+                  style={{ background: "hsl(34 12% 9%)", borderColor: "hsl(34 10% 16%)", color: "hsl(40 10% 48%)" }}
+                >
+                  <span className="rounded-full" style={{ width: 5, height: 5, background: "hsl(174 50% 40%)" }} />
+                  {profile.ownedFragrances.length} in collection
+                </div>
+              )}
+            </div>
+          </header>
+        )}
+
+        {/* Page content */}
+        {isChat ? (
+          <ChatPage
+            profile={profile}
+            weatherTemp={weatherTemp}
+            weatherDesc={weatherDesc}
+            onMessageSent={handleChatMessageSent}
+          />
+        ) : (
+          <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
+            {!selectedFragrance ? (
+              <EmptyState onFragranceSelect={handleFragranceSelect} />
+            ) : (
+              <div className="max-w-3xl">
+                <FragranceHero fragrance={selectedFragrance} />
+
+                <DupesSection
+                  dupes={dupes}
+                  isLoading={dupesMutation.isPending}
+                />
+
+                <ContextPicks
+                  picks={contextPicks}
+                  isLoading={contextMutation.isPending}
+                  weatherTemp={weatherTemp}
+                  weatherDesc={weatherDesc}
+                  occasion={occasion}
+                  timeOfDay={timeOfDay}
+                  onOccasionChange={(v) => {
+                    setOccasion(v);
+                    if (selectedFragrance) {
+                      contextMutation.mutate(
+                        {
+                          data: {
+                            fragranceName: selectedFragrance.name,
+                            weatherTemp,
+                            weatherDesc,
+                            occasion: v,
+                            timeOfDay,
+                            ownedFragrances: profile.ownedFragrances,
+                          },
+                        },
+                        { onSuccess: (data) => setContextPicks(data as ContextPick[]) }
+                      );
+                    }
+                  }}
+                  onTimeOfDayChange={(v) => {
+                    setTimeOfDay(v);
+                    if (selectedFragrance) {
+                      contextMutation.mutate(
+                        {
+                          data: {
+                            fragranceName: selectedFragrance.name,
+                            weatherTemp,
+                            weatherDesc,
+                            occasion,
+                            timeOfDay: v,
+                            ownedFragrances: profile.ownedFragrances,
+                          },
+                        },
+                        { onSuccess: (data) => setContextPicks(data as ContextPick[]) }
+                      );
+                    }
+                  }}
+                />
+
+                <div className="xl:hidden mb-6">
+                  <BlindBuyScorer
+                    inline
+                    score={blindBuyScore}
+                    isLoading={scoreMutation.isPending}
+                    fragranceName={selectedFragrance?.name}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </main>
 
-      {/* Right panel — Blind Buy Scorer, only on xl+ */}
-      <aside
-        className="hidden xl:flex w-[280px] shrink-0 flex-col py-6 px-5 overflow-y-auto"
-        style={{ borderLeft: "1px solid hsl(34 10% 12%)" }}
-      >
-        <BlindBuyScorer
-          score={blindBuyScore}
-          isLoading={scoreMutation.isPending}
-          fragranceName={selectedFragrance?.name}
-        />
-      </aside>
+      {/* Right panel — Blind Buy Scorer, only on xl+ and not in chat mode */}
+      {!isChat && (
+        <aside
+          className="hidden xl:flex w-[280px] shrink-0 flex-col py-6 px-5 overflow-y-auto"
+          style={{ borderLeft: "1px solid hsl(34 10% 12%)" }}
+        >
+          <BlindBuyScorer
+            score={blindBuyScore}
+            isLoading={scoreMutation.isPending}
+            fragranceName={selectedFragrance?.name}
+          />
+        </aside>
+      )}
 
       {/* Mobile Sidebar Sheet */}
       <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>

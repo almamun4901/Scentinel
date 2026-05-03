@@ -19,6 +19,7 @@
 
 ## Features
 
+- **Chat** — Conversational AI assistant powered by Claude with tool_use; handles dupes, blind buy scoring, context picks, and fragrance lookups via natural language (POST /api/chat)
 - **Search** — Fuzzy fragrance search via Fuse.js (GET /api/search?q=)
 - **Dupe Finder** — Cosine similarity on accord vectors (POST /api/dupes)
 - **Context Recommendations** — Scored picks by weather/occasion/time (POST /api/context)
@@ -76,6 +77,7 @@ All routes served under `/api`:
 | POST | `/dupes` | Find accord-similar fragrances |
 | POST | `/context` | Context-aware picks |
 | POST | `/score` | AI blind buy score |
+| POST | `/chat` | Conversational AI with Claude tool_use |
 | GET | `/weather?lat=&lon=` | Weather proxy |
 | GET | `/profile` | Get user profile |
 | PUT | `/profile` | Save user profile |
