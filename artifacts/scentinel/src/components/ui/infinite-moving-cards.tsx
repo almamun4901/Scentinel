@@ -98,7 +98,6 @@ export function InfiniteMovingCards({
           animationTimingFunction: "linear",
           animationIterationCount: "infinite",
           animationDirection: direction === "left" ? "normal" : "reverse",
-          ...(pauseOnHover ? {} : {}),
         }}
         onMouseEnter={(e) => {
           if (pauseOnHover)
@@ -110,6 +109,13 @@ export function InfiniteMovingCards({
             (e.currentTarget as HTMLUListElement).style.animationPlayState =
               "running";
         }}
+        onClick={(e) => {
+          if (!onSelect) return;
+          const li = (e.target as HTMLElement).closest("li[data-index]");
+          if (!li) return;
+          const idx = parseInt((li as HTMLElement).dataset.index ?? "-1", 10) % items.length;
+          if (idx >= 0 && items[idx]) onSelect(items[idx]);
+        }}
       >
         {items.map((item, i) => {
           const primaryAccord = item.accords[0] ?? "woody";
@@ -117,7 +123,7 @@ export function InfiniteMovingCards({
           return (
             <li
               key={`${item.name}-${i}`}
-              onClick={() => onSelect?.(item)}
+              data-index={i}
               className="relative rounded-xl shrink-0 w-[200px] px-4 py-4 flex flex-col gap-2.5 transition-all"
               style={{
                 background:
