@@ -7,8 +7,7 @@
     "concentration": "EDP",
     "accords": ["fruity", "woody", "smoky", "fresh", "citrus"],
     "notes": { "top": ["blackcurrant", "bergamot", "apple", "pineapple"], "heart": ["birch", "patchouli", "jasmine", "rose"], "base": ["oakmoss", "ambergris", "musk", "sandalwood"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 365,
-    "image_url": "https://i.ebayimg.com/images/g/fd8AAOSwZB9m6jk-/s-l1600.jpg"
+    "longevity": 4, "sillage": 4, "price_gbp": 365
   },
   {
     "id": "dior-sauvage-edp",
@@ -18,8 +17,57 @@
     "concentration": "EDP",
     "accords": ["spicy", "woody", "fresh", "lavender", "vanilla"],
     "notes": { "top": ["bergamot", "pepper", "nutmeg"], "heart": ["lavender", "star anise", "vetiver"], "base": ["ambroxan", "vanilla", "cedar", "sandalwood"] },
-    "longevity": 5, "sillage": 5, "price_gbp": 105,
-    "image_url": "https://eco-beauty.dior.com/dw/image/v2/BDGF_PRD/on/demandware.static/-/Sites-master_dior/default/dw0449f84c/assets/Y3997001/Y3997001_C399700030_E01_GHC.jpg?sw=460&sh=498&sm=fit&imwidth=460"
+    "longevity": 5, "sillage": 5, "price_gbp": 105
+  },
+  {
+    "id": "dior-sauvage-edt",
+    "name": "Sauvage EDT",
+    "house": "Dior",
+    "year": 2015,
+    "concentration": "EDT",
+    "accords": ["fresh", "spicy", "woody", "aromatic", "citrus"],
+    "notes": { "top": ["bergamot", "pepper"], "heart": ["sichuan pepper", "lavender", "vetiver", "geranium"], "base": ["ambroxan", "cedar", "labdanum"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 90
+  },
+  {
+    "id": "dior-fahrenheit",
+    "name": "Fahrenheit",
+    "house": "Dior",
+    "year": 1988,
+    "concentration": "EDT",
+    "accords": ["woody", "aromatic", "fresh", "floral", "citrus"],
+    "notes": { "top": ["bergamot", "lemon", "hawthorn", "lavender"], "heart": ["violet", "cedar", "lily of the valley"], "base": ["leather", "vetiver", "sandalwood", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "dior-homme-intense",
+    "name": "Homme Intense",
+    "house": "Dior",
+    "year": 2011,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "sweet", "powdery", "aromatic"],
+    "notes": { "top": ["lemon", "bergamot"], "heart": ["iris", "lavender", "pear"], "base": ["ambrette", "vetiver", "cedar", "vanilla"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 100
+  },
+  {
+    "id": "dior-jadore-edp",
+    "name": "J'adore EDP",
+    "house": "Dior",
+    "year": 1999,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "citrus", "powdery", "fruity"],
+    "notes": { "top": ["melon", "peach", "pear", "magnolia"], "heart": ["rose", "jasmine", "violet", "orchid"], "base": ["musk", "vanilla", "blackberry", "plum"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 110
+  },
+  {
+    "id": "dior-hypnotic-poison",
+    "name": "Hypnotic Poison EDP",
+    "house": "Dior",
+    "year": 2004,
+    "concentration": "EDP",
+    "accords": ["sweet", "oriental", "woody", "vanilla", "spicy"],
+    "notes": { "top": ["apricot", "plum", "neroli"], "heart": ["jasmine", "rose", "almond"], "base": ["vanilla", "sandalwood", "musk", "amber"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 100
   },
   {
     "id": "bleu-de-chanel-edp",
@@ -29,294 +77,27 @@
     "concentration": "EDP",
     "accords": ["woody", "aromatic", "citrus", "spicy", "fresh"],
     "notes": { "top": ["grapefruit", "lemon", "mint", "pink pepper"], "heart": ["ginger", "nutmeg", "jasmine", "iso e super"], "base": ["cedar", "sandalwood", "patchouli", "incense"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 130,
-    "image_url": "https://www.chanel.com/images/t_one/w_0.99,h_0.99,c_crop/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/bleu-de-chanel-3-4-fl-oz-eau-de-parfum-twist-and-spray-set-1pce-packshot-default-101032-9561386450974.jpg"
+    "longevity": 4, "sillage": 3, "price_gbp": 130
   },
   {
-    "id": "tom-ford-oud-wood",
-    "name": "Oud Wood",
-    "house": "Tom Ford",
-    "year": 2007,
-    "concentration": "EDP",
-    "accords": ["oud", "woody", "smoky", "spicy", "earthy"],
-    "notes": { "top": ["oud", "rosewood", "cardamom"], "heart": ["sandalwood", "vetiver", "tonka bean"], "base": ["amber", "musk", "vanilla", "papyrus"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 195,
-    "image_url": "https://cdn.media.amplience.net/i/tom_ford/T1-OUD-WOOD_OC_30ML_A?w=400"
-  },
-  {
-    "id": "ysl-y-edp",
-    "name": "Y EDP",
-    "house": "YSL",
-    "year": 2018,
-    "concentration": "EDP",
-    "accords": ["fresh", "woody", "aromatic", "fougere", "citrus"],
-    "notes": { "top": ["bergamot", "grapefruit", "apple"], "heart": ["sage", "geranium", "juniper"], "base": ["cedar", "amberwood", "tonka bean", "vetiver"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 90,
-    "image_url": "https://www.yslbeautyus.com/on/demandware.static/-/Sites-ysl-us-Library/default/dwf25ec6c0/pdp/images/727YSL/Y%20EDP%20Bottle%20Image.jpg"
-  },
-  {
-    "id": "pdm-layton",
-    "name": "Layton",
-    "house": "Parfums de Marly",
-    "year": 2016,
-    "concentration": "EDP",
-    "accords": ["aromatic", "sweet", "woody", "spicy", "fresh"],
-    "notes": { "top": ["apple", "lavender", "bergamot"], "heart": ["jasmine", "geranium", "violet"], "base": ["sandalwood", "vanilla", "pepper", "musk"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 200,
-    "image_url": "https://microperfumes.com/cdn/shop/files/mp-2200-1000px.jpg?v=1762201302&width=540"
-  },
-  {
-    "id": "amouage-jubilation-xxv",
-    "name": "Jubilation XXV",
-    "house": "Amouage",
-    "year": 2007,
-    "concentration": "EDP",
-    "accords": ["oud", "resinous", "spicy", "woody", "smoky"],
-    "notes": { "top": ["blackberry", "frankincense", "cinnamon", "myrrh"], "heart": ["oud", "patchouli", "labdanum", "orris"], "base": ["musk", "oakmoss", "amber", "sandalwood"] },
-    "longevity": 5, "sillage": 4, "price_gbp": 310,
-    "image_url": "https://img.fragrancex.com/images/products/sku/large/ajm10sg.jpg"
-  },
-  {
-    "id": "armaf-cdni",
-    "name": "Club de Nuit Intense Man",
-    "house": "Armaf",
-    "year": 2015,
-    "concentration": "EDP",
-    "accords": ["fruity", "woody", "smoky", "fresh", "citrus"],
-    "notes": { "top": ["blackcurrant", "apple", "pineapple", "bergamot"], "heart": ["birch", "jasmine", "rose", "patchouli"], "base": ["ambergris", "musk", "sandalwood", "vanilla"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 35,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/armaf-club-de-nuit-intense-man-edp-perfume-cologne-299452.jpg?v=1725523342&width=1190"
-  },
-  {
-    "id": "adg-profondo",
-    "name": "Acqua di Gio Profondo",
-    "house": "Giorgio Armani",
-    "year": 2021,
-    "concentration": "EDP",
-    "accords": ["aquatic", "woody", "fresh", "citrus", "mineral"],
-    "notes": { "top": ["bergamot", "green mandarin", "aquatic notes"], "heart": ["rosemary", "cypress", "mineral accord"], "base": ["mastic", "ambroxan", "patchouli", "vetiver"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 80,
-    "image_url": "https://www.giorgioarmanibeauty-usa.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-armani-us-Library/default/dwf03cd41a/images/pdp/ww-00846-arm/ADG-PROFONDO-PARFUM.jpg?sw=500&sh=500&sm=cut&q=85"
-  },
-  {
-    "id": "pr-invictus-platinum",
-    "name": "Invictus Platinum",
-    "house": "Paco Rabanne",
-    "year": 2021,
-    "concentration": "EDP",
-    "accords": ["woody", "aromatic", "fresh", "citrus", "spicy"],
-    "notes": { "top": ["lemon", "cardamom", "pink pepper"], "heart": ["laurel", "jasmine", "iris"], "base": ["vetiver", "driftwood", "ambergris", "musk"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 85,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/paco-rabanne-invictus-platinum-edp-perfume-cologne-776593.jpg?v=1680540392&width=1024"
-  },
-  {
-    "id": "jm-wood-sage-sea-salt",
-    "name": "Wood Sage & Sea Salt",
-    "house": "Jo Malone",
-    "year": 2014,
-    "concentration": "EDC",
-    "accords": ["aquatic", "woody", "aromatic", "earthy", "fresh"],
-    "notes": { "top": ["sea salt", "ambrette seeds"], "heart": ["sage", "rock rose"], "base": ["driftwood", "orris"] },
-    "longevity": 2, "sillage": 2, "price_gbp": 110,
-    "image_url": "https://bluemercury.com/cdn/shop/files/variant_images-size-100ml-690251033713-2_4a037d1a-dd3d-4bfe-a64a-69b317850922.jpg?v=1768409284&width=1500"
-  },
-  {
-    "id": "mm-replica-jazz-club",
-    "name": "Replica Jazz Club",
-    "house": "Maison Margiela",
-    "year": 2013,
+    "id": "bleu-de-chanel-edt",
+    "name": "Bleu de Chanel EDT",
+    "house": "Chanel",
+    "year": 2010,
     "concentration": "EDT",
-    "accords": ["woody", "smoky", "sweet", "spicy", "aromatic"],
-    "notes": { "top": ["rum", "bergamot", "pink pepper"], "heart": ["tobacco leaf", "vetiver", "musk"], "base": ["vanilla", "sandalwood", "styrax"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 120,
-    "image_url": "https://buyperfumeinbangladesh.com/wp-content/uploads/2022/06/Maison-Margiela-Replica-Jazz-Club-EDT-for-Men-and-Women-300x300.jpg"
+    "accords": ["woody", "citrus", "aromatic", "fresh", "spicy"],
+    "notes": { "top": ["grapefruit", "lemon", "mint", "pink pepper"], "heart": ["ginger", "nutmeg", "iso e super"], "base": ["cedar", "sandalwood", "patchouli", "white musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 105
   },
   {
-    "id": "adg-edt",
-    "name": "Acqua di Gio",
-    "house": "Giorgio Armani",
-    "year": 1996,
+    "id": "chanel-allure-homme-sport",
+    "name": "Allure Homme Sport",
+    "house": "Chanel",
+    "year": 2004,
     "concentration": "EDT",
-    "accords": ["aquatic", "citrus", "aromatic", "woody", "fresh"],
-    "notes": { "top": ["bergamot", "neroli", "green mandarin"], "heart": ["cyclamen", "rosemary", "persimmon"], "base": ["cedarwood", "patchouli", "white musk"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 65,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/giorgio-armani-acqua-di-gio-edt-perfume-cologne-301034.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "pr-1-million",
-    "name": "1 Million",
-    "house": "Paco Rabanne",
-    "year": 2008,
-    "concentration": "EDT",
-    "accords": ["sweet", "citrus", "spicy", "fruity", "woody"],
-    "notes": { "top": ["blood mandarin", "rose", "grapefruit"], "heart": ["spices", "rose", "cinnamon"], "base": ["leather", "amber", "patchouli", "blond wood"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 70,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/paco-rabanne-1-million-edt-perfume-cologne-295959.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "jpgaultier-le-male",
-    "name": "Le Male",
-    "house": "Jean Paul Gaultier",
-    "year": 1995,
-    "concentration": "EDT",
-    "accords": ["aromatic", "sweet", "fougere", "fresh", "lavender"],
-    "notes": { "top": ["mint", "bergamot", "cardamom"], "heart": ["lavender", "cumin", "cinnamon"], "base": ["vanilla", "amber", "sandalwood", "tonka bean"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 65,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/jean-paul-gaultier-le-male-edt-perfume-cologne-299152.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "versace-eros",
-    "name": "Eros",
-    "house": "Versace",
-    "year": 2012,
-    "concentration": "EDT",
-    "accords": ["sweet", "citrus", "woody", "fresh", "aromatic"],
-    "notes": { "top": ["mint", "apple", "lemon"], "heart": ["tonka bean", "ambroxan", "geranium"], "base": ["vanilla", "vetiver", "oakmoss", "cedarwood"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 75,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/versace-eros-edt-perfume-cologne-296134.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "dg-the-one",
-    "name": "The One",
-    "house": "Dolce & Gabbana",
-    "year": 2008,
-    "concentration": "EDT",
-    "accords": ["oriental", "woody", "aromatic", "spicy", "sweet"],
-    "notes": { "top": ["grapefruit", "coriander", "basil"], "heart": ["ginger", "cardamom", "orange blossom"], "base": ["amber", "cedarwood", "tobacco", "musk"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 75,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/dolce-gabbana-the-one-edt-perfume-cologne-299154.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "montblanc-explorer",
-    "name": "Explorer",
-    "house": "Montblanc",
-    "year": 2019,
-    "concentration": "EDP",
-    "accords": ["woody", "aromatic", "fresh", "earthy", "spicy"],
-    "notes": { "top": ["bergamot", "pineapple"], "heart": ["clary sage", "haitian vetiver"], "base": ["oud", "ambroxan", "white musk"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 65,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/montblanc-explorer-edp-perfume-cologne-304023.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "burberry-hero-edp",
-    "name": "Hero",
-    "house": "Burberry",
-    "year": 2022,
-    "concentration": "EDP",
-    "accords": ["woody", "aromatic", "fresh", "spicy", "citrus"],
-    "notes": { "top": ["bergamot", "black pepper"], "heart": ["cedarwood", "frankincense"], "base": ["oak", "sandalwood", "amber"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 75,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/burberry-hero-edp-perfume-cologne-775943.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "givenchy-gentleman-boisee",
-    "name": "Gentleman Boisée",
-    "house": "Givenchy",
-    "year": 2020,
-    "concentration": "EDP",
-    "accords": ["woody", "floral", "aromatic", "spicy", "sweet"],
-    "notes": { "top": ["bergamot", "cardamom"], "heart": ["iris", "patchouli"], "base": ["cedarwood", "vetiver", "vanilla"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 80,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/givenchy-gentleman-boisee-edp-perfume-cologne-770912.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "tf-tobacco-vanille",
-    "name": "Tobacco Vanille",
-    "house": "Tom Ford",
-    "year": 2007,
-    "concentration": "EDP",
-    "accords": ["sweet", "oriental", "spicy", "resinous", "smoky"],
-    "notes": { "top": ["tobacco flower", "cacao", "sweet spices"], "heart": ["tobacco", "vanilla", "tonka bean"], "base": ["vanilla", "amber", "dry wood", "apple"] },
-    "longevity": 5, "sillage": 4, "price_gbp": 245,
-    "image_url": "https://cdn.media.amplience.net/i/tom_ford/T7Q3-01_MAIN?w=400"
-  },
-  {
-    "id": "tf-tuscan-leather",
-    "name": "Tuscan Leather",
-    "house": "Tom Ford",
-    "year": 2011,
-    "concentration": "EDP",
-    "accords": ["woody", "smoky", "spicy", "aromatic", "citrus"],
-    "notes": { "top": ["raspberry"], "heart": ["saffron", "thyme"], "base": ["leather", "musk", "amber", "sandalwood"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 195,
-    "image_url": "https://cdn.media.amplience.net/i/tom_ford/T1-TUSCAN-LEATHER_OC_50ML_A?w=400"
-  },
-  {
-    "id": "creed-green-irish-tweed",
-    "name": "Green Irish Tweed",
-    "house": "Creed",
-    "year": 1985,
-    "concentration": "EDT",
-    "accords": ["aromatic", "fresh", "citrus", "woody", "fougere"],
-    "notes": { "top": ["lemon verbena", "violet"], "heart": ["iris", "sandalwood"], "base": ["ambergris", "sandalwood", "musk"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 345,
-    "image_url": "https://img.fragrancex.com/images/products/sku/large/CREEGIT3.jpg"
-  },
-  {
-    "id": "mfk-baccarat-rouge-540",
-    "name": "Baccarat Rouge 540",
-    "house": "Maison Francis Kurkdjian",
-    "year": 2015,
-    "concentration": "EDP",
-    "accords": ["sweet", "floral", "woody", "amber", "citrus"],
-    "notes": { "top": ["jasmine", "saffron"], "heart": ["amberwood", "ambroxan"], "base": ["fir resin", "cedar"] },
-    "longevity": 5, "sillage": 5, "price_gbp": 295,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/maison-francis-kurkdjian-baccarat-rouge-540-edp-perfume-298252.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "initio-oud-for-greatness",
-    "name": "Oud for Greatness",
-    "house": "Initio",
-    "year": 2018,
-    "concentration": "EDP",
-    "accords": ["oud", "woody", "spicy", "earthy", "smoky"],
-    "notes": { "top": ["cardamom", "black pepper"], "heart": ["oud", "vetiver", "nutmeg"], "base": ["musk", "cedar", "ambergris"] },
-    "longevity": 5, "sillage": 4, "price_gbp": 295,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/initio-oud-for-greatness-edp-perfume-301104.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "le-labo-santal-33",
-    "name": "Santal 33",
-    "house": "Le Labo",
-    "year": 2011,
-    "concentration": "EDP",
-    "accords": ["woody", "earthy", "aromatic", "sweet", "spicy"],
-    "notes": { "top": ["cardamom", "iris", "violet"], "heart": ["sandalwood", "australian sandalwood"], "base": ["cedarwood", "leather", "papyrus"] },
-    "longevity": 3, "sillage": 2, "price_gbp": 195,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/le-labo-santal-33-edp-perfume-301235.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "byredo-bal-dafrique",
-    "name": "Bal d'Afrique",
-    "house": "Byredo",
-    "year": 2009,
-    "concentration": "EDP",
-    "accords": ["floral", "woody", "citrus", "sweet", "earthy"],
-    "notes": { "top": ["bergamot", "african marigold"], "heart": ["neroli", "violet", "cyclamen"], "base": ["musk", "vetiver", "amber", "cedar"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 185,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/byredo-bal-dafrique-edp-perfume-298551.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "xerjoff-naxos",
-    "name": "Naxos",
-    "house": "Xerjoff",
-    "year": 2008,
-    "concentration": "EDP",
-    "accords": ["sweet", "aromatic", "spicy", "woody", "oriental"],
-    "notes": { "top": ["bergamot", "cardamom"], "heart": ["lavender", "iris", "honey"], "base": ["tobacco", "vanilla", "tonka bean", "musk"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 220,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/xerjoff-naxos-edp-perfume-300145.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "pdm-percival",
-    "name": "Percival",
-    "house": "Parfums de Marly",
-    "year": 2018,
-    "concentration": "EDP",
-    "accords": ["fresh", "aromatic", "woody", "citrus", "aquatic"],
-    "notes": { "top": ["bergamot", "lemon"], "heart": ["iris", "juniper", "jasmine"], "base": ["cedar", "guaiac wood", "musk"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 200,
-    "image_url": "https://microperfumes.com/cdn/shop/files/mp-5042-1000px.jpg?v=1762201528&width=540"
+    "accords": ["fresh", "citrus", "woody", "aromatic", "aquatic"],
+    "notes": { "top": ["aldehydes", "citrus", "mandarin", "pepper"], "heart": ["woody notes", "neo-vetiver", "lavandin"], "base": ["tonka bean", "white musk", "cedar"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 115
   },
   {
     "id": "chanel-no5",
@@ -326,8 +107,7 @@
     "concentration": "EDP",
     "accords": ["floral", "powdery", "sweet", "citrus", "woody"],
     "notes": { "top": ["ylang-ylang", "neroli", "aldehydes"], "heart": ["jasmine", "rose", "lily of the valley"], "base": ["sandalwood", "vetiver", "amber", "vanilla"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 120,
-    "image_url": "https://www.chanel.com/images/t_one/q_auto/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/n-5-eau-de-parfum-spray-1-7fl-oz--packshot-default-107357-9549671694366.jpg"
+    "longevity": 4, "sillage": 3, "price_gbp": 120
   },
   {
     "id": "chanel-coco-mademoiselle",
@@ -337,41 +117,17 @@
     "concentration": "EDP",
     "accords": ["citrus", "floral", "oriental", "woody", "fresh"],
     "notes": { "top": ["orange", "bergamot", "grapefruit"], "heart": ["rose", "jasmine", "iris"], "base": ["patchouli", "vetiver", "amber", "musk"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 130,
-    "image_url": "https://www.chanel.com/images/t_one/q_auto/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/coco-mademoiselle-eau-de-parfum-spray-1-7fl-oz--packshot-default-111059-9566234771486.jpg"
+    "longevity": 4, "sillage": 3, "price_gbp": 130
   },
   {
-    "id": "dior-miss-dior-edp",
-    "name": "Miss Dior",
-    "house": "Dior",
-    "year": 2021,
+    "id": "chanel-coco-edp",
+    "name": "Coco EDP",
+    "house": "Chanel",
+    "year": 1984,
     "concentration": "EDP",
-    "accords": ["floral", "fresh", "powdery", "citrus", "sweet"],
-    "notes": { "top": ["blood orange", "bergamot"], "heart": ["rose", "jasmine", "iris"], "base": ["patchouli", "amber", "musk"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 105,
-    "image_url": "https://eco-beauty.dior.com/dw/image/v2/BDGF_PRD/on/demandware.static/-/Sites-master_dior/default/dwc2571c83/assets/Y0996301/Y0996301_C099600321_E01_GHC.jpg?sw=460&sh=498&sm=fit&imwidth=460"
-  },
-  {
-    "id": "ysl-libre",
-    "name": "Libre",
-    "house": "YSL",
-    "year": 2019,
-    "concentration": "EDP",
-    "accords": ["floral", "aromatic", "sweet", "citrus", "woody"],
-    "notes": { "top": ["bergamot", "mandarin", "black currant"], "heart": ["lavender", "orange blossom", "jasmine"], "base": ["cedarwood", "ambergris", "musk", "vanilla"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 95,
-    "image_url": "https://www.yslbeauty.com/dw/image/v2/BDCR_PRD/on/demandware.static/-/Sites-NGYSL-ILM-Library/default/dw48e4bbe9/pdp/images/WW-61083YSL/PDP_BOTTLE_libre_EDP_30ml.jpg?sw=500&sh=500&sm=cut&q=85"
-  },
-  {
-    "id": "lancome-la-vie-est-belle",
-    "name": "La Vie est Belle",
-    "house": "Lancôme",
-    "year": 2012,
-    "concentration": "EDP",
-    "accords": ["sweet", "floral", "gourmand", "fruity", "powdery"],
-    "notes": { "top": ["black currant", "pear"], "heart": ["iris", "jasmine", "orange blossom"], "base": ["patchouli", "vanilla", "praline", "musk"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 90,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/lancome-la-vie-est-belle-edp-perfume-300192.jpg?v=1706192046&width=1024"
+    "accords": ["oriental", "sweet", "spicy", "floral", "woody"],
+    "notes": { "top": ["mandarin", "peach", "bergamot", "coriander"], "heart": ["rose", "jasmine", "clove", "clove bud"], "base": ["amber", "vanilla", "sandalwood", "labdanum"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 130
   },
   {
     "id": "chanel-chance-tendre",
@@ -381,85 +137,47 @@
     "concentration": "EDP",
     "accords": ["floral", "citrus", "sweet", "fresh", "woody"],
     "notes": { "top": ["grapefruit", "quince"], "heart": ["jasmine", "iris", "lily of the valley"], "base": ["white musk", "cedar", "ambrette"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 125,
-    "image_url": "https://www.chanel.com/images/t_one/q_auto/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/chance-eau-tendre-eau-de-parfum-spray-1-7fl-oz--packshot-default-111113-9566248861726.jpg"
+    "longevity": 3, "sillage": 3, "price_gbp": 125
   },
   {
-    "id": "mugler-amen",
-    "name": "A*Men",
-    "house": "Thierry Mugler",
-    "year": 1996,
-    "concentration": "EDT",
-    "accords": ["sweet", "spicy", "gourmand", "woody", "oriental"],
-    "notes": { "top": ["mint", "star anise", "bergamot"], "heart": ["caramel", "lavender", "patchouli"], "base": ["vanilla", "musk", "coffee", "coumarin"] },
-    "longevity": 5, "sillage": 5, "price_gbp": 75,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/thierry-mugler-a-men-edt-perfume-cologne-297112.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "vr-spicebomb-extreme",
-    "name": "Spicebomb Extreme",
-    "house": "Viktor & Rolf",
-    "year": 2015,
-    "concentration": "EDP",
-    "accords": ["oriental", "spicy", "sweet", "woody", "resinous"],
-    "notes": { "top": ["black pepper", "tobacco"], "heart": ["lava stone accord", "cinnamon"], "base": ["amber", "musk", "caramel", "labdanum"] },
-    "longevity": 5, "sillage": 4, "price_gbp": 85,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/viktor-rolf-spicebomb-extreme-edp-perfume-cologne-770234.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "davidoff-cool-water",
-    "name": "Cool Water",
-    "house": "Davidoff",
-    "year": 1988,
-    "concentration": "EDT",
-    "accords": ["aquatic", "fresh", "citrus", "aromatic", "woody"],
-    "notes": { "top": ["mint", "green tomato leaf", "rosemary"], "heart": ["lavender", "jasmine", "geranium"], "base": ["sandalwood", "cedar", "amber", "musk"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 35,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/davidoff-cool-water-edt-perfume-cologne-296255.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "azzaro-chrome",
-    "name": "Chrome",
-    "house": "Azzaro",
-    "year": 1996,
-    "concentration": "EDT",
-    "accords": ["aromatic", "aquatic", "citrus", "woody", "fresh"],
-    "notes": { "top": ["bergamot", "lemon", "rosemary"], "heart": ["cardamom", "jasmine", "water lily"], "base": ["oakmoss", "sandalwood", "tonka bean"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 40,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/azzaro-chrome-edt-perfume-cologne-294213.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "initio-side-effect",
-    "name": "Side Effect",
-    "house": "Initio",
-    "year": 2016,
-    "concentration": "EDP",
-    "accords": ["sweet", "vanilla", "woody", "spicy", "oriental"],
-    "notes": { "top": ["rum", "cardamom"], "heart": ["iris", "tobacco", "cacao"], "base": ["vanilla", "musk", "sandalwood"] },
-    "longevity": 5, "sillage": 4, "price_gbp": 245,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/initio-side-effect-edp-perfume-301105.jpg?v=1706192046&width=1024"
-  },
-  {
-    "id": "pdm-godolphin",
-    "name": "Godolphin",
-    "house": "Parfums de Marly",
+    "id": "chanel-gabrielle",
+    "name": "Gabrielle EDP",
+    "house": "Chanel",
     "year": 2017,
     "concentration": "EDP",
-    "accords": ["woody", "floral", "spicy", "sweet", "aromatic"],
-    "notes": { "top": ["bergamot", "cinnamon", "nutmeg"], "heart": ["rose", "patchouli", "geranium"], "base": ["sandalwood", "vanilla", "musk", "amber"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 200,
-    "image_url": "https://microperfumes.com/cdn/shop/files/mp-6893-1000px_504f4a9a-b414-4b1f-b87e-2ac2554ce9cd.jpg?v=1762201682&width=1445"
+    "accords": ["floral", "citrus", "fresh", "woody", "sweet"],
+    "notes": { "top": ["grapefruit", "blackcurrant", "mandarin orange"], "heart": ["ylang-ylang", "jasmine", "tuberose", "orange blossom"], "base": ["sandalwood", "musk", "white cedar"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 125
   },
   {
-    "id": "memo-irish-leather",
-    "name": "Irish Leather",
-    "house": "Memo Paris",
-    "year": 2014,
+    "id": "tom-ford-oud-wood",
+    "name": "Oud Wood",
+    "house": "Tom Ford",
+    "year": 2007,
     "concentration": "EDP",
-    "accords": ["woody", "earthy", "citrus", "aromatic", "spicy"],
-    "notes": { "top": ["bergamot", "lime", "pink pepper"], "heart": ["heliotrope", "iris", "vetiver"], "base": ["leather", "musk", "cedar", "sandalwood"] },
-    "longevity": 4, "sillage": 3, "price_gbp": 245,
-    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/memo-paris-irish-leather-edp-perfume-301402.jpg?v=1706192046&width=1024"
+    "accords": ["oud", "woody", "smoky", "spicy", "earthy"],
+    "notes": { "top": ["oud", "rosewood", "cardamom"], "heart": ["sandalwood", "vetiver", "tonka bean"], "base": ["amber", "musk", "vanilla", "papyrus"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 195
+  },
+  {
+    "id": "tf-tobacco-vanille",
+    "name": "Tobacco Vanille",
+    "house": "Tom Ford",
+    "year": 2007,
+    "concentration": "EDP",
+    "accords": ["sweet", "oriental", "spicy", "resinous", "smoky"],
+    "notes": { "top": ["tobacco flower", "cacao", "sweet spices"], "heart": ["tobacco", "vanilla", "tonka bean"], "base": ["vanilla", "amber", "dry wood", "apple"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 245
+  },
+  {
+    "id": "tf-tuscan-leather",
+    "name": "Tuscan Leather",
+    "house": "Tom Ford",
+    "year": 2011,
+    "concentration": "EDP",
+    "accords": ["woody", "smoky", "spicy", "aromatic", "citrus"],
+    "notes": { "top": ["raspberry"], "heart": ["saffron", "thyme"], "base": ["leather", "musk", "amber", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 195
   },
   {
     "id": "tf-black-orchid",
@@ -469,8 +187,1117 @@
     "concentration": "EDP",
     "accords": ["floral", "woody", "oriental", "earthy", "sweet"],
     "notes": { "top": ["black truffle", "ylang-ylang", "bergamot"], "heart": ["black orchid", "lotus", "sandalwood"], "base": ["dark chocolate", "incense", "amber", "patchouli"] },
-    "longevity": 4, "sillage": 4, "price_gbp": 195,
-    "image_url": "https://cdn.media.amplience.net/i/tom_ford/T3BO-01_MAIN?w=400"
+    "longevity": 4, "sillage": 4, "price_gbp": 195
+  },
+  {
+    "id": "tf-noir-edp",
+    "name": "Noir EDP",
+    "house": "Tom Ford",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["oriental", "woody", "spicy", "floral", "oud"],
+    "notes": { "top": ["cardamom", "black pepper", "pink pepper"], "heart": ["violet", "rose", "neroli"], "base": ["oud", "vanilla", "benzoin", "patchouli"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 195
+  },
+  {
+    "id": "tf-grey-vetiver",
+    "name": "Grey Vetiver",
+    "house": "Tom Ford",
+    "year": 2009,
+    "concentration": "EDP",
+    "accords": ["woody", "earthy", "citrus", "aromatic", "spicy"],
+    "notes": { "top": ["grapefruit", "orange flower", "sage"], "heart": ["vetiver", "oakmoss"], "base": ["amber", "sandalwood", "grey woods"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 195
+  },
+  {
+    "id": "tf-neroli-portofino",
+    "name": "Neroli Portofino",
+    "house": "Tom Ford",
+    "year": 2011,
+    "concentration": "EDP",
+    "accords": ["citrus", "floral", "fresh", "aromatic", "aquatic"],
+    "notes": { "top": ["bergamot", "lemon", "mandarin", "neroli"], "heart": ["jasmine", "lavender", "myrtle"], "base": ["amber", "musk", "sandalwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 195
+  },
+  {
+    "id": "ysl-y-edp",
+    "name": "Y EDP",
+    "house": "YSL",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["fresh", "woody", "aromatic", "fougere", "citrus"],
+    "notes": { "top": ["bergamot", "grapefruit", "apple"], "heart": ["sage", "geranium", "juniper"], "base": ["cedar", "amberwood", "tonka bean", "vetiver"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "ysl-y-edt",
+    "name": "Y EDT",
+    "house": "YSL",
+    "year": 2017,
+    "concentration": "EDT",
+    "accords": ["fresh", "aromatic", "woody", "citrus", "fougere"],
+    "notes": { "top": ["bergamot", "grapefruit", "apple"], "heart": ["sage", "juniper", "geranium"], "base": ["cedar", "amberwood", "vetiver"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "ysl-la-nuit-de-lhomme",
+    "name": "La Nuit de l'Homme",
+    "house": "YSL",
+    "year": 2009,
+    "concentration": "EDT",
+    "accords": ["spicy", "woody", "sweet", "aromatic", "oriental"],
+    "notes": { "top": ["cardamom", "bergamot"], "heart": ["lavender", "cedar", "caraway"], "base": ["vetiver", "coumarin", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "ysl-lhomme",
+    "name": "L'Homme EDT",
+    "house": "YSL",
+    "year": 2006,
+    "concentration": "EDT",
+    "accords": ["woody", "spicy", "fresh", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "lemon", "ginger"], "heart": ["violet", "basil", "white pepper"], "base": ["vetiver", "cedar", "white musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "ysl-black-opium",
+    "name": "Black Opium EDP",
+    "house": "YSL",
+    "year": 2014,
+    "concentration": "EDP",
+    "accords": ["sweet", "floral", "gourmand", "vanilla", "spicy"],
+    "notes": { "top": ["pink pepper", "orange blossom", "pear"], "heart": ["coffee", "jasmine", "bitter almond"], "base": ["patchouli", "vanilla", "cedarwood", "cashmere wood"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 95
+  },
+  {
+    "id": "ysl-libre",
+    "name": "Libre EDP",
+    "house": "YSL",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["floral", "aromatic", "sweet", "citrus", "woody"],
+    "notes": { "top": ["bergamot", "mandarin", "black currant"], "heart": ["lavender", "orange blossom", "jasmine"], "base": ["cedarwood", "ambergris", "musk", "vanilla"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 95
+  },
+  {
+    "id": "ysl-mon-paris",
+    "name": "Mon Paris EDP",
+    "house": "YSL",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["floral", "fruity", "sweet", "citrus", "woody"],
+    "notes": { "top": ["raspberry", "pear", "bergamot"], "heart": ["peony", "datura", "rose"], "base": ["white musk", "patchouli", "ambrette", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "pdm-layton",
+    "name": "Layton",
+    "house": "Parfums de Marly",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["aromatic", "sweet", "woody", "spicy", "fresh"],
+    "notes": { "top": ["apple", "lavender", "bergamot"], "heart": ["jasmine", "geranium", "violet"], "base": ["sandalwood", "vanilla", "pepper", "musk"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 200
+  },
+  {
+    "id": "pdm-percival",
+    "name": "Percival",
+    "house": "Parfums de Marly",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["fresh", "aromatic", "woody", "citrus", "aquatic"],
+    "notes": { "top": ["bergamot", "lemon"], "heart": ["iris", "juniper", "jasmine"], "base": ["cedar", "guaiac wood", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 200
+  },
+  {
+    "id": "pdm-godolphin",
+    "name": "Godolphin",
+    "house": "Parfums de Marly",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["woody", "floral", "spicy", "sweet", "aromatic"],
+    "notes": { "top": ["bergamot", "cinnamon", "nutmeg"], "heart": ["rose", "patchouli", "geranium"], "base": ["sandalwood", "vanilla", "musk", "amber"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 200
+  },
+  {
+    "id": "pdm-pegasus",
+    "name": "Pegasus",
+    "house": "Parfums de Marly",
+    "year": 2011,
+    "concentration": "EDP",
+    "accords": ["sweet", "aromatic", "woody", "fresh", "vanilla"],
+    "notes": { "top": ["bergamot", "heliotrope", "lavender"], "heart": ["jasmine", "iris", "carnation"], "base": ["sandalwood", "vanilla", "musk", "amber"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 195
+  },
+  {
+    "id": "pdm-herod",
+    "name": "Herod",
+    "house": "Parfums de Marly",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["sweet", "spicy", "woody", "oriental", "smoky"],
+    "notes": { "top": ["bergamot", "cinnamon"], "heart": ["tobacco", "osmanthus", "pepper"], "base": ["vanilla", "sandalwood", "oud", "musk"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 200
+  },
+  {
+    "id": "pdm-sedley",
+    "name": "Sedley",
+    "house": "Parfums de Marly",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["aromatic", "aquatic", "fresh", "woody", "citrus"],
+    "notes": { "top": ["bergamot", "mint", "spearmint"], "heart": ["petitgrain", "geranium", "jasmine"], "base": ["musk", "vetiver", "oakwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 200
+  },
+  {
+    "id": "amouage-jubilation-xxv",
+    "name": "Jubilation XXV",
+    "house": "Amouage",
+    "year": 2007,
+    "concentration": "EDP",
+    "accords": ["oud", "resinous", "spicy", "woody", "smoky"],
+    "notes": { "top": ["blackberry", "frankincense", "cinnamon", "myrrh"], "heart": ["oud", "patchouli", "labdanum", "orris"], "base": ["musk", "oakmoss", "amber", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 310
+  },
+  {
+    "id": "amouage-interlude-man",
+    "name": "Interlude Man",
+    "house": "Amouage",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["smoky", "spicy", "resinous", "oud", "earthy"],
+    "notes": { "top": ["bergamot", "oregano", "cinnamon"], "heart": ["frankincense", "oud", "rose"], "base": ["sandalwood", "amber", "patchouli", "musk"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 260
+  },
+  {
+    "id": "amouage-reflection-man",
+    "name": "Reflection Man",
+    "house": "Amouage",
+    "year": 2007,
+    "concentration": "EDP",
+    "accords": ["floral", "aromatic", "woody", "citrus", "fresh"],
+    "notes": { "top": ["neroli", "rosemary", "bergamot"], "heart": ["narcissus", "jasmine", "ylang-ylang"], "base": ["sandalwood", "musk", "amber"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 250
+  },
+  {
+    "id": "amouage-epic-man",
+    "name": "Epic Man",
+    "house": "Amouage",
+    "year": 2009,
+    "concentration": "EDP",
+    "accords": ["spicy", "woody", "oud", "oriental", "resinous"],
+    "notes": { "top": ["black pepper", "cardamom", "coriander"], "heart": ["oud", "sandalwood", "rose"], "base": ["amber", "frankincense", "musk", "patchouli"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 250
+  },
+  {
+    "id": "amouage-gold-woman",
+    "name": "Gold Woman",
+    "house": "Amouage",
+    "year": 1983,
+    "concentration": "EDP",
+    "accords": ["floral", "oriental", "woody", "spicy", "resinous"],
+    "notes": { "top": ["bergamot", "civet", "frankincense"], "heart": ["rose", "lily of the valley", "jasmine", "orris"], "base": ["sandalwood", "musk", "civet", "amber"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 280
+  },
+  {
+    "id": "armaf-cdni",
+    "name": "Club de Nuit Intense Man",
+    "house": "Armaf",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["fruity", "woody", "smoky", "fresh", "citrus"],
+    "notes": { "top": ["blackcurrant", "apple", "pineapple", "bergamot"], "heart": ["birch", "jasmine", "rose", "patchouli"], "base": ["ambergris", "musk", "sandalwood", "vanilla"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 35
+  },
+  {
+    "id": "armaf-cdni-milestone",
+    "name": "Club de Nuit Milestone",
+    "house": "Armaf",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["woody", "spicy", "fresh", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "grapefruit", "cardamom"], "heart": ["vetiver", "rose", "cedarwood"], "base": ["amber", "musk", "sandalwood", "tonka bean"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 35
+  },
+  {
+    "id": "armaf-ventana",
+    "name": "Ventana",
+    "house": "Armaf",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "fresh", "spicy", "amber"],
+    "notes": { "top": ["bergamot", "pink pepper", "nutmeg"], "heart": ["lavender", "geranium", "cedarwood"], "base": ["amber", "musk", "sandalwood", "vetiver"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 30
+  },
+  {
+    "id": "armaf-shades-blue",
+    "name": "Shades Blue",
+    "house": "Armaf",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["aquatic", "fresh", "woody", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "sea notes", "lemon"], "heart": ["jasmine", "cedar", "vetiver"], "base": ["musk", "amber", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 30
+  },
+  {
+    "id": "adg-profondo",
+    "name": "Acqua di Gio Profondo",
+    "house": "Giorgio Armani",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["aquatic", "woody", "fresh", "citrus", "mineral"],
+    "notes": { "top": ["bergamot", "green mandarin", "aquatic notes"], "heart": ["rosemary", "cypress", "mineral accord"], "base": ["mastic", "ambroxan", "patchouli", "vetiver"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 80
+  },
+  {
+    "id": "adg-edt",
+    "name": "Acqua di Gio",
+    "house": "Giorgio Armani",
+    "year": 1996,
+    "concentration": "EDT",
+    "accords": ["aquatic", "citrus", "aromatic", "woody", "fresh"],
+    "notes": { "top": ["bergamot", "neroli", "green mandarin"], "heart": ["cyclamen", "rosemary", "persimmon"], "base": ["cedarwood", "patchouli", "white musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 65
+  },
+  {
+    "id": "armani-code-edp",
+    "name": "Code EDP",
+    "house": "Giorgio Armani",
+    "year": 2022,
+    "concentration": "EDP",
+    "accords": ["woody", "sweet", "spicy", "aromatic", "fresh"],
+    "notes": { "top": ["bergamot", "apple"], "heart": ["lavender", "guaiac wood"], "base": ["tonka bean", "vetiver", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 80
+  },
+  {
+    "id": "armani-stronger-with-you",
+    "name": "Stronger with You Intensely",
+    "house": "Giorgio Armani",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["sweet", "woody", "spicy", "vanilla", "aromatic"],
+    "notes": { "top": ["cardamom", "violet leaf", "pink pepper"], "heart": ["chestnut", "cedarwood", "violet"], "base": ["vanilla", "musk", "amber wood", "toffee"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 85
+  },
+  {
+    "id": "armani-si-edp",
+    "name": "Sì EDP",
+    "house": "Giorgio Armani",
+    "year": 2013,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "sweet", "fruity", "citrus"],
+    "notes": { "top": ["blackcurrant", "bergamot", "mandarin"], "heart": ["rose", "freesia", "neroli"], "base": ["cashmere wood", "patchouli", "vanilla", "ambroxan"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 95
+  },
+  {
+    "id": "armani-my-way-edp",
+    "name": "My Way EDP",
+    "house": "Giorgio Armani",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "citrus", "sweet", "fresh"],
+    "notes": { "top": ["bergamot", "orange blossom"], "heart": ["indian jasmine", "tuberose", "white cedar"], "base": ["vanilla", "musk", "virginia cedar"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "pr-invictus-platinum",
+    "name": "Invictus Platinum",
+    "house": "Paco Rabanne",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "fresh", "citrus", "spicy"],
+    "notes": { "top": ["lemon", "cardamom", "pink pepper"], "heart": ["laurel", "jasmine", "iris"], "base": ["vetiver", "driftwood", "ambergris", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 85
+  },
+  {
+    "id": "pr-invictus-edt",
+    "name": "Invictus EDT",
+    "house": "Paco Rabanne",
+    "year": 2013,
+    "concentration": "EDT",
+    "accords": ["aquatic", "fresh", "woody", "citrus", "aromatic"],
+    "notes": { "top": ["grapefruit", "marine accord", "mandarin"], "heart": ["bay laurel", "jasmine", "guaiac wood"], "base": ["oak moss", "ambergris", "patchouli"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "pr-1-million",
+    "name": "1 Million",
+    "house": "Paco Rabanne",
+    "year": 2008,
+    "concentration": "EDT",
+    "accords": ["sweet", "citrus", "spicy", "fruity", "woody"],
+    "notes": { "top": ["blood mandarin", "rose", "grapefruit"], "heart": ["spices", "rose", "cinnamon"], "base": ["leather", "amber", "patchouli", "blond wood"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 70
+  },
+  {
+    "id": "pr-1-million-parfum",
+    "name": "1 Million Parfum",
+    "house": "Paco Rabanne",
+    "year": 2021,
+    "concentration": "Parfum",
+    "accords": ["sweet", "spicy", "woody", "oriental", "smoky"],
+    "notes": { "top": ["blood mandarin", "cinnamon"], "heart": ["jasmine", "tobacco", "spices"], "base": ["amber", "leather", "patchouli", "red wood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 90
+  },
+  {
+    "id": "pr-phantom",
+    "name": "Phantom EDT",
+    "house": "Paco Rabanne",
+    "year": 2021,
+    "concentration": "EDT",
+    "accords": ["aromatic", "fresh", "woody", "citrus", "spicy"],
+    "notes": { "top": ["lemon", "lavender", "yellow mandarin"], "heart": ["woody notes", "palo santo"], "base": ["vanilla", "vetiver", "ambergris"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "pr-lady-million",
+    "name": "Lady Million EDP",
+    "house": "Paco Rabanne",
+    "year": 2010,
+    "concentration": "EDP",
+    "accords": ["floral", "citrus", "sweet", "fruity", "woody"],
+    "notes": { "top": ["neroli", "raspberry", "grapefruit"], "heart": ["orange blossom", "jasmine", "rose"], "base": ["patchouli", "honey", "amber", "white musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "jpgaultier-le-male",
+    "name": "Le Male",
+    "house": "Jean Paul Gaultier",
+    "year": 1995,
+    "concentration": "EDT",
+    "accords": ["aromatic", "sweet", "fougere", "fresh", "lavender"],
+    "notes": { "top": ["mint", "bergamot", "cardamom"], "heart": ["lavender", "cumin", "cinnamon"], "base": ["vanilla", "amber", "sandalwood", "tonka bean"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 65
+  },
+  {
+    "id": "jpgaultier-le-male-elixir",
+    "name": "Le Male Elixir",
+    "house": "Jean Paul Gaultier",
+    "year": 2022,
+    "concentration": "Parfum",
+    "accords": ["sweet", "spicy", "woody", "oriental", "vanilla"],
+    "notes": { "top": ["bergamot", "lavender", "cardamom"], "heart": ["vanilla", "cinnamon", "tonka bean"], "base": ["leather", "sandalwood", "amber", "musk"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 90
+  },
+  {
+    "id": "versace-eros",
+    "name": "Eros",
+    "house": "Versace",
+    "year": 2012,
+    "concentration": "EDT",
+    "accords": ["sweet", "citrus", "woody", "fresh", "aromatic"],
+    "notes": { "top": ["mint", "apple", "lemon"], "heart": ["tonka bean", "ambroxan", "geranium"], "base": ["vanilla", "vetiver", "oakmoss", "cedarwood"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 75
+  },
+  {
+    "id": "versace-eros-flame",
+    "name": "Eros Flame",
+    "house": "Versace",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["citrus", "spicy", "woody", "aromatic", "fresh"],
+    "notes": { "top": ["lemon", "blood orange", "black pepper"], "heart": ["rose", "pepper", "geranium"], "base": ["tonka bean", "sandalwood", "patchouli"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "versace-dylan-blue",
+    "name": "Dylan Blue",
+    "house": "Versace",
+    "year": 2016,
+    "concentration": "EDT",
+    "accords": ["aquatic", "fresh", "woody", "citrus", "aromatic"],
+    "notes": { "top": ["grapefruit", "fig leaves", "aquatic notes"], "heart": ["violet", "saffron", "papyrus"], "base": ["amberwood", "tonka bean", "musk", "incense"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "versace-pour-homme",
+    "name": "Pour Homme",
+    "house": "Versace",
+    "year": 2008,
+    "concentration": "EDT",
+    "accords": ["fresh", "aromatic", "citrus", "woody", "aquatic"],
+    "notes": { "top": ["lemon", "bergamot", "neroli"], "heart": ["hyacinth", "clary sage", "geranium"], "base": ["cedarwood", "tonka bean", "musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 60
+  },
+  {
+    "id": "dg-the-one",
+    "name": "The One",
+    "house": "Dolce & Gabbana",
+    "year": 2008,
+    "concentration": "EDT",
+    "accords": ["oriental", "woody", "aromatic", "spicy", "sweet"],
+    "notes": { "top": ["grapefruit", "coriander", "basil"], "heart": ["ginger", "cardamom", "orange blossom"], "base": ["amber", "cedarwood", "tobacco", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "dg-the-one-edp",
+    "name": "The One EDP",
+    "house": "Dolce & Gabbana",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["oriental", "spicy", "woody", "sweet", "smoky"],
+    "notes": { "top": ["grapefruit", "coriander"], "heart": ["tobacco", "ginger", "cardamom"], "base": ["amber", "cedar", "musk", "leather"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 80
+  },
+  {
+    "id": "dg-k-edt",
+    "name": "K by Dolce & Gabbana",
+    "house": "Dolce & Gabbana",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "fresh", "citrus", "spicy"],
+    "notes": { "top": ["bergamot", "cardamom", "ginger"], "heart": ["geranium", "vetiver", "cedarwood"], "base": ["musk", "amber", "labdanum"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "dg-light-blue-homme",
+    "name": "Light Blue Pour Homme",
+    "house": "Dolce & Gabbana",
+    "year": 2007,
+    "concentration": "EDT",
+    "accords": ["fresh", "citrus", "aquatic", "woody", "aromatic"],
+    "notes": { "top": ["bergamot", "grapefruit", "sicilian mandarin"], "heart": ["juniper", "pepper", "rosemary"], "base": ["musk", "oakmoss", "incense"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 60
+  },
+  {
+    "id": "montblanc-explorer",
+    "name": "Explorer",
+    "house": "Montblanc",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "fresh", "earthy", "spicy"],
+    "notes": { "top": ["bergamot", "pineapple"], "heart": ["clary sage", "haitian vetiver"], "base": ["oud", "ambroxan", "white musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 65
+  },
+  {
+    "id": "montblanc-legend-edp",
+    "name": "Legend EDP",
+    "house": "Montblanc",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["woody", "fresh", "aromatic", "spicy", "citrus"],
+    "notes": { "top": ["bergamot", "pink pepper", "apple"], "heart": ["lavender", "geranium", "violet"], "base": ["woody notes", "musk", "amber", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 60
+  },
+  {
+    "id": "montblanc-legend-night",
+    "name": "Legend Night",
+    "house": "Montblanc",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["woody", "oriental", "spicy", "sweet", "smoky"],
+    "notes": { "top": ["black cardamom", "violet leaves", "bergamot"], "heart": ["coumarin", "sandalwood", "hedione"], "base": ["musk", "oud", "labdanum", "vetiver"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 65
+  },
+  {
+    "id": "burberry-hero-edp",
+    "name": "Hero EDP",
+    "house": "Burberry",
+    "year": 2022,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "fresh", "spicy", "citrus"],
+    "notes": { "top": ["bergamot", "black pepper"], "heart": ["cedarwood", "frankincense"], "base": ["oak", "sandalwood", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "burberry-mr-burberry-edp",
+    "name": "Mr. Burberry EDP",
+    "house": "Burberry",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "fresh", "earthy", "spicy"],
+    "notes": { "top": ["bergamot", "black pepper"], "heart": ["vetiver", "geranium"], "base": ["sandalwood", "labdanum", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "burberry-brit-men",
+    "name": "Brit for Men",
+    "house": "Burberry",
+    "year": 2004,
+    "concentration": "EDT",
+    "accords": ["woody", "aromatic", "spicy", "citrus", "fresh"],
+    "notes": { "top": ["lime", "bergamot"], "heart": ["tonka bean", "nutmeg", "cedar"], "base": ["amber", "ginger", "sandalwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 55
+  },
+  {
+    "id": "givenchy-gentleman-boisee",
+    "name": "Gentleman Boisée",
+    "house": "Givenchy",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["woody", "floral", "aromatic", "spicy", "sweet"],
+    "notes": { "top": ["bergamot", "cardamom"], "heart": ["iris", "patchouli"], "base": ["cedarwood", "vetiver", "vanilla"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 80
+  },
+  {
+    "id": "givenchy-gentleman-edt",
+    "name": "Gentleman EDT",
+    "house": "Givenchy",
+    "year": 2017,
+    "concentration": "EDT",
+    "accords": ["floral", "woody", "aromatic", "spicy", "citrus"],
+    "notes": { "top": ["bergamot", "pink pepper"], "heart": ["iris", "patchouli", "geranium"], "base": ["cedarwood", "vetiver", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "givenchy-linterdit-edp",
+    "name": "L'Interdit EDP",
+    "house": "Givenchy",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "sweet", "spicy", "citrus"],
+    "notes": { "top": ["bergamot", "pear"], "heart": ["tuberose", "jasmine", "orange blossom"], "base": ["patchouli", "vetiver", "cedarwood", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 85
+  },
+  {
+    "id": "givenchy-irresistible",
+    "name": "Irresistible EDP",
+    "house": "Givenchy",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["floral", "fruity", "woody", "citrus", "sweet"],
+    "notes": { "top": ["bergamot", "rose"], "heart": ["rose", "magnolia", "peony"], "base": ["musks", "cedarwood", "cashmere"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 85
+  },
+  {
+    "id": "guerlain-mon-guerlain",
+    "name": "Mon Guerlain EDP",
+    "house": "Guerlain",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["sweet", "floral", "aromatic", "vanilla", "woody"],
+    "notes": { "top": ["bergamot", "lavender"], "heart": ["jasmine", "sandalwood"], "base": ["vanilla", "coumarin", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "guerlain-la-petite-robe-noire",
+    "name": "La Petite Robe Noire EDP",
+    "house": "Guerlain",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["fruity", "floral", "sweet", "woody", "citrus"],
+    "notes": { "top": ["almond", "bergamot", "blackcurrant"], "heart": ["cherry", "rose", "iris"], "base": ["patchouli", "musk", "leather", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "hermes-terre-edp",
+    "name": "Terre d'Hermès EDP",
+    "house": "Hermès",
+    "year": 2009,
+    "concentration": "EDP",
+    "accords": ["woody", "earthy", "citrus", "mineral", "spicy"],
+    "notes": { "top": ["orange", "grapefruit"], "heart": ["flint", "pepper", "geranium"], "base": ["vetiver", "patchouli", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 105
+  },
+  {
+    "id": "hermes-voyage",
+    "name": "Voyage d'Hermès EDT",
+    "house": "Hermès",
+    "year": 2010,
+    "concentration": "EDT",
+    "accords": ["woody", "citrus", "aromatic", "fresh", "mineral"],
+    "notes": { "top": ["grapefruit", "pepper", "cardamom"], "heart": ["vetiver", "patchouli", "birch"], "base": ["cedarwood", "white musk", "tree moss"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 100
+  },
+  {
+    "id": "hermes-h24",
+    "name": "H24 EDP",
+    "house": "Hermès",
+    "year": 2022,
+    "concentration": "EDP",
+    "accords": ["aromatic", "woody", "fresh", "citrus", "spicy"],
+    "notes": { "top": ["clary sage", "narcissus"], "heart": ["cedarwood", "sclarene"], "base": ["vetiver", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 120
+  },
+  {
+    "id": "hermes-twilly",
+    "name": "Twilly d'Hermès EDP",
+    "house": "Hermès",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "spicy", "sweet", "citrus"],
+    "notes": { "top": ["ginger"], "heart": ["tuberose", "rose"], "base": ["sandalwood", "cedar", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 100
+  },
+  {
+    "id": "prada-luna-rossa-carbon",
+    "name": "Luna Rossa Carbon",
+    "house": "Prada",
+    "year": 2017,
+    "concentration": "EDT",
+    "accords": ["aromatic", "fougere", "woody", "citrus", "fresh"],
+    "notes": { "top": ["bergamot", "lavandin", "iris"], "heart": ["metallic accord", "ambroxan", "carbon"], "base": ["vetiver", "grey amber", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 85
+  },
+  {
+    "id": "prada-amber-pour-homme",
+    "name": "Amber Pour Homme",
+    "house": "Prada",
+    "year": 2006,
+    "concentration": "EDT",
+    "accords": ["woody", "aromatic", "oriental", "spicy", "amber"],
+    "notes": { "top": ["bergamot", "mandarin", "neroli"], "heart": ["myrrh", "patchouli", "labdanum"], "base": ["amber", "sandalwood", "benzoin", "vanilla"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "prada-candy-edp",
+    "name": "Candy EDP",
+    "house": "Prada",
+    "year": 2011,
+    "concentration": "EDP",
+    "accords": ["sweet", "oriental", "vanilla", "floral", "spicy"],
+    "notes": { "top": ["caramel"], "heart": ["benzoin", "white musk", "lily of the valley"], "base": ["vanilla", "tonka bean", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "hugo-boss-bottled",
+    "name": "Bottled EDT",
+    "house": "Hugo Boss",
+    "year": 1998,
+    "concentration": "EDT",
+    "accords": ["aromatic", "woody", "fresh", "citrus", "spicy"],
+    "notes": { "top": ["apple", "lemon", "plum", "bergamot"], "heart": ["cinnamon", "carnation", "geranium"], "base": ["sandalwood", "vetiver", "cedar", "vanilla"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 50
+  },
+  {
+    "id": "hugo-boss-the-scent",
+    "name": "The Scent EDP",
+    "house": "Hugo Boss",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "spicy", "oriental", "sweet", "aromatic"],
+    "notes": { "top": ["ginger", "maninka fruit"], "heart": ["vetiver"], "base": ["leather", "tonka bean"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 60
+  },
+  {
+    "id": "hugo-boss-alive-edp",
+    "name": "Alive EDP",
+    "house": "Hugo Boss",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "fruity", "citrus", "sweet"],
+    "notes": { "top": ["pink pepper", "cedarwood"], "heart": ["rose", "jasmine"], "base": ["vetiver", "musk", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 60
+  },
+  {
+    "id": "ck-one",
+    "name": "CK One",
+    "house": "Calvin Klein",
+    "year": 1994,
+    "concentration": "EDT",
+    "accords": ["fresh", "citrus", "aromatic", "floral", "woody"],
+    "notes": { "top": ["bergamot", "cardamom", "pineapple", "papaya"], "heart": ["violet", "rose", "jasmine", "lily of the valley"], "base": ["sandalwood", "amber", "musk", "cedar"] },
+    "longevity": 2, "sillage": 2, "price_gbp": 45
+  },
+  {
+    "id": "ck-eternity-men",
+    "name": "Eternity for Men",
+    "house": "Calvin Klein",
+    "year": 1989,
+    "concentration": "EDT",
+    "accords": ["aromatic", "fougere", "fresh", "citrus", "woody"],
+    "notes": { "top": ["bergamot", "lemon", "sage", "lavender"], "heart": ["geranium", "sandalwood", "basil"], "base": ["sandalwood", "amber", "cedar", "musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 40
+  },
+  {
+    "id": "ck-obsession-men",
+    "name": "Obsession for Men",
+    "house": "Calvin Klein",
+    "year": 1986,
+    "concentration": "EDT",
+    "accords": ["oriental", "spicy", "woody", "sweet", "citrus"],
+    "notes": { "top": ["mandarin", "lavender", "lemon"], "heart": ["spices", "nutmeg", "sandalwood"], "base": ["amber", "musk", "vanilla", "oakmoss"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 45
+  },
+  {
+    "id": "valentino-uomo-born-in-roma-intense",
+    "name": "Uomo Born in Roma Intense",
+    "house": "Valentino",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "sweet", "vanilla", "spicy", "aromatic"],
+    "notes": { "top": ["bergamot", "pink pepper"], "heart": ["jasmine", "palo santo"], "base": ["vanilla", "musk", "tonka bean"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 90
+  },
+  {
+    "id": "valentino-donna-born-in-roma",
+    "name": "Donna Born in Roma EDP",
+    "house": "Valentino",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "woody", "vanilla", "spicy"],
+    "notes": { "top": ["bergamot", "yuzu", "blackcurrant"], "heart": ["jasmine", "patchouli"], "base": ["vanilla", "musk", "heliotrope"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 85
+  },
+  {
+    "id": "gucci-guilty-men-edp",
+    "name": "Guilty EDP for Men",
+    "house": "Gucci",
+    "year": 2022,
+    "concentration": "EDP",
+    "accords": ["woody", "spicy", "aromatic", "sweet", "citrus"],
+    "notes": { "top": ["cedar", "chili", "bergamot"], "heart": ["patchouli", "incense"], "base": ["musk", "vanilla", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 80
+  },
+  {
+    "id": "gucci-bloom-edp",
+    "name": "Bloom EDP",
+    "house": "Gucci",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "powdery", "sweet", "fresh"],
+    "notes": { "top": ["tuberose", "rangoon creeper"], "heart": ["jasmine", "tuberose"], "base": ["sandalwood", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 85
+  },
+  {
+    "id": "gucci-flora-gorgeous",
+    "name": "Flora Gorgeous Gardenia",
+    "house": "Gucci",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "fruity", "woody", "citrus"],
+    "notes": { "top": ["red berries", "pear"], "heart": ["gardenia", "jasmine"], "base": ["cashmeran", "vanilla", "sandalwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 80
+  },
+  {
+    "id": "carolinaherrera-212-vip-men",
+    "name": "212 VIP Men",
+    "house": "Carolina Herrera",
+    "year": 2017,
+    "concentration": "EDT",
+    "accords": ["woody", "sweet", "aromatic", "spicy", "citrus"],
+    "notes": { "top": ["bergamot", "cardamom", "mandarin"], "heart": ["dark rum", "vetiver", "juniper"], "base": ["musk", "amber", "tonka bean"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "carolinaherrera-good-girl",
+    "name": "Good Girl EDP",
+    "house": "Carolina Herrera",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "gourmand", "woody", "spicy"],
+    "notes": { "top": ["almond", "coffee"], "heart": ["tuberose", "jasmine"], "base": ["cocoa", "sandalwood", "tonka bean", "vanilla"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 80
+  },
+  {
+    "id": "carolinaherrera-bad-boy",
+    "name": "Bad Boy EDT",
+    "house": "Carolina Herrera",
+    "year": 2019,
+    "concentration": "EDT",
+    "accords": ["fresh", "woody", "spicy", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "sage"], "heart": ["vanilla orchid", "lavandin"], "base": ["cacao", "cedarwood", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "narciso-for-him-bleu-noir",
+    "name": "For Him Bleu Noir EDP",
+    "house": "Narciso Rodriguez",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "musky", "fresh", "spicy"],
+    "notes": { "top": ["bergamot", "cardamom"], "heart": ["vetiver", "neroli"], "base": ["musk", "amber", "suede"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "narciso-for-her-edp",
+    "name": "For Her EDP",
+    "house": "Narciso Rodriguez",
+    "year": 2003,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "sweet", "citrus", "spicy"],
+    "notes": { "top": ["bergamot", "peach", "osmanthus"], "heart": ["rose", "jasmine", "iris"], "base": ["musk", "amber", "sandalwood", "vetiver"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "narciso-for-her-musc-noir",
+    "name": "For Her Musc Noir",
+    "house": "Narciso Rodriguez",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "floral", "sweet", "spicy", "amber"],
+    "notes": { "top": ["bergamot", "pepper"], "heart": ["rose", "vetiver"], "base": ["musk", "amber wood", "cashmere"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 75
+  },
+  {
+    "id": "issey-miyake-leau",
+    "name": "L'Eau d'Issey Pour Homme",
+    "house": "Issey Miyake",
+    "year": 1994,
+    "concentration": "EDT",
+    "accords": ["aquatic", "fresh", "citrus", "woody", "aromatic"],
+    "notes": { "top": ["bergamot", "lemon", "calone", "yuzu"], "heart": ["sage", "cyclamen", "lily of the valley"], "base": ["sandalwood", "amber", "musk", "cedar"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 60
+  },
+  {
+    "id": "issey-miyake-fusion",
+    "name": "Fusion d'Issey",
+    "house": "Issey Miyake",
+    "year": 2020,
+    "concentration": "EDT",
+    "accords": ["fresh", "woody", "citrus", "aquatic", "aromatic"],
+    "notes": { "top": ["green tea", "aquatic notes", "bergamot"], "heart": ["cedar", "cypress"], "base": ["sandalwood", "musk", "vetiver"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 65
+  },
+  {
+    "id": "bvlgari-man-in-black",
+    "name": "Man in Black",
+    "house": "Bulgari",
+    "year": 2014,
+    "concentration": "EDP",
+    "accords": ["oriental", "woody", "spicy", "sweet", "resinous"],
+    "notes": { "top": ["rum", "tobacco", "spices"], "heart": ["leather", "iris", "volcanic rock"], "base": ["amber", "guaiac wood", "benzoin", "tonka bean"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 85
+  },
+  {
+    "id": "bvlgari-aqva",
+    "name": "Aqva Pour Homme",
+    "house": "Bulgari",
+    "year": 2005,
+    "concentration": "EDT",
+    "accords": ["aquatic", "citrus", "fresh", "woody", "mineral"],
+    "notes": { "top": ["posidonia seaweed", "bergamot", "watermint"], "heart": ["green mandarin", "cedarwood", "mastic"], "base": ["white musk", "amber", "incense"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 55
+  },
+  {
+    "id": "bvlgari-man-wood-essence",
+    "name": "Man Wood Essence",
+    "house": "Bulgari",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["woody", "citrus", "aromatic", "spicy", "fresh"],
+    "notes": { "top": ["bergamot", "lemon", "pink pepper"], "heart": ["cedar", "vetiver", "sandalwood"], "base": ["musk", "incense", "ambergris"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "ralph-lauren-polo-blue-edp",
+    "name": "Polo Blue EDP",
+    "house": "Ralph Lauren",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "aquatic", "fresh", "spicy"],
+    "notes": { "top": ["bergamot", "mint"], "heart": ["blue sage", "violet"], "base": ["suede", "ebony wood", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "ralph-lauren-polo-black",
+    "name": "Polo Black",
+    "house": "Ralph Lauren",
+    "year": 2005,
+    "concentration": "EDT",
+    "accords": ["woody", "oriental", "fruity", "spicy", "sweet"],
+    "notes": { "top": ["lychee", "star anise", "mango"], "heart": ["wormwood", "oakwood", "patchouli"], "base": ["sandalwood", "amber", "tonka bean"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 55
+  },
+  {
+    "id": "mugler-amen",
+    "name": "A*Men",
+    "house": "Thierry Mugler",
+    "year": 1996,
+    "concentration": "EDT",
+    "accords": ["sweet", "spicy", "gourmand", "woody", "oriental"],
+    "notes": { "top": ["mint", "star anise", "bergamot"], "heart": ["caramel", "lavender", "patchouli"], "base": ["vanilla", "musk", "coffee", "coumarin"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 75
+  },
+  {
+    "id": "mugler-angel-edp",
+    "name": "Angel EDP",
+    "house": "Thierry Mugler",
+    "year": 1992,
+    "concentration": "EDP",
+    "accords": ["sweet", "gourmand", "spicy", "floral", "woody"],
+    "notes": { "top": ["bergamot", "cassis", "melon"], "heart": ["honey", "jasmine", "peach", "plum"], "base": ["vanilla", "patchouli", "musk", "coumarin"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 80
+  },
+  {
+    "id": "mugler-alien-edp",
+    "name": "Alien EDP",
+    "house": "Thierry Mugler",
+    "year": 2005,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "sweet", "citrus", "amber"],
+    "notes": { "top": ["sambac jasmine"], "heart": ["cashmere wood", "white amber"], "base": ["white amber", "musk"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 80
+  },
+  {
+    "id": "vr-spicebomb-extreme",
+    "name": "Spicebomb Extreme",
+    "house": "Viktor & Rolf",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["oriental", "spicy", "sweet", "woody", "resinous"],
+    "notes": { "top": ["black pepper", "tobacco"], "heart": ["lava stone accord", "cinnamon"], "base": ["amber", "musk", "caramel", "labdanum"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 85
+  },
+  {
+    "id": "vr-spicebomb-edt",
+    "name": "Spicebomb EDT",
+    "house": "Viktor & Rolf",
+    "year": 2012,
+    "concentration": "EDT",
+    "accords": ["spicy", "citrus", "woody", "aromatic", "fresh"],
+    "notes": { "top": ["bergamot", "grapefruit", "pink pepper"], "heart": ["cinnamon", "tobacco", "saffron"], "base": ["leather", "vetiver", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "vr-flowerbomb-edp",
+    "name": "Flowerbomb EDP",
+    "house": "Viktor & Rolf",
+    "year": 2005,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "fruity", "citrus", "powdery"],
+    "notes": { "top": ["bergamot", "green tea", "osmanthus"], "heart": ["rose", "jasmine", "freesia", "orchid"], "base": ["patchouli", "vanilla", "musk"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 85
+  },
+  {
+    "id": "lancome-la-vie-est-belle",
+    "name": "La Vie est Belle EDP",
+    "house": "Lancôme",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["sweet", "floral", "gourmand", "fruity", "powdery"],
+    "notes": { "top": ["black currant", "pear"], "heart": ["iris", "jasmine", "orange blossom"], "base": ["patchouli", "vanilla", "praline", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "lancome-idole-edp",
+    "name": "Idôle EDP",
+    "house": "Lancôme",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "fresh", "sweet", "citrus"],
+    "notes": { "top": ["bergamot", "rose extract"], "heart": ["jasmine", "rose"], "base": ["musk", "cedarwood", "ambrette"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 85
+  },
+  {
+    "id": "marc-jacobs-daisy-edt",
+    "name": "Daisy EDT",
+    "house": "Marc Jacobs",
+    "year": 2007,
+    "concentration": "EDT",
+    "accords": ["floral", "fruity", "fresh", "woody", "sweet"],
+    "notes": { "top": ["blood grapefruit", "strawberry", "violet leaf"], "heart": ["violet", "jasmine", "gardenia"], "base": ["musk", "sandalwood", "vanilla"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 65
+  },
+  {
+    "id": "marc-jacobs-daisy-love",
+    "name": "Daisy Love EDP",
+    "house": "Marc Jacobs",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["floral", "fruity", "sweet", "woody", "citrus"],
+    "notes": { "top": ["cloudberry", "daisy tree", "grapefruit"], "heart": ["daisies", "jasmine", "magnolia"], "base": ["driftwood", "musk", "vanilla"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 65
+  },
+  {
+    "id": "jimmy-choo-edp",
+    "name": "Jimmy Choo EDP",
+    "house": "Jimmy Choo",
+    "year": 2011,
+    "concentration": "EDP",
+    "accords": ["floral", "fruity", "woody", "sweet", "citrus"],
+    "notes": { "top": ["pear", "mandarin", "freesia"], "heart": ["jasmine sambac", "tuberose", "gardenia"], "base": ["sandalwood", "patchouli", "cedarwood", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "davidoff-cool-water",
+    "name": "Cool Water",
+    "house": "Davidoff",
+    "year": 1988,
+    "concentration": "EDT",
+    "accords": ["aquatic", "fresh", "citrus", "aromatic", "woody"],
+    "notes": { "top": ["mint", "green tomato leaf", "rosemary"], "heart": ["lavender", "jasmine", "geranium"], "base": ["sandalwood", "cedar", "amber", "musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 35
+  },
+  {
+    "id": "azzaro-chrome",
+    "name": "Chrome",
+    "house": "Azzaro",
+    "year": 1996,
+    "concentration": "EDT",
+    "accords": ["aromatic", "aquatic", "citrus", "woody", "fresh"],
+    "notes": { "top": ["bergamot", "lemon", "rosemary"], "heart": ["cardamom", "jasmine", "water lily"], "base": ["oakmoss", "sandalwood", "tonka bean"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 40
+  },
+  {
+    "id": "azzaro-wanted-edt",
+    "name": "Wanted EDT",
+    "house": "Azzaro",
+    "year": 2016,
+    "concentration": "EDT",
+    "accords": ["woody", "spicy", "citrus", "aromatic", "sweet"],
+    "notes": { "top": ["lemon", "grapefruit", "cardamom"], "heart": ["cypriol", "geranium", "juniperwood"], "base": ["vetiver", "suede", "amberwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 45
+  },
+  {
+    "id": "jm-wood-sage-sea-salt",
+    "name": "Wood Sage & Sea Salt",
+    "house": "Jo Malone",
+    "year": 2014,
+    "concentration": "EDC",
+    "accords": ["aquatic", "woody", "aromatic", "earthy", "fresh"],
+    "notes": { "top": ["sea salt", "ambrette seeds"], "heart": ["sage", "rock rose"], "base": ["driftwood", "orris"] },
+    "longevity": 2, "sillage": 2, "price_gbp": 110
+  },
+  {
+    "id": "jm-lime-basil-mandarin",
+    "name": "Lime Basil & Mandarin",
+    "house": "Jo Malone",
+    "year": 1999,
+    "concentration": "EDC",
+    "accords": ["citrus", "aromatic", "fresh", "woody", "spicy"],
+    "notes": { "top": ["lime", "basil", "mandarin"], "heart": ["thyme", "lily of the valley", "white thyme"], "base": ["amber", "vetiver", "patchouli"] },
+    "longevity": 2, "sillage": 2, "price_gbp": 110
+  },
+  {
+    "id": "jm-peony-blush-suede",
+    "name": "Peony & Blush Suede",
+    "house": "Jo Malone",
+    "year": 2013,
+    "concentration": "EDC",
+    "accords": ["floral", "sweet", "fruity", "woody", "citrus"],
+    "notes": { "top": ["red apple"], "heart": ["peony", "jasmine", "rose"], "base": ["suede", "amber", "musk"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 110
+  },
+  {
+    "id": "mm-replica-jazz-club",
+    "name": "Replica Jazz Club",
+    "house": "Maison Margiela",
+    "year": 2013,
+    "concentration": "EDT",
+    "accords": ["woody", "smoky", "sweet", "spicy", "aromatic"],
+    "notes": { "top": ["rum", "bergamot", "pink pepper"], "heart": ["tobacco leaf", "vetiver", "musk"], "base": ["vanilla", "sandalwood", "styrax"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 120
+  },
+  {
+    "id": "mm-replica-by-the-fireplace",
+    "name": "Replica By the Fireplace",
+    "house": "Maison Margiela",
+    "year": 2015,
+    "concentration": "EDT",
+    "accords": ["smoky", "sweet", "woody", "vanilla", "spicy"],
+    "notes": { "top": ["chestnut", "clove"], "heart": ["guaiac wood", "vanilla", "peru balsam"], "base": ["musk", "cashmeran"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 120
+  },
+  {
+    "id": "mm-replica-under-the-lemon-trees",
+    "name": "Replica Under the Lemon Trees",
+    "house": "Maison Margiela",
+    "year": 2020,
+    "concentration": "EDT",
+    "accords": ["citrus", "fresh", "floral", "woody", "aromatic"],
+    "notes": { "top": ["bergamot", "lemon", "fig leaves"], "heart": ["orange blossom", "petitgrain"], "base": ["cedarwood", "musk"] },
+    "longevity": 2, "sillage": 2, "price_gbp": 120
+  },
+  {
+    "id": "creed-green-irish-tweed",
+    "name": "Green Irish Tweed",
+    "house": "Creed",
+    "year": 1985,
+    "concentration": "EDT",
+    "accords": ["aromatic", "fresh", "citrus", "woody", "fougere"],
+    "notes": { "top": ["lemon verbena", "violet"], "heart": ["iris", "sandalwood"], "base": ["ambergris", "sandalwood", "musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 345
   },
   {
     "id": "creed-silver-mountain-water",
@@ -480,7 +1307,1016 @@
     "concentration": "EDP",
     "accords": ["aquatic", "citrus", "fresh", "woody", "aromatic"],
     "notes": { "top": ["bergamot", "mandarin", "green tea"], "heart": ["blackcurrant", "peach"], "base": ["musk", "sandalwood", "ambergris"] },
-    "longevity": 3, "sillage": 3, "price_gbp": 345,
-    "image_url": "https://img.fragrancex.com/images/products/sku/large/CRESIL100M.jpg"
+    "longevity": 3, "sillage": 3, "price_gbp": 345
+  },
+  {
+    "id": "creed-original-vetiver",
+    "name": "Original Vetiver",
+    "house": "Creed",
+    "year": 2004,
+    "concentration": "EDP",
+    "accords": ["woody", "citrus", "earthy", "aromatic", "fresh"],
+    "notes": { "top": ["bergamot", "grapefruit", "lemon"], "heart": ["vetiver", "ginger", "geranium"], "base": ["sandalwood", "musk", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 345
+  },
+  {
+    "id": "creed-himalaya",
+    "name": "Himalaya",
+    "house": "Creed",
+    "year": 2002,
+    "concentration": "EDP",
+    "accords": ["fresh", "woody", "citrus", "aromatic", "aquatic"],
+    "notes": { "top": ["bergamot", "lemon", "pink pepper"], "heart": ["sandalwood", "iris", "geranium"], "base": ["ambergris", "musk", "vetiver"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 365
+  },
+  {
+    "id": "creed-millesime-imperial",
+    "name": "Millésime Impérial",
+    "house": "Creed",
+    "year": 1995,
+    "concentration": "EDP",
+    "accords": ["aquatic", "citrus", "fresh", "woody", "floral"],
+    "notes": { "top": ["bergamot", "citrus", "sea notes"], "heart": ["iris", "yuzu", "melon"], "base": ["ambergris", "musk", "sandalwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 395
+  },
+  {
+    "id": "mfk-baccarat-rouge-540",
+    "name": "Baccarat Rouge 540",
+    "house": "Maison Francis Kurkdjian",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["sweet", "floral", "woody", "amber", "citrus"],
+    "notes": { "top": ["jasmine", "saffron"], "heart": ["amberwood", "ambroxan"], "base": ["fir resin", "cedar"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 295
+  },
+  {
+    "id": "mfk-grand-soir",
+    "name": "Grand Soir",
+    "house": "Maison Francis Kurkdjian",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["oriental", "sweet", "amber", "resinous", "vanilla"],
+    "notes": { "top": ["orange", "bergamot"], "heart": ["tonka bean", "vanilla"], "base": ["amber", "benzoin", "labdanum"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 245
+  },
+  {
+    "id": "mfk-amyris-homme",
+    "name": "Amyris Homme",
+    "house": "Maison Francis Kurkdjian",
+    "year": 2012,
+    "concentration": "EDT",
+    "accords": ["woody", "citrus", "aromatic", "fresh", "spicy"],
+    "notes": { "top": ["bergamot", "pink pepper"], "heart": ["lavender", "amyris"], "base": ["white musk", "vetiver", "cedar"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 175
+  },
+  {
+    "id": "initio-oud-for-greatness",
+    "name": "Oud for Greatness",
+    "house": "Initio",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["oud", "woody", "spicy", "earthy", "smoky"],
+    "notes": { "top": ["cardamom", "black pepper"], "heart": ["oud", "vetiver", "nutmeg"], "base": ["musk", "cedar", "ambergris"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 295
+  },
+  {
+    "id": "initio-side-effect",
+    "name": "Side Effect",
+    "house": "Initio",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["sweet", "vanilla", "woody", "spicy", "oriental"],
+    "notes": { "top": ["rum", "cardamom"], "heart": ["iris", "tobacco", "cacao"], "base": ["vanilla", "musk", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 245
+  },
+  {
+    "id": "initio-psychedelic-love",
+    "name": "Psychedelic Love",
+    "house": "Initio",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "sweet", "spicy", "fruity"],
+    "notes": { "top": ["peach", "ylang-ylang"], "heart": ["rose", "jasmine"], "base": ["musk", "amber", "sandalwood"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 245
+  },
+  {
+    "id": "le-labo-santal-33",
+    "name": "Santal 33",
+    "house": "Le Labo",
+    "year": 2011,
+    "concentration": "EDP",
+    "accords": ["woody", "earthy", "aromatic", "sweet", "spicy"],
+    "notes": { "top": ["cardamom", "iris", "violet"], "heart": ["sandalwood", "australian sandalwood"], "base": ["cedarwood", "leather", "papyrus"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 195
+  },
+  {
+    "id": "le-labo-rose-31",
+    "name": "Rose 31",
+    "house": "Le Labo",
+    "year": 2006,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "spicy", "earthy", "citrus"],
+    "notes": { "top": ["bergamot", "coriander", "lemon"], "heart": ["rose", "cumin", "olibanum"], "base": ["cedar", "vetiver", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 195
+  },
+  {
+    "id": "le-labo-another-13",
+    "name": "Another 13",
+    "house": "Le Labo",
+    "year": 2010,
+    "concentration": "EDP",
+    "accords": ["woody", "sweet", "floral", "citrus", "fresh"],
+    "notes": { "top": ["ambrette", "iso e super"], "heart": ["ambroxan", "musks"], "base": ["white musk", "ambrette"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 195
+  },
+  {
+    "id": "byredo-bal-dafrique",
+    "name": "Bal d'Afrique",
+    "house": "Byredo",
+    "year": 2009,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "citrus", "sweet", "earthy"],
+    "notes": { "top": ["bergamot", "african marigold"], "heart": ["neroli", "violet", "cyclamen"], "base": ["musk", "vetiver", "amber", "cedar"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 185
+  },
+  {
+    "id": "byredo-super-cedar",
+    "name": "Super Cedar",
+    "house": "Byredo",
+    "year": 2014,
+    "concentration": "EDP",
+    "accords": ["woody", "floral", "fresh", "earthy", "sweet"],
+    "notes": { "top": ["rosewater"], "heart": ["cedarwood"], "base": ["musk", "vetiver"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 185
+  },
+  {
+    "id": "byredo-mojave-ghost",
+    "name": "Mojave Ghost",
+    "house": "Byredo",
+    "year": 2014,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "sweet", "fruity", "earthy"],
+    "notes": { "top": ["sapodilla", "magnolia", "ambrette"], "heart": ["violet", "sandalwood", "ghostwood"], "base": ["cedarwood", "musk", "ambergris"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 185
+  },
+  {
+    "id": "xerjoff-naxos",
+    "name": "Naxos",
+    "house": "Xerjoff",
+    "year": 2008,
+    "concentration": "EDP",
+    "accords": ["sweet", "aromatic", "spicy", "woody", "oriental"],
+    "notes": { "top": ["bergamot", "cardamom"], "heart": ["lavender", "iris", "honey"], "base": ["tobacco", "vanilla", "tonka bean", "musk"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 220
+  },
+  {
+    "id": "xerjoff-erba-pura",
+    "name": "Erba Pura",
+    "house": "Xerjoff",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["sweet", "fruity", "citrus", "floral", "woody"],
+    "notes": { "top": ["orange", "yuzu", "bergamot"], "heart": ["jasmine", "white musk", "sandalwood"], "base": ["amber", "musk", "vanilla"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 195
+  },
+  {
+    "id": "xerjoff-nira-austalis",
+    "name": "Nira Austalis",
+    "house": "Xerjoff",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["citrus", "fresh", "sweet", "floral", "woody"],
+    "notes": { "top": ["bergamot", "grapefruit", "lemon"], "heart": ["lily", "rose", "jasmine"], "base": ["musk", "amber", "sandalwood"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 195
+  },
+  {
+    "id": "nishane-hacivat",
+    "name": "Hacivat",
+    "house": "Nishane",
+    "year": 2017,
+    "concentration": "Extrait",
+    "accords": ["woody", "fruity", "fresh", "citrus", "spicy"],
+    "notes": { "top": ["grapefruit", "bergamot", "pineapple"], "heart": ["jasmine", "rose", "patchouli"], "base": ["sandalwood", "ambergris", "oakmoss", "vetiver"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 185
+  },
+  {
+    "id": "nishane-ani",
+    "name": "Ani",
+    "house": "Nishane",
+    "year": 2019,
+    "concentration": "Extrait",
+    "accords": ["floral", "sweet", "fruity", "citrus", "woody"],
+    "notes": { "top": ["bergamot", "grapefruit", "peach"], "heart": ["rose", "jasmine", "lily"], "base": ["sandalwood", "musk", "amber"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 185
+  },
+  {
+    "id": "nishane-wulud",
+    "name": "Wulud",
+    "house": "Nishane",
+    "year": 2018,
+    "concentration": "Extrait",
+    "accords": ["floral", "sweet", "woody", "citrus", "fresh"],
+    "notes": { "top": ["bergamot", "lemon", "pink pepper"], "heart": ["rose", "jasmine", "lily of the valley"], "base": ["sandalwood", "musk", "cedarwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 175
+  },
+  {
+    "id": "nishane-zenne",
+    "name": "Zenne",
+    "house": "Nishane",
+    "year": 2019,
+    "concentration": "Extrait",
+    "accords": ["woody", "spicy", "oud", "smoky", "earthy"],
+    "notes": { "top": ["rose", "black pepper"], "heart": ["oud", "cedarwood"], "base": ["musk", "ambergris", "amber"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 185
+  },
+  {
+    "id": "diptyque-philosykos",
+    "name": "Philosykos EDP",
+    "house": "Diptyque",
+    "year": 1996,
+    "concentration": "EDP",
+    "accords": ["woody", "earthy", "fresh", "citrus", "aromatic"],
+    "notes": { "top": ["fig leaf", "fig wood", "green fig"], "heart": ["fig tree sap"], "base": ["white cedar", "musk"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 135
+  },
+  {
+    "id": "diptyque-tam-dao",
+    "name": "Tam Dao EDP",
+    "house": "Diptyque",
+    "year": 2003,
+    "concentration": "EDP",
+    "accords": ["woody", "earthy", "spicy", "aromatic", "sweet"],
+    "notes": { "top": ["bergamot", "cypress", "rosewood"], "heart": ["sandalwood", "cedar", "myrtle"], "base": ["sandalwood", "white musk"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 135
+  },
+  {
+    "id": "diptyque-do-son",
+    "name": "Do Son EDT",
+    "house": "Diptyque",
+    "year": 2005,
+    "concentration": "EDT",
+    "accords": ["floral", "sweet", "powdery", "citrus", "woody"],
+    "notes": { "top": ["bergamot", "tuberose", "orange"], "heart": ["tuberose", "jasmine", "iris"], "base": ["musk", "white musk", "cedarwood"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 130
+  },
+  {
+    "id": "diptyque-eau-duelle",
+    "name": "Eau Duelle EDT",
+    "house": "Diptyque",
+    "year": 2012,
+    "concentration": "EDT",
+    "accords": ["spicy", "woody", "sweet", "aromatic", "citrus"],
+    "notes": { "top": ["bergamot", "sichuan pepper", "vanilla flower"], "heart": ["cardamom", "papyrus", "orris"], "base": ["vanilla", "musk", "cedarwood"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 130
+  },
+  {
+    "id": "penhaligons-halfeti",
+    "name": "Halfeti",
+    "house": "Penhaligon's",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "woody", "spicy", "resinous"],
+    "notes": { "top": ["bergamot", "clementine", "grapefruit"], "heart": ["rose", "jasmine", "amber"], "base": ["oud", "sandalwood", "vanilla", "musk"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 195
+  },
+  {
+    "id": "penhaligons-empressa",
+    "name": "Empressa",
+    "house": "Penhaligon's",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["floral", "fruity", "sweet", "woody", "citrus"],
+    "notes": { "top": ["rhubarb", "bergamot", "pear"], "heart": ["lily", "jasmine", "rose"], "base": ["sandalwood", "musk", "cedarwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 185
+  },
+  {
+    "id": "kilian-black-phantom",
+    "name": "Black Phantom",
+    "house": "Kilian",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["sweet", "spicy", "woody", "oriental", "smoky"],
+    "notes": { "top": ["rum", "black coffee"], "heart": ["cacao", "vanilla orchid"], "base": ["caramelized woods", "amber", "musk"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 290
+  },
+  {
+    "id": "kilian-good-girl-gone-bad",
+    "name": "Good Girl Gone Bad",
+    "house": "Kilian",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "citrus", "woody", "fresh"],
+    "notes": { "top": ["neroli", "pink pepper"], "heart": ["rose absolute", "freesia", "tuberose"], "base": ["vetiver", "musk", "sandalwood"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 290
+  },
+  {
+    "id": "kilian-apple-brandy",
+    "name": "Apple Brandy on the Rocks",
+    "house": "Kilian",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["fruity", "sweet", "spicy", "woody", "vanilla"],
+    "notes": { "top": ["apple", "brandy"], "heart": ["cinnamon", "sandalwood", "vanilla orchid"], "base": ["vanilla", "amber", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 290
+  },
+  {
+    "id": "frederic-malle-portrait-of-a-lady",
+    "name": "Portrait of a Lady",
+    "house": "Frédéric Malle",
+    "year": 2010,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "spicy", "sweet", "earthy"],
+    "notes": { "top": ["rose", "blackcurrant", "raspberry"], "heart": ["turkish rose", "sandalwood", "patchouli"], "base": ["musk", "amber", "incense", "benzoin"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 265
+  },
+  {
+    "id": "frederic-malle-musc-ravageur",
+    "name": "Musc Ravageur",
+    "house": "Frédéric Malle",
+    "year": 2000,
+    "concentration": "EDP",
+    "accords": ["sweet", "spicy", "oriental", "vanilla", "amber"],
+    "notes": { "top": ["bergamot", "mandarin", "lavender"], "heart": ["cinnamon", "ginger", "clove"], "base": ["musk", "vanilla", "amber", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 220
+  },
+  {
+    "id": "frederic-malle-carnal-flower",
+    "name": "Carnal Flower",
+    "house": "Frédéric Malle",
+    "year": 2005,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "fruity", "fresh", "woody"],
+    "notes": { "top": ["eucalyptus", "melon"], "heart": ["tuberose", "jasmine", "white lily"], "base": ["musk", "coconut", "beeswax", "sandalwood"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 280
+  },
+  {
+    "id": "serge-lutens-chergui",
+    "name": "Chergui",
+    "house": "Serge Lutens",
+    "year": 2001,
+    "concentration": "EDP",
+    "accords": ["sweet", "smoky", "spicy", "oriental", "woody"],
+    "notes": { "top": ["honey", "hedione", "hay", "anise"], "heart": ["tobacco", "rose", "sandalwood"], "base": ["musk", "amber", "oakmoss", "patch"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 130
+  },
+  {
+    "id": "serge-lutens-amber-sultan",
+    "name": "Ambre Sultan",
+    "house": "Serge Lutens",
+    "year": 1993,
+    "concentration": "EDP",
+    "accords": ["amber", "oriental", "resinous", "spicy", "woody"],
+    "notes": { "top": ["oregano", "bay laurel", "coriander"], "heart": ["cistus", "mastic"], "base": ["amber", "sandalwood", "benzoin", "vanilla"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 130
+  },
+  {
+    "id": "serge-lutens-fille-de-berlin",
+    "name": "La Fille de Berlin",
+    "house": "Serge Lutens",
+    "year": 2013,
+    "concentration": "EDP",
+    "accords": ["floral", "spicy", "woody", "sweet", "earthy"],
+    "notes": { "top": ["black pepper", "pink pepper", "rose"], "heart": ["rose", "geranium"], "base": ["cedar", "vetiver", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 130
+  },
+  {
+    "id": "acqua-di-parma-colonia",
+    "name": "Colonia",
+    "house": "Acqua di Parma",
+    "year": 1916,
+    "concentration": "EDC",
+    "accords": ["citrus", "aromatic", "woody", "fresh", "floral"],
+    "notes": { "top": ["sicilian lemon", "bergamot", "orange", "lavender"], "heart": ["rose", "lily of the valley", "verbena"], "base": ["sandalwood", "vetiver", "patchouli"] },
+    "longevity": 2, "sillage": 2, "price_gbp": 110
+  },
+  {
+    "id": "acqua-di-parma-colonia-intensa",
+    "name": "Colonia Intensa",
+    "house": "Acqua di Parma",
+    "year": 2010,
+    "concentration": "EDC",
+    "accords": ["woody", "citrus", "aromatic", "spicy", "fresh"],
+    "notes": { "top": ["bergamot", "orange", "grapefruit"], "heart": ["cardamom", "lavender", "labdanum"], "base": ["sandalwood", "patchouli", "musk", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 130
+  },
+  {
+    "id": "acqua-di-parma-bergamotto",
+    "name": "Bergamotto di Calabria",
+    "house": "Acqua di Parma",
+    "year": 2015,
+    "concentration": "EDC",
+    "accords": ["citrus", "fresh", "aromatic", "floral", "woody"],
+    "notes": { "top": ["bergamot", "lemon"], "heart": ["neroli", "white rose"], "base": ["musk", "sandalwood"] },
+    "longevity": 2, "sillage": 2, "price_gbp": 115
+  },
+  {
+    "id": "juliette-has-a-gun-not-a-perfume",
+    "name": "Not a Perfume",
+    "house": "Juliette Has a Gun",
+    "year": 2010,
+    "concentration": "EDP",
+    "accords": ["woody", "sweet", "floral", "citrus", "fresh"],
+    "notes": { "top": ["ambrette"], "heart": ["ambrette"], "base": ["ambrette"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "juliette-has-a-gun-romantina",
+    "name": "Romantina",
+    "house": "Juliette Has a Gun",
+    "year": 2010,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "fruity", "woody", "spicy"],
+    "notes": { "top": ["pink pepper", "bergamot"], "heart": ["rose", "peony", "jasmine"], "base": ["musk", "patchouli", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 90
+  },
+  {
+    "id": "memo-irish-leather",
+    "name": "Irish Leather",
+    "house": "Memo Paris",
+    "year": 2014,
+    "concentration": "EDP",
+    "accords": ["woody", "earthy", "citrus", "aromatic", "spicy"],
+    "notes": { "top": ["bergamot", "lime", "pink pepper"], "heart": ["heliotrope", "iris", "vetiver"], "base": ["leather", "musk", "cedar", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 245
+  },
+  {
+    "id": "dior-miss-dior-edp",
+    "name": "Miss Dior EDP",
+    "house": "Dior",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["floral", "fresh", "powdery", "citrus", "sweet"],
+    "notes": { "top": ["blood orange", "bergamot"], "heart": ["rose", "jasmine", "iris"], "base": ["patchouli", "amber", "musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 105
+  },
+  {
+    "id": "dior-miss-dior-edt",
+    "name": "Miss Dior EDT",
+    "house": "Dior",
+    "year": 2019,
+    "concentration": "EDT",
+    "accords": ["floral", "citrus", "woody", "fresh", "sweet"],
+    "notes": { "top": ["bergamot", "mandarin", "grapefruit"], "heart": ["rose", "peony", "lily of the valley"], "base": ["patchouli", "musk", "white musk"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 85
+  },
+  {
+    "id": "roja-parfums-elysium",
+    "name": "Elysium Pour Homme",
+    "house": "Roja Parfums",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["citrus", "aromatic", "woody", "fresh", "spicy"],
+    "notes": { "top": ["bergamot", "grapefruit", "lemon", "orange"], "heart": ["geranium", "angelica", "rose"], "base": ["sandalwood", "vetiver", "musk", "amber"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 295
+  },
+  {
+    "id": "roja-parfums-enigma",
+    "name": "Enigma Pour Homme",
+    "house": "Roja Parfums",
+    "year": 2013,
+    "concentration": "EDP",
+    "accords": ["oriental", "woody", "spicy", "earthy", "oud"],
+    "notes": { "top": ["bergamot", "cardamom", "coriander"], "heart": ["jasmine", "orris", "rose"], "base": ["leather", "oud", "musk", "amber", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 395
+  },
+  {
+    "id": "roja-parfums-danger",
+    "name": "Danger Pour Homme",
+    "house": "Roja Parfums",
+    "year": 2009,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "spicy", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "lemon", "pink pepper"], "heart": ["rose", "jasmine", "iris"], "base": ["sandalwood", "musk", "vetiver", "amber"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 295
+  },
+  {
+    "id": "montale-black-aoud",
+    "name": "Black Aoud",
+    "house": "Montale",
+    "year": 2006,
+    "concentration": "EDP",
+    "accords": ["oud", "floral", "resinous", "woody", "smoky"],
+    "notes": { "top": ["pink pepper", "rose"], "heart": ["rose", "oud"], "base": ["patchouli", "amber", "musk"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 95
+  },
+  {
+    "id": "montale-intense-cafe",
+    "name": "Intense Café",
+    "house": "Montale",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["sweet", "floral", "spicy", "woody", "citrus"],
+    "notes": { "top": ["coffee", "rose"], "heart": ["coffee", "rose"], "base": ["coffee", "patchouli", "vanilla", "musk"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 75
+  },
+  {
+    "id": "montale-roses-musk",
+    "name": "Roses Musk",
+    "house": "Montale",
+    "year": 2006,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "woody", "powdery", "citrus"],
+    "notes": { "top": ["rose", "peach", "apple"], "heart": ["rose", "jasmine", "lily of the valley"], "base": ["musk", "sandalwood", "patchouli"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 75
+  },
+  {
+    "id": "lattafa-khamrah",
+    "name": "Khamrah",
+    "house": "Lattafa",
+    "year": 2022,
+    "concentration": "EDP",
+    "accords": ["sweet", "oriental", "vanilla", "spicy", "woody"],
+    "notes": { "top": ["cinnamon", "cardamom", "nutmeg"], "heart": ["rose", "jasmine", "oud"], "base": ["amber", "vanilla", "musk", "sandalwood"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 28
+  },
+  {
+    "id": "lattafa-oud-mood",
+    "name": "Oud Mood",
+    "house": "Lattafa",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["oud", "sweet", "woody", "amber", "spicy"],
+    "notes": { "top": ["bergamot", "cinnamon"], "heart": ["oud", "rose"], "base": ["amber", "musk", "vanilla", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 22
+  },
+  {
+    "id": "lattafa-badee-al-oud-amethyst",
+    "name": "Badee Al Oud Amethyst",
+    "house": "Lattafa",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "woody", "oud", "fruity"],
+    "notes": { "top": ["bergamot", "peach", "cassis"], "heart": ["rose", "jasmine", "oud"], "base": ["sandalwood", "amber", "musk", "vanilla"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 20
+  },
+  {
+    "id": "lattafa-asad",
+    "name": "Asad",
+    "house": "Lattafa",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "sweet", "spicy", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "cardamom", "apple"], "heart": ["cedarwood", "vetiver", "jasmine"], "base": ["amber", "musk", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 22
+  },
+  {
+    "id": "lattafa-yara",
+    "name": "Yara",
+    "house": "Lattafa",
+    "year": 2022,
+    "concentration": "EDP",
+    "accords": ["sweet", "fruity", "floral", "woody", "citrus"],
+    "notes": { "top": ["lemon", "bergamot", "pear"], "heart": ["jasmine", "rose", "lily"], "base": ["musk", "amber", "sandalwood", "vanilla"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 22
+  },
+  {
+    "id": "al-haramain-laventure",
+    "name": "L'Aventure",
+    "house": "Al Haramain",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["woody", "spicy", "fresh", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "pineapple", "apple"], "heart": ["birch", "jasmine", "rose"], "base": ["sandalwood", "amber", "musk", "ambergris"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 30
+  },
+  {
+    "id": "al-haramain-amber-oud",
+    "name": "Amber Oud",
+    "house": "Al Haramain",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["oud", "sweet", "woody", "amber", "spicy"],
+    "notes": { "top": ["bergamot", "lemon"], "heart": ["oud", "rose", "jasmine"], "base": ["amber", "sandalwood", "musk", "vanilla"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 28
+  },
+  {
+    "id": "rasasi-hawas",
+    "name": "Hawas",
+    "house": "Rasasi",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["aquatic", "woody", "fresh", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "spearmint", "aquatic"], "heart": ["lavender", "cyclamen", "geranium"], "base": ["sandalwood", "amber", "musk"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 38
+  },
+  {
+    "id": "rasasi-la-yuqawam-homme",
+    "name": "La Yuqawam Homme",
+    "house": "Rasasi",
+    "year": 2014,
+    "concentration": "EDP",
+    "accords": ["citrus", "woody", "aromatic", "fresh", "spicy"],
+    "notes": { "top": ["bergamot", "grapefruit", "cinnamon"], "heart": ["jasmine", "rose", "geranium"], "base": ["oud", "cedar", "musk", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 35
+  },
+  {
+    "id": "afnan-9pm",
+    "name": "9 PM",
+    "house": "Afnan",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["sweet", "spicy", "woody", "citrus", "vanilla"],
+    "notes": { "top": ["bergamot", "cardamom", "pineapple"], "heart": ["jasmine", "caramel", "cinnamon"], "base": ["vanilla", "amber", "musk", "sandalwood"] },
+    "longevity": 5, "sillage": 5, "price_gbp": 20
+  },
+  {
+    "id": "afnan-supremacy-silver",
+    "name": "Supremacy Silver",
+    "house": "Afnan",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["fresh", "woody", "citrus", "spicy", "aromatic"],
+    "notes": { "top": ["bergamot", "lemon", "cardamom"], "heart": ["geranium", "jasmine", "lavender"], "base": ["cedar", "amber", "musk", "vetiver"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 20
+  },
+  {
+    "id": "swiss-arabian-shaghaf-oud",
+    "name": "Shaghaf Oud",
+    "house": "Swiss Arabian",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["oud", "floral", "sweet", "woody", "citrus"],
+    "notes": { "top": ["rose", "bergamot"], "heart": ["oud", "jasmine", "patchouli"], "base": ["amber", "musk", "sandalwood"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 45
+  },
+  {
+    "id": "swiss-arabian-wajd",
+    "name": "Wajd",
+    "house": "Swiss Arabian",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["sweet", "oriental", "floral", "woody", "spicy"],
+    "notes": { "top": ["bergamot", "cinnamon"], "heart": ["rose", "oud", "jasmine"], "base": ["musk", "vanilla", "sandalwood", "amber"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 40
+  },
+  {
+    "id": "versace-bright-crystal",
+    "name": "Bright Crystal EDT",
+    "house": "Versace",
+    "year": 2006,
+    "concentration": "EDT",
+    "accords": ["floral", "fruity", "fresh", "citrus", "sweet"],
+    "notes": { "top": ["pomegranate", "yuzu", "iced accord"], "heart": ["peony", "magnolia", "lotus"], "base": ["mahogany", "musk", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 55
+  },
+  {
+    "id": "versace-crystal-noir",
+    "name": "Crystal Noir EDP",
+    "house": "Versace",
+    "year": 2006,
+    "concentration": "EDP",
+    "accords": ["floral", "oriental", "sweet", "spicy", "woody"],
+    "notes": { "top": ["ginger", "cardamom", "pepper"], "heart": ["gardenia", "jasmine", "amber"], "base": ["sandalwood", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 65
+  },
+  {
+    "id": "burberry-my-burberry-edp",
+    "name": "My Burberry EDP",
+    "house": "Burberry",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "citrus", "sweet", "fresh"],
+    "notes": { "top": ["bergamot", "sweet pea"], "heart": ["jasmine", "rose", "geranium"], "base": ["amber", "patchouli", "suede"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "guerlain-homme-ideal",
+    "name": "L'Homme Idéal EDP",
+    "house": "Guerlain",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["sweet", "aromatic", "woody", "spicy", "citrus"],
+    "notes": { "top": ["bergamot", "almond", "cardamom"], "heart": ["iris", "tonka bean", "vetiver"], "base": ["leather", "amber", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 80
+  },
+  {
+    "id": "givenchy-pi",
+    "name": "Pi",
+    "house": "Givenchy",
+    "year": 1998,
+    "concentration": "EDT",
+    "accords": ["oriental", "sweet", "aromatic", "woody", "spicy"],
+    "notes": { "top": ["bergamot", "mandarin", "tarragon"], "heart": ["rose", "jasmine", "orchid"], "base": ["benzoin", "amber", "musk", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 50
+  },
+  {
+    "id": "hugo-boss-nuit-homme",
+    "name": "Nuit Pour Homme",
+    "house": "Hugo Boss",
+    "year": 2010,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "oriental", "spicy", "fresh"],
+    "notes": { "top": ["bergamot", "cardamom", "pepper"], "heart": ["vetiver", "black pepper"], "base": ["sandalwood", "amber", "musk", "cedarwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 50
+  },
+  {
+    "id": "zara-nuit-homme",
+    "name": "Vibrant Leather",
+    "house": "Zara",
+    "year": 2021,
+    "concentration": "EDP",
+    "accords": ["woody", "spicy", "sweet", "citrus", "aromatic"],
+    "notes": { "top": ["bergamot", "pineapple"], "heart": ["jasmine", "rose", "patchouli"], "base": ["leather", "musk", "amber", "cedarwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 15
+  },
+  {
+    "id": "zara-twilight-mauve",
+    "name": "Twilight Mauve",
+    "house": "Zara",
+    "year": 2022,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "woody", "citrus", "fresh"],
+    "notes": { "top": ["bergamot", "pink pepper"], "heart": ["rose", "iris", "jasmine"], "base": ["musk", "amber", "cedarwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 15
+  },
+  {
+    "id": "riiffs-oud-assam",
+    "name": "Oud Assam",
+    "house": "Riiffs",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["oud", "woody", "smoky", "resinous", "spicy"],
+    "notes": { "top": ["bergamot", "saffron"], "heart": ["oud", "rose"], "base": ["amber", "musk", "sandalwood", "patchouli"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 35
+  },
+  {
+    "id": "dunhill-icon-racing",
+    "name": "Icon Racing",
+    "house": "Dunhill",
+    "year": 2017,
+    "concentration": "EDP",
+    "accords": ["woody", "fresh", "citrus", "aromatic", "spicy"],
+    "notes": { "top": ["bergamot", "black pepper", "grapefruit"], "heart": ["vetiver", "incense", "cedar"], "base": ["leather", "amber", "musk", "patchouli"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 55
+  },
+  {
+    "id": "lacoste-blanc-edt",
+    "name": "L.12.12 Blanc Pure EDT",
+    "house": "Lacoste",
+    "year": 2020,
+    "concentration": "EDT",
+    "accords": ["fresh", "aromatic", "citrus", "woody", "aquatic"],
+    "notes": { "top": ["bergamot", "yuzu", "green apple"], "heart": ["jasmine", "rose", "white cedar"], "base": ["sandalwood", "musk"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 45
+  },
+  {
+    "id": "fragrance-world-supremacy-noir",
+    "name": "Supremacy Noir",
+    "house": "Fragrance World",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["woody", "oud", "spicy", "smoky", "sweet"],
+    "notes": { "top": ["bergamot", "black pepper"], "heart": ["oud", "rose", "jasmine"], "base": ["amber", "musk", "sandalwood", "patchouli"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 18
+  },
+  {
+    "id": "kenzo-flower",
+    "name": "Flower by Kenzo",
+    "house": "Kenzo",
+    "year": 2000,
+    "concentration": "EDP",
+    "accords": ["floral", "woody", "powdery", "sweet", "citrus"],
+    "notes": { "top": ["bergamot", "bulgarian rose", "red poppy"], "heart": ["violet", "parma violet"], "base": ["vanilla", "musk", "sandalwood", "castorium"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 60
+  },
+  {
+    "id": "prada-la-femme",
+    "name": "La Femme EDP",
+    "house": "Prada",
+    "year": 2016,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "woody", "citrus", "powdery"],
+    "notes": { "top": ["neroli", "grapefruit", "bergamot"], "heart": ["ylang-ylang", "tuberose", "jasmine"], "base": ["musk", "sandalwood", "amber", "cedarwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 80
+  },
+  {
+    "id": "aesop-hwyl",
+    "name": "Hwyl",
+    "house": "Aesop",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["woody", "earthy", "smoky", "aromatic", "resinous"],
+    "notes": { "top": ["hinoki cypress", "atlas cedar"], "heart": ["vetiver", "guaiac wood"], "base": ["incense", "musk", "ambrette"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 150
+  },
+  {
+    "id": "atelier-cologne-rose-anonyme",
+    "name": "Rose Anonyme",
+    "house": "Atelier Cologne",
+    "year": 2014,
+    "concentration": "Parfum",
+    "accords": ["floral", "spicy", "woody", "sweet", "earthy"],
+    "notes": { "top": ["pink pepper", "sambac jasmine", "bergamot"], "heart": ["rose", "iris", "vetiver"], "base": ["oud", "musk", "papyrus"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 165
+  },
+  {
+    "id": "histoires-de-parfums-1969",
+    "name": "1969 Parfum de Révolte",
+    "house": "Histoires de Parfums",
+    "year": 2000,
+    "concentration": "EDP",
+    "accords": ["sweet", "fruity", "floral", "spicy", "woody"],
+    "notes": { "top": ["peach", "bergamot", "cardamom"], "heart": ["rose", "jasmine", "patchouli"], "base": ["vanilla", "amber", "musk", "cedarwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 120
+  },
+  {
+    "id": "nasomatto-black-afgano",
+    "name": "Black Afgano",
+    "house": "Nasomatto",
+    "year": 2009,
+    "concentration": "Extrait",
+    "accords": ["resinous", "earthy", "woody", "sweet", "smoky"],
+    "notes": { "top": ["cannabis"], "heart": ["oud", "incense", "licorice"], "base": ["dark musk", "woody notes"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 145
+  },
+  {
+    "id": "nasomatto-absinth",
+    "name": "Absinth",
+    "house": "Nasomatto",
+    "year": 2009,
+    "concentration": "Extrait",
+    "accords": ["aromatic", "earthy", "woody", "spicy", "fresh"],
+    "notes": { "top": ["star anise", "wormwood"], "heart": ["incense", "herbal notes"], "base": ["earthy notes", "dark musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 130
+  },
+  {
+    "id": "tauer-leau-du-desert-marocain",
+    "name": "L'Air du Désert Marocain",
+    "house": "Tauer",
+    "year": 2005,
+    "concentration": "EDP",
+    "accords": ["woody", "spicy", "aromatic", "earthy", "amber"],
+    "notes": { "top": ["pink pepper", "petitgrain", "bergamot"], "heart": ["jasmine", "rose", "cistus", "vetiver"], "base": ["amber", "sandalwood", "labdanum", "musk"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 110
+  },
+  {
+    "id": "carolina-herrera-212-men",
+    "name": "212 Men EDT",
+    "house": "Carolina Herrera",
+    "year": 1999,
+    "concentration": "EDT",
+    "accords": ["fresh", "aromatic", "citrus", "woody", "spicy"],
+    "notes": { "top": ["bergamot", "lemon", "cardamom"], "heart": ["sage", "basil", "rose"], "base": ["cedar", "musk", "sandalwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 50
+  },
+  {
+    "id": "lanvin-arpege",
+    "name": "Arpège EDP",
+    "house": "Lanvin",
+    "year": 1927,
+    "concentration": "EDP",
+    "accords": ["floral", "powdery", "sweet", "woody", "citrus"],
+    "notes": { "top": ["aldehydes", "bergamot", "neroli"], "heart": ["rose", "jasmine", "iris", "lily of the valley"], "base": ["sandalwood", "vetiver", "musk", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 55
+  },
+  {
+    "id": "nina-ricci-lair-du-temps",
+    "name": "L'Air du Temps",
+    "house": "Nina Ricci",
+    "year": 1948,
+    "concentration": "EDP",
+    "accords": ["floral", "powdery", "spicy", "citrus", "woody"],
+    "notes": { "top": ["bergamot", "neroli", "carnation"], "heart": ["rose", "jasmine", "gardenia", "iris"], "base": ["sandalwood", "vetiver", "musk", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 45
+  },
+  {
+    "id": "ysl-opium-edp",
+    "name": "Opium EDP",
+    "house": "YSL",
+    "year": 1977,
+    "concentration": "EDP",
+    "accords": ["oriental", "spicy", "floral", "woody", "resinous"],
+    "notes": { "top": ["bergamot", "mandarin", "plum", "star anise"], "heart": ["rose", "jasmine", "lily of the valley", "cinnamon"], "base": ["sandalwood", "vetiver", "musk", "amber"] },
+    "longevity": 5, "sillage": 4, "price_gbp": 80
+  },
+  {
+    "id": "chanel-allure-edp",
+    "name": "Allure EDP",
+    "house": "Chanel",
+    "year": 1996,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "citrus", "woody", "powdery"],
+    "notes": { "top": ["mandarin", "bergamot", "blood orange"], "heart": ["rose", "lily of the valley", "jasmine"], "base": ["vanilla", "sandalwood", "amber", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 120
+  },
+  {
+    "id": "lacoste-pour-femme",
+    "name": "Pour Femme EDP",
+    "house": "Lacoste",
+    "year": 2018,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "woody", "citrus", "fresh"],
+    "notes": { "top": ["orange blossom", "pink pepper"], "heart": ["jasmine", "peony", "rose"], "base": ["cedarwood", "musk", "amber"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 45
+  },
+  {
+    "id": "michael-kors-gorgeous",
+    "name": "Gorgeous! EDP",
+    "house": "Michael Kors",
+    "year": 2020,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "fruity", "citrus", "woody"],
+    "notes": { "top": ["bergamot", "fig"], "heart": ["rose", "peony", "jasmine"], "base": ["sandalwood", "musk", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 70
+  },
+  {
+    "id": "bvlgari-aqva-divina",
+    "name": "Aqva Divina",
+    "house": "Bulgari",
+    "year": 2015,
+    "concentration": "EDT",
+    "accords": ["aquatic", "floral", "sweet", "fresh", "citrus"],
+    "notes": { "top": ["sea notes", "bergamot", "mandarin"], "heart": ["seashell", "heliotrope", "lotus"], "base": ["sandalwood", "musk", "ambergris"] },
+    "longevity": 3, "sillage": 2, "price_gbp": 55
+  },
+  {
+    "id": "gucci-rush",
+    "name": "Rush EDP",
+    "house": "Gucci",
+    "year": 1999,
+    "concentration": "EDP",
+    "accords": ["floral", "sweet", "spicy", "woody", "fruity"],
+    "notes": { "top": ["mandarin", "peach", "freesia"], "heart": ["magnolia", "rose", "gardenia"], "base": ["patchouli", "vanilla", "musk"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 65
+  },
+  {
+    "id": "jimmy-choo-man-ice",
+    "name": "Man Ice EDT",
+    "house": "Jimmy Choo",
+    "year": 2017,
+    "concentration": "EDT",
+    "accords": ["fresh", "citrus", "aquatic", "woody", "aromatic"],
+    "notes": { "top": ["grapefruit", "aquatic notes", "pepper"], "heart": ["frozen juniper", "melon"], "base": ["suede", "cashmere wood", "cedarwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 50
+  },
+  {
+    "id": "abercrombie-first-instinct-blue",
+    "name": "First Instinct Blue",
+    "house": "Abercrombie & Fitch",
+    "year": 2019,
+    "concentration": "EDT",
+    "accords": ["fresh", "aquatic", "citrus", "woody", "aromatic"],
+    "notes": { "top": ["bergamot", "sea breeze"], "heart": ["ginger", "driftwood"], "base": ["mahogany", "musk", "sandalwood"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 45
+  },
+  {
+    "id": "fragrance-world-blue-de-blue",
+    "name": "Blue de Blue",
+    "house": "Fragrance World",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "citrus", "fresh", "spicy"],
+    "notes": { "top": ["grapefruit", "lemon", "mint"], "heart": ["ginger", "nutmeg", "iso e super"], "base": ["cedar", "sandalwood", "patchouli"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 18
+  },
+  {
+    "id": "mercedes-benz-le-parfum",
+    "name": "Le Parfum",
+    "house": "Mercedes-Benz",
+    "year": 2012,
+    "concentration": "EDP",
+    "accords": ["woody", "aromatic", "spicy", "citrus", "fresh"],
+    "notes": { "top": ["bergamot", "lemon", "lavender"], "heart": ["cedar", "oakwood"], "base": ["amber", "musk", "sandalwood"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 45
+  },
+  {
+    "id": "azzaro-wanted-by-night",
+    "name": "Wanted by Night",
+    "house": "Azzaro",
+    "year": 2019,
+    "concentration": "EDP",
+    "accords": ["oriental", "woody", "spicy", "sweet", "aromatic"],
+    "notes": { "top": ["bergamot", "vanilla flower", "lemon"], "heart": ["oud", "tobacco", "vetiver"], "base": ["sandalwood", "leather", "amber"] },
+    "longevity": 4, "sillage": 4, "price_gbp": 55
+  },
+  {
+    "id": "lalique-encre-noire",
+    "name": "Encre Noire",
+    "house": "Lalique",
+    "year": 2006,
+    "concentration": "EDT",
+    "accords": ["woody", "earthy", "smoky", "aromatic", "fresh"],
+    "notes": { "top": ["cypress", "vetiver"], "heart": ["vetiver", "musk"], "base": ["cedarwood", "cashmere", "vetiver"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 40
+  },
+  {
+    "id": "parfums-de-rosine-rose-d-homme",
+    "name": "La Rose du Desert",
+    "house": "Les Parfums de Rosine",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["floral", "earthy", "woody", "spicy", "citrus"],
+    "notes": { "top": ["bergamot", "lemon", "coriander"], "heart": ["rose", "geranium", "orris"], "base": ["sandalwood", "musk", "oud"] },
+    "longevity": 3, "sillage": 3, "price_gbp": 100
+  },
+  {
+    "id": "vilhelm-room-service",
+    "name": "Room Service",
+    "house": "Vilhelm Parfumerie",
+    "year": 2015,
+    "concentration": "EDP",
+    "accords": ["sweet", "floral", "woody", "spicy", "citrus"],
+    "notes": { "top": ["lychee", "bergamot", "pepper"], "heart": ["rose", "lily", "patchouli"], "base": ["sandalwood", "musk", "amber"] },
+    "longevity": 4, "sillage": 3, "price_gbp": 155
   }
 ]
