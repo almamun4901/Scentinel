@@ -552,6 +552,69 @@ Return JSON:
   res.json({ interpretation: profile.interpretation, accords: targetAccords, results });
 });
 
+// POST /similar — pure cosine-similarity matches (no price bias, no Dua clones)
+router.post("/similar", async (req, res) => {
+  const { fragranceName } = req.body as { fragranceName?: string };
+  if (!fragranceName?.trim()) {
+    res.status(400).json({ error: "fragranceName required" });
+    return;
+  }
+
+  let target: Fragrance | undefined = fragrances.find(
+    (f) =>
+      f.name.toLowerCase() === fragranceName.toLowerCase() ||
+      `${f.house} ${f.name}`.toLowerCase() === fragranceName.toLowerCase()
+  );
+
+  if (!target) {
+    try {
+      const cached = await db
+        .select()
+        .from(aiFragrancesTable)
+        .where(
+          or(
+            ilike(sql`${aiFragrancesTable.data}->>'name'`, fragranceName),
+            ilike(sql`${aiFragrancesTable.data}->>'house' || ' ' || ${aiFragrancesTable.data}->>'name'`, fragranceName)
+          )
+        )
+        .limit(1);
+      if (cached[0]) target = cached[0].data as Fragrance;
+    } catch { /* ignore */ }
+  }
+
+  if (!target) {
+    res.status(404).json({ error: `Fragrance not found: ${fragranceName}` });
+    return;
+  }
+
+  const targetVec = buildAccordVector(target, allAccords);
+
+  const results = fragrances
+    .filter((f) => f.id !== target!.id)
+    .map((f) => {
+      const vec = buildAccordVector(f, allAccords);
+      const sim = cosineSimilarity(targetVec, vec);
+      const sharedAccords = f.accords.filter((a) => target!.accords.includes(a));
+      return {
+        id: f.id,
+        name: f.name,
+        house: f.house,
+        similarity_pct: Math.round(sim * 100),
+        price_usd: f.price_usd,
+        concentration: f.concentration,
+        accords: f.accords,
+        shared_accords: sharedAccords,
+        longevity: f.longevity,
+        sillage: f.sillage,
+      };
+    })
+    .filter((f) => f.similarity_pct > 20)
+    .sort((a, b) => b.similarity_pct - a.similarity_pct)
+    .slice(0, 8);
+
+  res.json(results);
+});
+
 // POST /community — AI-synthesised r/fragrance community sentiment for a fragrance
 router.post("/community", async (req, res) => {
   const { fragranceName } = req.body as { fragranceName?: string };

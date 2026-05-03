@@ -42,6 +42,17 @@ const NAV_DISCOVER = [
     ),
   },
   {
+    id: "similar",
+    label: "Similar",
+    icon: (
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+        <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
+        <path d="M12 12h.01" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
     id: "dupes",
     label: "Dupes",
     icon: (
@@ -327,7 +338,7 @@ export function SidebarContent({
           </>
         )}
 
-        {(activeSection === "explore" || activeSection === "discover" || activeSection === "dupes" || activeSection === "collection") && (
+        {(activeSection === "explore" || activeSection === "discover" || activeSection === "similar" || activeSection === "dupes" || activeSection === "collection") && (
           <>
             <div className="flex items-center justify-between mb-2 px-3">
               <p className="text-xs font-mono tracking-widest whitespace-nowrap" style={{ color: "hsl(40 10% 28%)" }}>

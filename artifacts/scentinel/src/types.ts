@@ -29,6 +29,19 @@ export interface DupeResult {
   is_dua?: boolean;
 }
 
+export interface SimilarResult {
+  id: string;
+  name: string;
+  house: string;
+  similarity_pct: number;
+  price_usd: number;
+  concentration: string;
+  accords: string[];
+  shared_accords: string[];
+  longevity: number;
+  sillage: number;
+}
+
 export interface ContextPick {
   rank: number;
   name: string;

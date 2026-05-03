@@ -20,6 +20,7 @@ import { SemanticSearchView } from "@/components/semantic-search-view";
 import { FragranceDetailDrawer } from "@/components/fragrance-detail-drawer";
 import { DupesPage } from "@/components/dupes-page";
 import { CollectionPage } from "@/components/collection-page";
+import { SimilarPage } from "@/components/similar-page";
 import { ShootingStars } from "@/components/shooting-stars";
 import { SplashScreen, shouldShowSplash } from "@/components/splash-screen";
 import { InfiniteMovingCards, type FragranceCardItem } from "@/components/ui/infinite-moving-cards";
@@ -113,7 +114,7 @@ export default function Home() {
     } catch { /* ignore */ }
   }, [handleFragranceSelect]);
 
-  const NAV_ORDER = ["chat", "discover", "explore", "dupes", "collection", "wishlist"];
+  const NAV_ORDER = ["chat", "discover", "explore", "similar", "dupes", "collection", "wishlist"];
 
   const handleSectionChange = useCallback((section: string) => {
     if (section === activeSection) return;
@@ -168,6 +169,7 @@ export default function Home() {
   const isWishlist = activeSection === "wishlist";
   const isDiscover = activeSection === "discover";
   const isDupes = activeSection === "dupes";
+  const isSimilar = activeSection === "similar";
   const isCollection = activeSection === "collection";
   const isExplore = activeSection === "explore";
 
@@ -261,8 +263,8 @@ export default function Home() {
           </header>
         )}
 
-        {/* Wishlist / Discover / Dupes / Collection top bar */}
-        {(isWishlist || isDiscover || isDupes || isCollection) && (
+        {/* Wishlist / Discover / Similar / Dupes / Collection top bar */}
+        {(isWishlist || isDiscover || isSimilar || isDupes || isCollection) && (
           <header
             className="shrink-0 flex items-center gap-3 px-5 py-3 border-b"
             style={{ borderColor: "hsl(34 10% 12%)" }}
@@ -275,7 +277,7 @@ export default function Home() {
               <Menu size={20} />
             </button>
             <p className="font-serif flex-1" style={{ fontSize: 17, color: "hsl(40 20% 80%)" }}>
-              {isWishlist ? "Wishlist" : isDiscover ? "Discover" : isDupes ? "Dupe Finder" : "Collection"}
+              {isWishlist ? "Wishlist" : isDiscover ? "Discover" : isSimilar ? "Similar Fragrances" : isDupes ? "Dupe Finder" : "Collection"}
             </p>
             <div
               className="text-xs px-2 py-1.5 rounded border font-mono"
@@ -301,6 +303,8 @@ export default function Home() {
             onSelectFragrance={handleFragranceSelect}
             onOpenDrawer={setDrawerFragrance}
           />
+        ) : isSimilar ? (
+          <SimilarPage onSelectFragrance={handleFragranceSelect} />
         ) : isDupes ? (
           <DupesPage onSelectFragrance={handleFragranceSelect} />
         ) : isCollection ? (
