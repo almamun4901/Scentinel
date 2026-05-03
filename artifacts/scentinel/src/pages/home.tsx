@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
 import { Menu } from "lucide-react";
 import {
   useFindDupes,
@@ -249,7 +249,7 @@ export default function Home() {
         ) : (
           <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
             {!selectedFragrance ? (
-              <EmptyState />
+              <EmptyState onSelect={handleFragranceSelect} />
             ) : (
               <div className="max-w-3xl">
                 <FragranceHero
@@ -335,13 +335,54 @@ function parseBudget(budget: string | null): number | null {
   return map[budget] ?? null;
 }
 
-function EmptyState() {
-  const SUGGESTIONS = [
-    { name: "Aventus", house: "Creed" },
-    { name: "Sauvage EDP", house: "Dior" },
-    { name: "Oud Wood", house: "Tom Ford" },
-    { name: "Layton", house: "Parfums de Marly" },
-  ];
+const ALL_SUGGESTIONS = [
+  { name: "Aventus", house: "Creed" },
+  { name: "Sauvage EDP", house: "Dior" },
+  { name: "Oud Wood", house: "Tom Ford" },
+  { name: "Layton", house: "Parfums de Marly" },
+  { name: "Baccarat Rouge 540", house: "MFK" },
+  { name: "Tobacco Vanille", house: "Tom Ford" },
+  { name: "Bleu de Chanel EDP", house: "Chanel" },
+  { name: "Jubilation XXV", house: "Amouage" },
+  { name: "Oud for Greatness", house: "Initio" },
+  { name: "Naxos", house: "Xerjoff" },
+  { name: "Jazz Club", house: "Maison Margiela" },
+  { name: "Santal 33", house: "Le Labo" },
+  { name: "Bal d'Afrique", house: "Byredo" },
+  { name: "Wood Sage & Sea Salt", house: "Jo Malone" },
+  { name: "Irish Leather", house: "Memo Paris" },
+  { name: "Acqua di Gio Profondo", house: "Giorgio Armani" },
+  { name: "Interlude Man", house: "Amouage" },
+  { name: "Percival", house: "Parfums de Marly" },
+  { name: "Side Effect", house: "Initio" },
+  { name: "Libre EDP", house: "YSL" },
+  { name: "Black Orchid", house: "Tom Ford" },
+  { name: "Spicebomb Extreme", house: "Viktor & Rolf" },
+  { name: "Explorer", house: "Montblanc" },
+  { name: "Invictus Platinum", house: "Paco Rabanne" },
+];
+
+function pickRandom<T>(arr: T[], count: number): T[] {
+  const shuffled = [...arr].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
+function EmptyState({ onSelect }: { onSelect: (f: Fragrance) => void }) {
+  const suggestions = useMemo(() => pickRandom(ALL_SUGGESTIONS, 6), []);
+  const [loadingKey, setLoadingKey] = useState<string | null>(null);
+
+  const handleClick = async (name: string, house: string) => {
+    const key = `${house}-${name}`;
+    if (loadingKey) return;
+    setLoadingKey(key);
+    try {
+      const res = await fetch(`${import.meta.env.BASE_URL}api/search?q=${encodeURIComponent(name)}`);
+      const data = await res.json() as Fragrance[];
+      if (data.length > 0) onSelect(data[0]);
+    } catch { /* ignore */ } finally {
+      setLoadingKey(null);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center px-4">
@@ -352,17 +393,35 @@ function EmptyState() {
         Search any fragrance to discover alternatives, get context recommendations, and assess blind buy risk.
       </p>
       <div className="flex flex-wrap justify-center gap-2">
-        {SUGGESTIONS.map((s) => (
-          <button
-            key={s.name}
-            data-testid={`suggestion-${s.name.replace(/\s+/g, "-").toLowerCase()}`}
-            className="px-4 py-2 rounded border text-sm transition-all"
-            style={{ borderColor: "hsl(34 10% 18%)", color: "hsl(40 10% 45%)", background: "hsl(34 12% 9%)" }}
-          >
-            <span style={{ color: "hsl(40 10% 35%)" }}>{s.house} · </span>
-            {s.name}
-          </button>
-        ))}
+        {suggestions.map((s) => {
+          const key = `${s.house}-${s.name}`;
+          const isLoading = loadingKey === key;
+          return (
+            <button
+              key={key}
+              data-testid={`suggestion-${s.name.replace(/\s+/g, "-").toLowerCase()}`}
+              onClick={() => handleClick(s.name, s.house)}
+              disabled={loadingKey !== null}
+              className="px-4 py-2 rounded border text-sm transition-all"
+              style={{
+                borderColor: isLoading ? "hsl(42 54% 35%)" : "hsl(34 10% 18%)",
+                color: isLoading ? "hsl(42 54% 60%)" : "hsl(40 10% 52%)",
+                background: isLoading ? "hsl(42 54% 50% / 0.08)" : "hsl(34 12% 9%)",
+                cursor: loadingKey ? "default" : "pointer",
+                opacity: loadingKey && !isLoading ? 0.5 : 1,
+              }}
+            >
+              {isLoading ? (
+                <span style={{ color: "hsl(42 54% 50%)" }}>loading…</span>
+              ) : (
+                <>
+                  <span style={{ color: "hsl(40 10% 35%)" }}>{s.house} · </span>
+                  {s.name}
+                </>
+              )}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
