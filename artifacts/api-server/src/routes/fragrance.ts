@@ -434,4 +434,86 @@ Respond with ONLY this JSON structure:
   }
 });
 
+// POST /semantic-search  — natural language fragrance discovery
+router.post("/semantic-search", async (req, res) => {
+  const { query } = req.body as { query: string };
+  if (!query?.trim()) {
+    res.status(400).json({ error: "query required" });
+    return;
+  }
+
+  let profile: {
+    interpretation: string;
+    target_accords: string[];
+    avoid_accords: string[];
+    longevity_min: number;
+    intensity: string;
+  };
+
+  try {
+    const msg = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 512,
+      system: "You are a fragrance expert. Interpret a natural language fragrance vibe and extract structured accord parameters. Respond ONLY with valid JSON, no markdown.",
+      messages: [{
+        role: "user",
+        content: `Interpret: "${query}"
+
+You MUST only use accords from this exact list: fruity, woody, smoky, fresh, citrus, spicy, lavender, vanilla, aromatic, aquatic, mineral, earthy, oud, resinous, sweet, fougere, oriental, floral, amber
+
+Do NOT invent new accord names. Map everything to the closest accord from the list above.
+
+Return JSON:
+{
+  "interpretation": "1-2 sentence description of what the user seeks",
+  "target_accords": ["up to 6 accords from the list above only"],
+  "avoid_accords": ["up to 3 accords from the list above that clash with this vibe"],
+  "longevity_min": 1,
+  "intensity": "light|moderate|strong"
+}`,
+      }],
+    });
+
+    const content = msg.content[0];
+    if (content.type !== "text") throw new Error("unexpected response");
+    const raw = content.text.trim().replace(/^```json\n?/, "").replace(/\n?```$/, "");
+    profile = JSON.parse(raw);
+  } catch (err) {
+    req.log.error({ err }, "Semantic search AI failed");
+    res.status(500).json({ error: "Failed to interpret query" });
+    return;
+  }
+
+  const targetAccords: string[] = profile.target_accords ?? [];
+  const avoidAccords: string[] = profile.avoid_accords ?? [];
+
+  const scored = fragrances.map((f) => {
+    const matched = f.accords.filter((a) => targetAccords.includes(a));
+    const avoided = f.accords.filter((a) => avoidAccords.includes(a));
+
+    let score = 0;
+    if (targetAccords.length > 0) score += (matched.length / targetAccords.length) * 78;
+    score -= avoided.length * 20;
+    if (f.longevity >= (profile.longevity_min ?? 1)) score += 8;
+    if (profile.intensity === "strong" && f.sillage >= 3) score += 10;
+    if (profile.intensity === "light" && f.sillage <= 2) score += 10;
+    if (profile.intensity === "moderate" && f.sillage >= 2 && f.sillage <= 3) score += 8;
+
+    score = Math.max(0, Math.min(100, Math.round(score)));
+
+    const reason = matched.length > 0
+      ? `Shares ${matched.slice(0, 3).join(", ")} accord${matched.length > 1 ? "s" : ""} with your vibe`
+      : "Partial mood match";
+
+    return { ...f, match_score: score, match_reason: reason };
+  });
+
+  const results = scored
+    .filter((f) => f.match_score > 15)
+    .sort((a, b) => b.match_score - a.match_score)
+    .slice(0, 9);
+
+  res.json({ interpretation: profile.interpretation, accords: targetAccords, results });
+});
+
 export default router;

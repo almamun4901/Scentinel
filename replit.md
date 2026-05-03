@@ -21,13 +21,22 @@
 
 - **Chat** — Conversational AI assistant powered by Claude with tool_use; handles dupes, blind buy scoring, context picks, and fragrance lookups via natural language (POST /api/chat)
 - **Search** — Fuzzy fragrance search via Fuse.js (GET /api/search?q=)
+- **Semantic/NL Search** — "Discover" view: Claude interprets natural language vibe descriptions → extracts accord profile → cosine-ranks 232 fragrances → returns top 9 matches with reasons (POST /api/semantic-search)
 - **Dupe Finder** — Cosine similarity on accord vectors (POST /api/dupes)
 - **Context Recommendations** — Scored picks by weather/occasion/time (POST /api/context)
 - **Blind Buy Scorer** — Claude-powered AI scoring with breakdown + risk flags (POST /api/score)
 - **Live Weather** — OpenWeatherMap proxy (GET /api/weather)
 - **User Profiles** — Owned fragrance collection + budget, persisted in PostgreSQL (GET/PUT /api/profile)
+- **Wishlist** — localStorage-based wishlist with add/remove, personal notes per fragrance, bookmark button on every fragrance hero card
 - **Auth** — Replit OIDC via openid-client v6
 - **Onboarding** — 3-step modal on first visit
+
+## Visual Components
+
+- **FragranceHero** — Redesigned with layered sections: image/placeholder | accord pills | visual fragrance pyramid (3 trapezoid tiers with note icons) | longevity/sillage bars + bookmark button
+- **BottlePlaceholder** — SVG perfume bottle silhouette shown when no image URL is available
+- **SemanticSearchView** — Full discover page: text input, curated example queries, interpretation card, accord pills, result grid
+- **WishlistPage** — Grid of saved fragrances with personal note editing, added date, and remove button
 
 ## Fragrance Data
 
@@ -78,6 +87,7 @@ All routes served under `/api`:
 | POST | `/context` | Context-aware picks |
 | POST | `/score` | AI blind buy score |
 | POST | `/chat` | Conversational AI with Claude tool_use |
+| POST | `/semantic-search` | NL vibe → Claude accord extraction → cosine-ranked results |
 | POST | `/mcp` | MCP Streamable HTTP — initialize / tool calls |
 | GET | `/mcp` | MCP SSE stream (server → client) |
 | DELETE | `/mcp` | MCP session teardown |
