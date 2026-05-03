@@ -6,6 +6,10 @@
  *   • find_dupes              — cosine-similarity accord alternatives
  *   • score_blind_buy         — AI blind buy risk scoring
  *   • recommend_for_context   — occasion/weather/time picks from a collection
+ *   • community_discussion    — raw r/fragrance posts and summaries
+ *   • describe_to_fragrance   — natural language description → matching fragrances
+ *   • get_community_signal    — aggregated evidence signals from r/fragrance
+ *   • analyse_collection      — DNA profile, gaps, overlaps, and next-buy recs
  *
  * Connect from Claude.ai:
  *   Settings → Integrations → MCP Servers → Add server
@@ -188,6 +192,150 @@ async function toolCommunityDiscussion(query: string) {
   };
 }
 
+async function toolDescribeToFragrance(description: string) {
+  // Use Claude to extract accord intent from natural language, then match to database
+  const msg = await anthropic.messages.create({
+    model: "claude-haiku-4-5",
+    max_tokens: 256,
+    system: "You are a fragrance expert. Extract fragrance accord families from a natural language description. Respond ONLY with a JSON array of accord strings from this list: fruity, woody, smoky, fresh, citrus, spicy, lavender, vanilla, aromatic, aquatic, mineral, earthy, oud, resinous, sweet, fougere, oriental, floral, amber. Pick 2-5 most relevant.",
+    messages: [{ role: "user", content: description }],
+  });
+  const content = msg.content[0];
+  if (content.type !== "text") return { error: "AI error" };
+
+  let targetAccords: string[] = [];
+  try {
+    const raw = content.text.trim().replace(/^```json\n?/, "").replace(/\n?```$/, "");
+    targetAccords = JSON.parse(raw) as string[];
+  } catch { return { error: "Could not parse accord intent" }; }
+
+  const targetVec = ALL_ACCORDS.map((a) => (targetAccords.includes(a) ? 1 : 0));
+  const matches = fragrances
+    .map((f) => ({
+      name: f.name,
+      house: f.house,
+      similarity_pct: Math.round(cosineSim(targetVec, accordVec(f)) * 100),
+      price_usd: f.price_usd,
+      concentration: f.concentration,
+      accords: f.accords,
+      why: f.accords.filter((a) => targetAccords.includes(a)).join(", "),
+    }))
+    .filter((f) => f.similarity_pct > 0)
+    .sort((a, b) => b.similarity_pct - a.similarity_pct)
+    .slice(0, 6);
+
+  return { description, extracted_accords: targetAccords, matches };
+}
+
+async function toolGetCommunitySignal(fragranceName: string) {
+  const [reviewPosts, batchPosts] = await Promise.all([
+    searchFragranceDiscussion(`${fragranceName} review longevity performance`, 10),
+    searchFragranceDiscussion(`${fragranceName} batch variation reformulation`, 6),
+  ]);
+
+  const allPosts = [...reviewPosts, ...batchPosts];
+  const totalUpvotes = allPosts.reduce((s, p) => s + (p.score ?? 0), 0);
+  const totalComments = allPosts.reduce((s, p) => s + (p.num_comments ?? 0), 0);
+
+  const batchKeywords = ["batch", "reformulat", "changed", "degraded", "quality drop"];
+  const longevityKeywords = ["lasts", "longevity", "hours", "fades", "projection", "sillage"];
+  const positiveKeywords = ["love", "amazing", "great", "excellent", "best", "compliments"];
+  const negativeKeywords = ["weak", "awful", "disappointed", "overrated", "skip", "avoid"];
+
+  const allText = allPosts.map((p) => `${p.title} ${p.selftext ?? ""}`.toLowerCase()).join(" ");
+
+  const batchMentions = batchPosts.length;
+  const longevityMentions = longevityKeywords.filter((k) => allText.includes(k)).length;
+  const positiveScore = positiveKeywords.filter((k) => allText.includes(k)).length;
+  const negativeScore = negativeKeywords.filter((k) => allText.includes(k)).length;
+
+  const sentiment = positiveScore > negativeScore * 1.5 ? "positive"
+    : negativeScore > positiveScore * 1.5 ? "negative" : "mixed";
+
+  return {
+    fragrance: fragranceName,
+    evidence: {
+      total_posts_found: allPosts.length,
+      total_upvotes: totalUpvotes,
+      total_comments: totalComments,
+    },
+    signals: {
+      batch_variation_risk: batchMentions >= 2 ? "flagged" : "clean",
+      batch_mentions: batchMentions,
+      longevity_discussion_intensity: longevityMentions >= 3 ? "high" : longevityMentions >= 1 ? "moderate" : "low",
+      community_sentiment: sentiment,
+      positive_signals: positiveScore,
+      negative_signals: negativeScore,
+    },
+    batch_keywords_found: batchKeywords.filter((k) => allText.includes(k)),
+    summary: summarisePosts(reviewPosts, 600),
+  };
+}
+
+function toolAnalyseCollection(ownedFragrances: string[]) {
+  const owned = fragrances.filter((f) =>
+    ownedFragrances.some((o) =>
+      f.name.toLowerCase() === o.toLowerCase() ||
+      `${f.house} ${f.name}`.toLowerCase() === o.toLowerCase()
+    )
+  );
+  if (owned.length === 0) return { error: "No known fragrances found in collection" };
+
+  // DNA: tally accords across collection
+  const accordCounts: Record<string, number> = {};
+  owned.forEach((f) => f.accords.forEach((a) => { accordCounts[a] = (accordCounts[a] ?? 0) + 1; }));
+  const dna = Object.entries(accordCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([accord, count]) => ({ accord, count, pct: Math.round((count / owned.length) * 100) }));
+
+  // Overlaps: pairs that are >75% similar
+  const overlaps: { a: string; b: string; similarity_pct: number }[] = [];
+  for (let i = 0; i < owned.length; i++) {
+    for (let j = i + 1; j < owned.length; j++) {
+      const sim = Math.round(cosineSim(accordVec(owned[i]!), accordVec(owned[j]!)) * 100);
+      if (sim >= 75) overlaps.push({ a: `${owned[i]!.house} ${owned[i]!.name}`, b: `${owned[j]!.house} ${owned[j]!.name}`, similarity_pct: sim });
+    }
+  }
+
+  // Gaps: accord families not represented at all
+  const coveredAccords = new Set(owned.flatMap((f) => f.accords));
+  const gaps = ALL_ACCORDS.filter((a) => !coveredAccords.has(a));
+
+  // Collection profile stats
+  const avgPrice = Math.round(owned.reduce((s, f) => s + f.price_usd, 0) / owned.length);
+  const avgLongevity = (owned.reduce((s, f) => s + f.longevity, 0) / owned.length).toFixed(1);
+  const avgSillage = (owned.reduce((s, f) => s + f.sillage, 0) / owned.length).toFixed(1);
+
+  // Next-buy recommendations: fragrances NOT owned that fill the biggest gaps
+  const dominantAccords = dna.slice(0, 3).map((d) => d.accord);
+  const gapAccords = gaps.slice(0, 3);
+  const candidates = fragrances
+    .filter((f) => !owned.find((o) => o.id === f.id))
+    .map((f) => {
+      const gapFill = f.accords.filter((a) => gapAccords.includes(a)).length;
+      const complement = f.accords.filter((a) => !dominantAccords.includes(a)).length;
+      return { f, score: gapFill * 3 + complement };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(({ f }) => ({
+      name: f.name,
+      house: f.house,
+      price_usd: f.price_usd,
+      accords: f.accords,
+      fills_gap: f.accords.filter((a) => gapAccords.includes(a)),
+    }));
+
+  return {
+    collection_size: owned.length,
+    dna_profile: dna.slice(0, 8),
+    stats: { avg_price_usd: avgPrice, avg_longevity: avgLongevity, avg_sillage: avgSillage },
+    gaps: { missing_accord_families: gaps, count: gaps.length },
+    overlaps: { pairs: overlaps, count: overlaps.length },
+    next_buy_recommendations: candidates,
+  };
+}
+
 function toolRecommendForContext(
   occasion: string,
   timeOfDay: string,
@@ -320,6 +468,43 @@ const TOOLS = [
       required: ["query"],
     },
   },
+  {
+    name: "describe_to_fragrance",
+    description: "Find fragrances matching a natural language vibe description. Use when the user doesn't know what fragrance they want but describes a feeling, setting, or aesthetic — e.g. 'smells like a rainy forest', 'cosy fireplace on a winter night', 'clean office professional'. Claude extracts the accord intent; the tool searches the database.",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        description: { type: "string", description: "Natural language description of the desired scent vibe, setting, or aesthetic (e.g. 'I want to smell like a library with a fireplace', 'beachy and fresh for summer')" },
+      },
+      required: ["description"],
+    },
+  },
+  {
+    name: "get_community_signal",
+    description: "Get aggregated community evidence signals for a fragrance — upvote totals, batch variation risk flag, longevity discussion intensity, and sentiment score backed by actual Reddit evidence counts. Use this when you need to cite trust signals or risk flags with evidence.",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        fragrance_name: { type: "string", description: "Full fragrance name including house (e.g. 'Creed Aventus', 'Dior Sauvage EDP')" },
+      },
+      required: ["fragrance_name"],
+    },
+  },
+  {
+    name: "analyse_collection",
+    description: "Analyse a user's fragrance collection — returns DNA profile (dominant accords), gaps (missing fragrance families), overlapping redundant pairs, collection stats (avg price, longevity, sillage), and top 3 'what to buy next' recommendations that fill gaps. Use after the user shares their collection to give personalised fragrance advice.",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        owned_fragrances: {
+          type: "array",
+          items: { type: "string" },
+          description: "Names of all fragrances in the user's collection (e.g. ['Creed Aventus', 'Dior Sauvage EDT', 'YSL La Nuit de L\\'Homme'])",
+        },
+      },
+      required: ["owned_fragrances"],
+    },
+  },
 ];
 
 function createMcpServer(): Server {
@@ -356,6 +541,12 @@ function createMcpServer(): Server {
         );
       } else if (name === "community_discussion") {
         result = await toolCommunityDiscussion(a.query as string);
+      } else if (name === "describe_to_fragrance") {
+        result = await toolDescribeToFragrance(a.description as string);
+      } else if (name === "get_community_signal") {
+        result = await toolGetCommunitySignal(a.fragrance_name as string);
+      } else if (name === "analyse_collection") {
+        result = toolAnalyseCollection(a.owned_fragrances as string[]);
       } else {
         return { content: [{ type: "text" as const, text: `Unknown tool: ${name}` }], isError: true };
       }

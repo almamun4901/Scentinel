@@ -1,0 +1,13 @@
+The design philosophy here is that the MCP server has no UI opinions — it just returns clean, structured data and lets Claude do the reasoning. That's the right split. The tools are dumb pipes; Claude is the brain that decides which tools to chain, in what order, and how to narrate the results.
+
+**The three things that make this MCP exceptional vs a generic one:**
+
+The `describe_to_fragrance` tool is the one nobody else has. Every other fragrance tool requires you to know what you're looking for. This one takes "I want to smell like a library with a fireplace" and maps it to accords internally before querying the database. Claude does the translation layer — the tool just receives clean accord/family queries. That's the right architecture: keep Claude's reasoning out of the tool and in the conversation.
+
+The `get_community_signal` tool is what separates Scentinel data from every other fragrance API. Fragella gives you structured perfume data. This tool gives you *evidence* — "23 users reported batch issues, 847 upvotes of agreement." When Claude cites a risk flag with an evidence count behind it, users trust it in a way they don't trust generic database flags.
+
+The `analyse_collection` tool is the long-term retention hook. Once a user has given Claude their collection, this tool returns gaps, overlaps, DNA profile, and what to buy next. That's a conversation that repeats every few months as the collection evolves. It's not a lookup — it's an ongoing relationship with Claude as a fragrance advisor.
+
+**On the auth model:** making the 8 tools free with no API key is the right call for the MCP directory listing. Zero friction = more installs = more distribution. Gate the high-compute tools (score_blind_buy with Reddit enrichment) behind an Insider subscriber key once you have traction.
+
+Want me to write the full Node.js MCP server implementation using the `@modelcontextprotocol/sdk`, or the tool description strings optimised for Claude to know exactly when to call each one?
