@@ -26,7 +26,7 @@ export function OnboardingModal({ open, onComplete, onSkip }: OnboardingModalPro
     saveProfile.mutate(
       { data: { ownedFragrances: selected, budget } },
       {
-        onSuccess: () => {
+        onSettled: () => {
           onComplete({ ownedFragrances: selected, budget });
         },
       }
