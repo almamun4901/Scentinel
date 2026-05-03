@@ -85,7 +85,13 @@ export default function Home() {
       setDupes(null);
       setContextPicks(null);
       setBlindBuyScore(null);
-      if (activeSection === "discover") { setSlideDir("right"); setActiveSection("explore"); }
+      if (activeSection !== "explore") {
+        const NAV = ["chat", "discover", "explore", "similar", "dupes", "collection", "wishlist"];
+        const prevIdx = NAV.indexOf(activeSection);
+        const exploreIdx = 2;
+        setSlideDir(exploreIdx >= prevIdx ? "right" : "left");
+        setActiveSection("explore");
+      }
 
       const ownedFragrances = profile.ownedFragrances ?? [];
 
