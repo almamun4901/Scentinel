@@ -17,6 +17,7 @@ import { Sidebar, SidebarContent } from "@/components/sidebar";
 import { OnboardingModal } from "@/components/onboarding-modal";
 import { WishlistPage } from "@/components/wishlist-page";
 import { SemanticSearchView } from "@/components/semantic-search-view";
+import { FragranceDetailDrawer } from "@/components/fragrance-detail-drawer";
 import { ShootingStars } from "@/components/shooting-stars";
 import { SplashScreen, shouldShowSplash } from "@/components/splash-screen";
 import { InfiniteMovingCards, type FragranceCardItem } from "@/components/ui/infinite-moving-cards";
@@ -46,6 +47,7 @@ export default function Home() {
   const [timeOfDay, setTimeOfDay] = useState("daytime");
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [drawerFragrance, setDrawerFragrance] = useState<Fragrance | null>(null);
   const [recentChats, setRecentChats] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem("scentinel-recent-chats") ?? "[]"); } catch { return []; }
   });
@@ -320,9 +322,12 @@ export default function Home() {
             onMessageSent={handleChatMessageSent}
           />
         ) : isWishlist ? (
-          <WishlistPage />
+          <WishlistPage onOpenDrawer={setDrawerFragrance} />
         ) : isDiscover ? (
-          <SemanticSearchView onSelectFragrance={handleFragranceSelect} />
+          <SemanticSearchView
+            onSelectFragrance={handleFragranceSelect}
+            onOpenDrawer={setDrawerFragrance}
+          />
         ) : (
           <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
             {!selectedFragrance ? (
@@ -402,6 +407,17 @@ export default function Home() {
         open={showOnboarding}
         onComplete={handleOnboardingComplete}
         onSkip={handleOnboardingSkip}
+      />
+
+      <FragranceDetailDrawer
+        fragrance={drawerFragrance}
+        onClose={() => setDrawerFragrance(null)}
+        onFullAnalysis={(f) => { setDrawerFragrance(null); handleFragranceSelect(f); }}
+        isWishlisted={drawerFragrance ? isWishlisted(drawerFragrance.id) : false}
+        onToggleWishlist={(f) => {
+          if (isWishlisted(f.id)) removeFromWishlist(f.id);
+          else addToWishlist(f);
+        }}
       />
       </div>
     </div>

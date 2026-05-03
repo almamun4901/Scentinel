@@ -25,9 +25,10 @@ const EXAMPLE_QUERIES = [
 
 interface SemanticSearchViewProps {
   onSelectFragrance?: (f: Fragrance) => void;
+  onOpenDrawer?: (f: Fragrance) => void;
 }
 
-export function SemanticSearchView({ onSelectFragrance }: SemanticSearchViewProps) {
+export function SemanticSearchView({ onSelectFragrance, onOpenDrawer }: SemanticSearchViewProps) {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<SemanticResponse | null>(null);
@@ -193,7 +194,7 @@ export function SemanticSearchView({ onSelectFragrance }: SemanticSearchViewProp
                   key={frag.id}
                   frag={frag}
                   rank={i}
-                  onSelect={onSelectFragrance}
+                  onSelect={onOpenDrawer ?? onSelectFragrance}
                 />
               ))}
             </div>

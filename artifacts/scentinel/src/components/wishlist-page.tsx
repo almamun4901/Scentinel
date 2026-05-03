@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Trash2, StickyNote, Bookmark } from "lucide-react";
 import { useWishlist } from "@/hooks/use-wishlist";
 import { ACCORD_COLORS } from "@/types";
+import type { Fragrance } from "@/types";
 import { BottlePlaceholder } from "@/components/bottle-placeholder";
 
-function WishlistCard({ item, onRemove, onNoteUpdate }: {
+function WishlistCard({ item, onRemove, onNoteUpdate, onOpenDrawer }: {
   item: ReturnType<typeof useWishlist>["items"][number];
   onRemove: (id: string) => void;
   onNoteUpdate: (id: string, note: string) => void;
+  onOpenDrawer?: (f: ReturnType<typeof useWishlist>["items"][number]) => void;
 }) {
   const [editingNote, setEditingNote] = useState(false);
   const [noteText, setNoteText] = useState(item.personalNote);
@@ -17,10 +19,20 @@ function WishlistCard({ item, onRemove, onNoteUpdate }: {
     setEditingNote(false);
   };
 
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div
       className="rounded border p-4 flex flex-col gap-3"
-      style={{ background: "hsl(34 17% 8%)", borderColor: "hsl(34 10% 14%)" }}
+      style={{
+        background: hovered ? "hsl(34 17% 11%)" : "hsl(34 17% 8%)",
+        borderColor: hovered ? "hsl(42 54% 30%)" : "hsl(34 10% 14%)",
+        transition: "background 0.18s, border-color 0.18s",
+        cursor: onOpenDrawer ? "pointer" : "default",
+      }}
+      onClick={() => onOpenDrawer?.(item)}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <div className="flex gap-3">
         <div
@@ -70,7 +82,7 @@ function WishlistCard({ item, onRemove, onNoteUpdate }: {
         </div>
 
         <button
-          onClick={() => onRemove(item.id)}
+          onClick={(e) => { e.stopPropagation(); onRemove(item.id); }}
           className="shrink-0 p-1.5 rounded transition-colors self-start"
           style={{ color: "hsl(40 10% 35%)" }}
           title="Remove from wishlist"
@@ -114,7 +126,7 @@ function WishlistCard({ item, onRemove, onNoteUpdate }: {
         </div>
       ) : (
         <button
-          onClick={() => setEditingNote(true)}
+          onClick={(e) => { e.stopPropagation(); setEditingNote(true); }}
           className="flex items-center gap-1.5 text-xs text-left rounded px-2 py-1 transition-colors"
           style={{
             color: item.personalNote ? "hsl(40 15% 55%)" : "hsl(40 10% 32%)",
@@ -134,7 +146,7 @@ function WishlistCard({ item, onRemove, onNoteUpdate }: {
   );
 }
 
-export function WishlistPage() {
+export function WishlistPage({ onOpenDrawer }: { onOpenDrawer?: (f: Fragrance) => void }) {
   const { items, remove, updateNote } = useWishlist();
 
   if (items.length === 0) {
@@ -177,6 +189,7 @@ export function WishlistPage() {
               item={item}
               onRemove={remove}
               onNoteUpdate={updateNote}
+              onOpenDrawer={onOpenDrawer}
             />
           ))}
         </div>

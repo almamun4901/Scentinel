@@ -516,4 +516,42 @@ Return JSON:
   res.json({ interpretation: profile.interpretation, accords: targetAccords, results });
 });
 
+// POST /community — AI-synthesised r/fragrance community sentiment for a fragrance
+router.post("/community", async (req, res) => {
+  const { fragranceName } = req.body as { fragranceName?: string };
+  if (!fragranceName?.trim()) {
+    res.status(400).json({ error: "fragranceName required" });
+    return;
+  }
+
+  try {
+    const msg = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 600,
+      system: "You are a fragrance community expert with comprehensive knowledge of r/fragrance discussions, common opinions, batch variation reports, and community consensus on popular fragrances.",
+      messages: [{
+        role: "user",
+        content: `Summarise what the r/fragrance community says about "${fragranceName}" in exactly 4 bullet points.
+
+Cover these angles: overall reception & consensus, real-world longevity/projection reports from users, any reformulation or batch consistency concerns, and value vs. alternatives.
+
+Format: one bullet per line starting with "•". Be specific, opinionated, and realistic — no generic filler. If the fragrance is obscure or little discussed, say so honestly.`,
+      }],
+    });
+
+    const content = msg.content[0];
+    const text = content.type === "text" ? content.text.trim() : "";
+    const bullets = text
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l.startsWith("•"))
+      .map((l) => l.replace(/^•\s*/, ""));
+
+    res.json({ summary: text, bullets });
+  } catch (err) {
+    req.log.error({ err }, "Community sentiment generation failed");
+    res.status(500).json({ error: "Failed to generate community sentiment" });
+  }
+});
+
 export default router;
