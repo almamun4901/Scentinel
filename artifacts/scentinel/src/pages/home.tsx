@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
-import { Menu, ArrowLeft } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   useFindDupes,
   useGetContextRecommendations,
@@ -36,7 +36,6 @@ import {
 
 export default function Home() {
   const [selectedFragrance, setSelectedFragrance] = useState<Fragrance | null>(null);
-  const [fragranceHistory, setFragranceHistory] = useState<Fragrance[]>([]);
   const selectedFragranceRef = useRef<Fragrance | null>(null);
   selectedFragranceRef.current = selectedFragrance;
   const [dupes, setDupes] = useState<DupeResult[] | null>(null);
@@ -80,10 +79,7 @@ export default function Home() {
   const scoreMutation = useGetBlindBuyScore();
 
   const handleFragranceSelect = useCallback(
-    (fragrance: Fragrance, addToHistory = true) => {
-      if (addToHistory && selectedFragranceRef.current) {
-        setFragranceHistory((prev) => [...prev, selectedFragranceRef.current!]);
-      }
+    (fragrance: Fragrance) => {
       setSelectedFragrance(fragrance);
       setDupes(null);
       setContextPicks(null);
@@ -108,13 +104,6 @@ export default function Home() {
     [profile, occasion, timeOfDay, weatherTemp, weatherDesc, activeSection, dupesMutation, contextMutation, scoreMutation]
   );
 
-  const handleBack = useCallback(() => {
-    if (fragranceHistory.length === 0) return;
-    const prev = fragranceHistory[fragranceHistory.length - 1];
-    setFragranceHistory((h) => h.slice(0, -1));
-    handleFragranceSelect(prev, false);
-  }, [fragranceHistory, handleFragranceSelect]);
-
   const handleDupeSelect = useCallback(async (name: string, house: string) => {
     try {
       const q = encodeURIComponent(name);
@@ -137,7 +126,7 @@ export default function Home() {
   const handleHomeClick = useCallback(() => {
     setSlideDir("left");
     setSelectedFragrance(null);
-    setFragranceHistory([]);
+
     setDupes(null);
     setContextPicks(null);
     setBlindBuyScore(null);
@@ -210,31 +199,11 @@ export default function Home() {
             >
               <Menu size={20} />
             </button>
-            {/* Back button — shown when there's history */}
-            {fragranceHistory.length > 0 ? (
-              <button
-                onClick={handleBack}
-                className="shrink-0 flex items-center gap-1.5 px-2.5 py-1.5 rounded border text-xs transition-all hover:border-amber-700/50"
-                style={{
-                  borderColor: "hsl(34 10% 18%)",
-                  color: "hsl(40 10% 58%)",
-                  background: "hsl(34 12% 8%)",
-                  maxWidth: 140,
-                }}
-                title={`Back to ${fragranceHistory[fragranceHistory.length - 1].name}`}
-              >
-                <ArrowLeft size={12} />
-                <span className="truncate font-sans">
-                  {fragranceHistory[fragranceHistory.length - 1].name}
-                </span>
-              </button>
-            ) : (
-              <div className="md:hidden shrink-0 mr-1">
-                <span className="font-serif text-lg tracking-wide" style={{ color: "hsl(42 54% 55%)" }}>
-                  Scentinel
-                </span>
-              </div>
-            )}
+            <div className="md:hidden shrink-0 mr-1">
+              <span className="font-serif text-lg tracking-wide" style={{ color: "hsl(42 54% 55%)" }}>
+                Scentinel
+              </span>
+            </div>
             <div className="flex-1 min-w-0">
               <SearchBar onSelect={handleFragranceSelect} />
             </div>
