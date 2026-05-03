@@ -18,6 +18,8 @@ import { OnboardingModal } from "@/components/onboarding-modal";
 import { WishlistPage } from "@/components/wishlist-page";
 import { SemanticSearchView } from "@/components/semantic-search-view";
 import { FragranceDetailDrawer } from "@/components/fragrance-detail-drawer";
+import { DupesPage } from "@/components/dupes-page";
+import { CollectionPage } from "@/components/collection-page";
 import { ShootingStars } from "@/components/shooting-stars";
 import { SplashScreen, shouldShowSplash } from "@/components/splash-screen";
 import { InfiniteMovingCards, type FragranceCardItem } from "@/components/ui/infinite-moving-cards";
@@ -176,7 +178,9 @@ export default function Home() {
   const isChat = activeSection === "chat";
   const isWishlist = activeSection === "wishlist";
   const isDiscover = activeSection === "discover";
-  const isExplore = !isChat && !isWishlist && !isDiscover;
+  const isDupes = activeSection === "dupes";
+  const isCollection = activeSection === "collection";
+  const isExplore = activeSection === "explore";
 
   return (
     <div className="flex h-screen overflow-hidden relative" style={{ background: "hsl(30 14% 3%)" }}>
@@ -193,8 +197,8 @@ export default function Home() {
             slideDir === "right" ? "slide-from-right" : slideDir === "left" ? "slide-from-left" : "",
           ].filter(Boolean).join(" ")}
         >
-        {/* Top bar */}
-        {!isChat && !isWishlist && !isDiscover && (
+        {/* Top bar — Explore only */}
+        {isExplore && (
           <header
             className="shrink-0 flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-3 border-b"
             style={{ borderColor: "hsl(34 10% 12%)" }}
@@ -288,8 +292,8 @@ export default function Home() {
           </header>
         )}
 
-        {/* Wishlist / Discover top bar */}
-        {(isWishlist || isDiscover) && (
+        {/* Wishlist / Discover / Dupes / Collection top bar */}
+        {(isWishlist || isDiscover || isDupes || isCollection) && (
           <header
             className="shrink-0 flex items-center gap-3 px-5 py-3 border-b"
             style={{ borderColor: "hsl(34 10% 12%)" }}
@@ -302,7 +306,7 @@ export default function Home() {
               <Menu size={20} />
             </button>
             <p className="font-serif flex-1" style={{ fontSize: 17, color: "hsl(40 20% 80%)" }}>
-              {isWishlist ? "Wishlist" : "Discover"}
+              {isWishlist ? "Wishlist" : isDiscover ? "Discover" : isDupes ? "Dupe Finder" : "Collection"}
             </p>
             <div
               className="text-xs px-2 py-1.5 rounded border font-mono"
@@ -328,6 +332,10 @@ export default function Home() {
             onSelectFragrance={handleFragranceSelect}
             onOpenDrawer={setDrawerFragrance}
           />
+        ) : isDupes ? (
+          <DupesPage onSelectFragrance={handleFragranceSelect} />
+        ) : isCollection ? (
+          <CollectionPage onSelectFragrance={handleFragranceSelect} />
         ) : (
           <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
             {!selectedFragrance ? (
