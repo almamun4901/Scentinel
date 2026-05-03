@@ -1,8 +1,17 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Library, Plus, Trash2, Search, Loader2, ExternalLink } from "lucide-react";
 import { useGetProfile, useSaveProfile } from "@workspace/api-client-react";
 import { ACCORD_COLORS } from "@/types";
 import type { Fragrance } from "@/types";
+
+const LS_KEY = "scentinel-collection";
+
+function loadLocal(): string[] {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) ?? "[]"); } catch { return []; }
+}
+function saveLocal(items: string[]) {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(items)); } catch { /* ignore */ }
+}
 
 interface CollectionPageProps {
   onSelectFragrance?: (f: Fragrance) => void;
@@ -14,27 +23,41 @@ export function CollectionPage({ onSelectFragrance }: CollectionPageProps) {
   const [addLoading, setAddLoading] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  const { data: profileData, refetch } = useGetProfile({ query: { queryKey: ["profile"] } });
+  const { data: profileData } = useGetProfile({ query: { queryKey: ["profile"] } });
   const saveProfile = useSaveProfile();
 
-  const owned: string[] = profileData?.ownedFragrances ?? [];
+  // Local collection state — seeded from server profile or localStorage
+  const seeded = useRef(false);
+  const [owned, setOwned] = useState<string[]>(loadLocal);
+
+  useEffect(() => {
+    if (seeded.current) return;
+    const serverOwned = profileData?.ownedFragrances ?? [];
+    if (serverOwned.length > 0) {
+      setOwned(serverOwned);
+      saveLocal(serverOwned);
+      seeded.current = true;
+    } else if (profileData !== undefined) {
+      seeded.current = true;
+    }
+  }, [profileData]);
+
   const [resolvedMap, setResolvedMap] = useState<Record<string, Fragrance>>({});
+  const resolvedRef = useRef<Record<string, boolean>>({});
 
   const resolveFragrance = useCallback(async (name: string) => {
-    if (resolvedMap[name]) return;
+    if (resolvedRef.current[name]) return;
+    resolvedRef.current[name] = true;
     try {
       const res = await fetch(`${import.meta.env.BASE_URL}api/search?q=${encodeURIComponent(name)}`);
       const data = (await res.json()) as Fragrance[];
-      if (data.length > 0) {
-        setResolvedMap((prev) => ({ ...prev, [name]: data[0] }));
-      }
+      if (data.length > 0) setResolvedMap((prev) => ({ ...prev, [name]: data[0] }));
     } catch { /* ignore */ }
-  }, [resolvedMap]);
+  }, []);
 
-  // Resolve all on mount / when owned changes
-  useState(() => {
+  useEffect(() => {
     owned.forEach(resolveFragrance);
-  });
+  }, [owned, resolveFragrance]);
 
   const handleSearch = useCallback(async (q: string) => {
     if (!q.trim()) return;
@@ -52,18 +75,20 @@ export function CollectionPage({ onSelectFragrance }: CollectionPageProps) {
   const handleAdd = useCallback(async (name: string) => {
     if (owned.includes(name)) return;
     const next = [...owned, name];
-    try { await saveProfile.mutateAsync({ data: { ownedFragrances: next } }); } catch { /* guest */ }
-    await refetch();
+    setOwned(next);
+    saveLocal(next);
     setAddResults([]);
     setAddQuery("");
     setShowSearch(false);
-  }, [owned, saveProfile, refetch]);
+    try { await saveProfile.mutateAsync({ data: { ownedFragrances: next } }); } catch { /* guest */ }
+  }, [owned, saveProfile]);
 
   const handleRemove = useCallback(async (name: string) => {
     const next = owned.filter((n) => n !== name);
+    setOwned(next);
+    saveLocal(next);
     try { await saveProfile.mutateAsync({ data: { ownedFragrances: next } }); } catch { /* guest */ }
-    await refetch();
-  }, [owned, saveProfile, refetch]);
+  }, [owned, saveProfile]);
 
   return (
     <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-6">
