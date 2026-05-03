@@ -210,7 +210,7 @@ export function SimilarPage({ onSelectFragrance }: SimilarPageProps) {
 
   return (
     <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-6">
-      <div className="max-w-3xl">
+      <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-1">
