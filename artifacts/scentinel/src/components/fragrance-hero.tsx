@@ -135,7 +135,7 @@ export function FragranceHero({ fragrance }: FragranceHeroProps) {
               className="text-xs px-2.5 py-1 rounded-full font-mono font-medium"
               style={{ background: "hsl(42 54% 50% / 0.15)", color: "hsl(42 54% 70%)" }}
             >
-              £{fragrance.price_gbp}
+              ${fragrance.price_usd}
             </span>
           </div>
         </div>

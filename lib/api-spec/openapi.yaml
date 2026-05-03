@@ -418,7 +418,7 @@ components:
 
     Fragrance:
       type: object
-      required: [id, name, house, year, concentration, accords, notes, longevity, sillage, price_gbp]
+      required: [id, name, house, year, concentration, accords, notes, longevity, sillage, price_usd]
       properties:
         id:
           type: string
@@ -445,7 +445,7 @@ components:
           type: integer
           minimum: 1
           maximum: 5
-        price_gbp:
+        price_usd:
           type: number
         image_url:
           type: string
@@ -463,7 +463,7 @@ components:
 
     DupeResult:
       type: object
-      required: [name, house, similarity_pct, price_gbp, price_delta, accords]
+      required: [name, house, similarity_pct, price_usd, price_delta, accords]
       properties:
         name:
           type: string
@@ -471,7 +471,7 @@ components:
           type: string
         similarity_pct:
           type: number
-        price_gbp:
+        price_usd:
           type: number
         price_delta:
           type: number

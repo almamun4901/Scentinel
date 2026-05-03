@@ -33,7 +33,7 @@ interface Fragrance {
   notes: FragranceNotes;
   longevity: number;
   sillage: number;
-  price_gbp: number;
+  price_usd: number;
   image_url?: string;
 }
 
@@ -83,13 +83,13 @@ Return ONLY valid JSON in this exact structure, or the literal string "null" if 
   },
   "longevity": <1-5>,
   "sillage": <1-5>,
-  "price_gbp": <typical UK 100ml retail price as integer>,
+  "price_usd": <typical US 100ml retail price as integer>,
   "image_url": "<reliable CDN URL if you know it with certainty, otherwise null>"
 }
 
 Valid accords (use only these): fruity, woody, smoky, fresh, citrus, spicy, lavender, vanilla, aromatic, aquatic, mineral, earthy, oud, resinous, sweet, fougere, oriental, floral, amber
 Longevity/sillage scale: 1=poor, 2=weak, 3=moderate, 4=long/strong, 5=extreme/enormous
-Only include image_url if you are highly confident the URL is real and current — do not guess.`;
+Prices should be in USD. Only include image_url if you are highly confident the URL is real and current — do not guess.`;
 
 async function generateFragranceProfile(
   query: string,
@@ -226,7 +226,7 @@ router.post("/dupes", async (req, res) => {
 
   const results = fragrances
     .filter((f) => f.id !== target!.id)
-    .filter((f) => priceCeiling == null || f.price_gbp <= priceCeiling)
+    .filter((f) => priceCeiling == null || f.price_usd <= priceCeiling)
     .map((f) => {
       const vec = buildAccordVector(f, allAccords);
       const sim = cosineSimilarity(targetVec, vec);
@@ -234,8 +234,8 @@ router.post("/dupes", async (req, res) => {
         name: f.name,
         house: f.house,
         similarity_pct: Math.round(sim * 100),
-        price_gbp: f.price_gbp,
-        price_delta: target!.price_gbp - f.price_gbp,
+        price_usd: f.price_usd,
+        price_delta: target!.price_usd - f.price_usd,
         accords: f.accords,
       };
     })
@@ -385,14 +385,14 @@ Always respond with ONLY valid JSON, no markdown or explanation.`;
 Fragrance: ${target.house} ${target.name}
 Concentration: ${target.concentration}
 Year: ${target.year}
-Price: £${target.price_gbp}
+Price: $${target.price_usd}
 Accords: ${target.accords.join(", ")}
 Top Notes: ${target.notes.top.join(", ")}
 Heart Notes: ${target.notes.heart.join(", ")}
 Base Notes: ${target.notes.base.join(", ")}
 Longevity (1-5): ${target.longevity}
 Sillage (1-5): ${target.sillage}
-${budget ? `User Budget: £${budget}` : ""}
+${budget ? `User Budget: $${budget}` : ""}
 ${ownedDetails.length > 0 ? `User's Collection:\n${ownedDetails.join("\n")}` : "User has no collection data."}
 
 Respond with ONLY this JSON structure:

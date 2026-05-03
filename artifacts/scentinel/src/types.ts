@@ -14,7 +14,7 @@ export interface Fragrance {
   notes: FragranceNotes;
   longevity: number;
   sillage: number;
-  price_gbp: number;
+  price_usd: number;
   image_url?: string;
 }
 
@@ -22,7 +22,7 @@ export interface DupeResult {
   name: string;
   house: string;
   similarity_pct: number;
-  price_gbp: number;
+  price_usd: number;
   price_delta: number;
   accords: string[];
 }
@@ -76,9 +76,9 @@ export const SEEDED_FRAGRANCES = [
 ];
 
 export const BUDGET_OPTIONS = [
-  { value: "under_50", label: "Under £50" },
-  { value: "50_150", label: "£50 – £150" },
-  { value: "150_300", label: "£150 – £300" },
+  { value: "under_50", label: "Under $65" },
+  { value: "50_150", label: "$65 – $200" },
+  { value: "150_300", label: "$200 – $400" },
   { value: "no_limit", label: "No limit" },
 ];
 

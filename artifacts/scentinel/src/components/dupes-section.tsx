@@ -35,7 +35,7 @@ function SimilarityBar({ pct, animate }: { pct: number; animate: boolean }) {
 
 function DupeCard({ dupe, index, animate }: { dupe: DupeResult; index: number; animate: boolean }) {
   const isTopPick = index === 0;
-  const savings = dupe.price_delta;
+  const savings = dupe.price_delta ?? 0;
 
   return (
     <div
@@ -75,16 +75,16 @@ function DupeCard({ dupe, index, animate }: { dupe: DupeResult; index: number; a
 
       <div className="flex items-center justify-between pt-1 border-t" style={{ borderColor: "hsl(34 10% 13%)" }}>
         <span className="font-mono text-sm" style={{ color: "hsl(40 20% 80%)" }}>
-          £{dupe.price_gbp}
+          ${dupe.price_usd}
         </span>
         {savings > 0 && (
           <span className="text-xs font-mono" style={{ color: "hsl(142 50% 50%)" }}>
-            Save £{savings}
+            Save ${savings}
           </span>
         )}
         {savings < 0 && (
           <span className="text-xs font-mono" style={{ color: "hsl(40 10% 45%)" }}>
-            +£{Math.abs(savings)} more
+            +${Math.abs(savings)} more
           </span>
         )}
       </div>

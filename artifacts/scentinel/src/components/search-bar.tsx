@@ -125,7 +125,7 @@ export function SearchBar({ onSelect }: SearchBarProps) {
                         {fragrance.concentration}
                       </span>
                       <span className="text-xs font-mono" style={{ color: "hsl(42 54% 50%)" }}>
-                        £{fragrance.price_gbp}
+                        ${fragrance.price_usd}
                       </span>
                     </div>
                   </button>

@@ -124,7 +124,7 @@ export const SearchFragrancesResponseItem = zod.object({
   }),
   longevity: zod.number().min(1).max(searchFragrancesResponseLongevityMax),
   sillage: zod.number().min(1).max(searchFragrancesResponseSillageMax),
-  price_gbp: zod.number(),
+  price_usd: zod.number(),
   image_url: zod
     .string()
     .optional()
@@ -144,7 +144,7 @@ export const FindDupesResponseItem = zod.object({
   name: zod.string(),
   house: zod.string(),
   similarity_pct: zod.number(),
-  price_gbp: zod.number(),
+  price_usd: zod.number(),
   price_delta: zod.number(),
   accords: zod.array(zod.string()),
 });

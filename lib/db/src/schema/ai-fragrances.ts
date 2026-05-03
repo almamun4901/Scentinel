@@ -10,7 +10,7 @@ export interface CachedFragrance {
   notes: { top: string[]; heart: string[]; base: string[] };
   longevity: number;
   sillage: number;
-  price_gbp: number;
+  price_usd: number;
   image_url?: string;
 }
 

@@ -85,7 +85,7 @@ export interface Fragrance {
    * @maximum 5
    */
   sillage: number;
-  price_gbp: number;
+  price_usd: number;
   /** URL to the bottle product image */
   image_url?: string;
 }
@@ -99,7 +99,7 @@ export interface DupeResult {
   name: string;
   house: string;
   similarity_pct: number;
-  price_gbp: number;
+  price_usd: number;
   price_delta: number;
   accords: string[];
 }
