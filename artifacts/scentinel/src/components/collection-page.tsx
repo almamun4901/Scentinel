@@ -52,7 +52,7 @@ export function CollectionPage({ onSelectFragrance }: CollectionPageProps) {
   const handleAdd = useCallback(async (name: string) => {
     if (owned.includes(name)) return;
     const next = [...owned, name];
-    await saveProfile.mutateAsync({ data: { ownedFragrances: next } });
+    try { await saveProfile.mutateAsync({ data: { ownedFragrances: next } }); } catch { /* guest */ }
     await refetch();
     setAddResults([]);
     setAddQuery("");
@@ -61,7 +61,7 @@ export function CollectionPage({ onSelectFragrance }: CollectionPageProps) {
 
   const handleRemove = useCallback(async (name: string) => {
     const next = owned.filter((n) => n !== name);
-    await saveProfile.mutateAsync({ data: { ownedFragrances: next } });
+    try { await saveProfile.mutateAsync({ data: { ownedFragrances: next } }); } catch { /* guest */ }
     await refetch();
   }, [owned, saveProfile, refetch]);
 
