@@ -173,36 +173,57 @@ export function FragranceDetailDrawer({
       >
         {f && (
           <>
-            {/* Header */}
-            <div
-              className="shrink-0 flex items-start gap-4 px-6 pt-6 pb-5"
-              style={{ borderBottom: "1px solid hsl(34 10% 11%)" }}
-            >
-              {/* Bottle */}
+            {/* Hero image + identity header */}
+            <div className="shrink-0 relative" style={{ borderBottom: "1px solid hsl(34 10% 11%)" }}>
+              {/* Image area */}
               <div
-                className="shrink-0 rounded overflow-hidden flex items-center justify-center"
+                className="w-full flex items-center justify-center overflow-hidden relative"
                 style={{
-                  width: 72,
-                  height: 96,
-                  background: "linear-gradient(135deg, hsl(34 17% 10%), hsl(34 12% 7%))",
-                  border: "1px solid hsl(34 10% 18%)",
-                  minWidth: 72,
+                  height: 220,
+                  background: "linear-gradient(160deg, hsl(34 17% 10%) 0%, hsl(34 12% 6%) 100%)",
                 }}
               >
                 {f.image_url ? (
                   <img
                     src={f.image_url}
                     alt={`${f.house} ${f.name}`}
-                    className="w-full h-full object-contain"
-                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                    className="h-full w-full object-contain"
+                    style={{ padding: "12px 48px" }}
+                    onError={(e) => {
+                      const img = e.currentTarget as HTMLImageElement;
+                      img.style.display = "none";
+                      const ph = img.nextElementSibling as HTMLElement | null;
+                      if (ph) ph.style.display = "flex";
+                    }}
                   />
-                ) : (
-                  <BottlePlaceholder size={48} />
-                )}
+                ) : null}
+                <div
+                  className="absolute inset-0 items-center justify-center"
+                  style={{ display: f.image_url ? "none" : "flex" }}
+                >
+                  <BottlePlaceholder size={72} />
+                </div>
+
+                {/* Gradient overlay for text */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: "linear-gradient(to bottom, hsl(34 12% 6% / 0.3) 0%, transparent 35%, transparent 55%, hsl(32 14% 6% / 0.95) 100%)",
+                  }}
+                />
+
+                {/* Close button — floated top-right over image */}
+                <button
+                  onClick={handleClose}
+                  className="absolute top-3 right-3 p-1.5 rounded-full transition-colors"
+                  style={{ background: "hsl(30 14% 4% / 0.7)", color: "hsl(40 10% 55%)", backdropFilter: "blur(4px)" }}
+                >
+                  <X size={16} />
+                </button>
               </div>
 
-              {/* Identity */}
-              <div className="flex-1 min-w-0 pt-1">
+              {/* Identity bar below image */}
+              <div className="px-6 pt-4 pb-5">
                 <p
                   className="text-xs font-mono tracking-widest uppercase mb-1"
                   style={{ color: "hsl(40 10% 40%)" }}
@@ -211,7 +232,7 @@ export function FragranceDetailDrawer({
                 </p>
                 <h2
                   className="font-serif leading-tight mb-3"
-                  style={{ fontSize: "clamp(1.3rem, 4vw, 1.9rem)", color: "hsl(40 20% 92%)" }}
+                  style={{ fontSize: "clamp(1.4rem, 4vw, 2rem)", color: "hsl(40 20% 93%)" }}
                 >
                   {f.name}
                 </h2>
@@ -233,15 +254,6 @@ export function FragranceDetailDrawer({
                   </span>
                 </div>
               </div>
-
-              {/* Close */}
-              <button
-                onClick={handleClose}
-                className="shrink-0 p-1.5 rounded transition-colors"
-                style={{ color: "hsl(40 10% 38%)" }}
-              >
-                <X size={18} />
-              </button>
             </div>
 
             {/* Scrollable body */}

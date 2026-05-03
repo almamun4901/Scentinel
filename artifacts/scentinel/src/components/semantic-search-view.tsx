@@ -250,43 +250,52 @@ function SemanticResultCard({
         </span>
       )}
 
-      <div className="flex gap-3">
+      {/* Product image — full-width strip */}
+      <div
+        className="w-full rounded overflow-hidden flex items-center justify-center -mx-4 relative"
+        style={{
+          width: "calc(100% + 2rem)",
+          height: 160,
+          background: "linear-gradient(160deg, hsl(34 17% 10%) 0%, hsl(34 12% 6%) 100%)",
+          marginTop: isTop ? "1rem" : 0,
+        }}
+      >
+        {frag.image_url ? (
+          <img
+            src={frag.image_url}
+            alt={frag.name}
+            className="h-full w-full object-contain"
+            style={{ padding: "8px 32px" }}
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          />
+        ) : (
+          <BottlePlaceholder size={52} />
+        )}
         <div
-          className="shrink-0 rounded overflow-hidden flex items-center justify-center"
-          style={{ width: 52, height: 72, background: "hsl(34 12% 11%)", border: "1px solid hsl(34 10% 18%)" }}
-        >
-          {frag.image_url ? (
-            <img
-              src={frag.image_url}
-              alt={frag.name}
-              className="w-full h-full object-contain"
-              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-            />
-          ) : (
-            <BottlePlaceholder size={36} />
-          )}
-        </div>
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, transparent 60%, hsl(34 17% 8% / 0.9) 100%)" }}
+        />
+      </div>
 
-        <div className="flex-1 min-w-0">
-          <p className="text-xs" style={{ color: "hsl(40 10% 42%)" }}>{frag.house}</p>
-          <p className="font-serif text-base leading-tight mt-0.5" style={{ color: "hsl(40 20% 90%)" }}>
+      {/* Identity */}
+      <div className="flex items-start justify-between gap-2 mt-1">
+        <div className="min-w-0">
+          <p className="text-xs font-mono tracking-wide" style={{ color: "hsl(40 10% 38%)" }}>{frag.house}</p>
+          <p className="font-serif text-base leading-tight mt-0.5" style={{ color: "hsl(40 20% 92%)" }}>
             {frag.name}
           </p>
-          <div className="flex items-center gap-2 mt-1.5">
-            <span
-              className="text-xs font-mono font-semibold"
-              style={{ color: scoreColor }}
-            >
-              {frag.match_score}% match
-            </span>
-            <span className="text-xs font-mono" style={{ color: "hsl(42 54% 50%)" }}>
-              ${frag.price_usd}
-            </span>
-          </div>
+        </div>
+        <div className="shrink-0 text-right">
+          <span className="text-xs font-mono font-semibold block" style={{ color: scoreColor }}>
+            {frag.match_score}%
+          </span>
+          <span className="text-xs font-mono" style={{ color: "hsl(42 54% 55%)" }}>
+            ${frag.price_usd}
+          </span>
         </div>
       </div>
 
-      <p className="text-xs italic leading-snug" style={{ color: "hsl(40 10% 45%)" }}>
+      <p className="text-xs italic leading-snug" style={{ color: "hsl(40 10% 42%)" }}>
         {frag.match_reason}
       </p>
 

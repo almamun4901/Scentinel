@@ -34,7 +34,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 465
+    "price_usd": 465,
+    "image_url": "https://i.ebayimg.com/images/g/HxUAAOSwQBRniXny/s-l400.webp"
   },
   {
     "id": "dior-sauvage-edp",
@@ -69,7 +70,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 135
+    "price_usd": 135,
+    "image_url": "https://fourthsense.co/wp-content/uploads/2021/03/dior-sauvage-edt-1.png"
   },
   {
     "id": "dior-sauvage-edt",
@@ -103,7 +105,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://besuitedaroma.com/wp-content/uploads/2023/04/Dior-Sauvage-EDP-Box-and-Bottle-1024x536.jpg"
   },
   {
     "id": "dior-fahrenheit",
@@ -139,7 +142,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://scentgrail.com/wp-content/uploads/2020/11/Dior-Fahrenheit-bottle-and-box-1024x691.jpg"
   },
   {
     "id": "dior-homme-intense",
@@ -173,7 +177,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 125
+    "price_usd": 125,
+    "image_url": "https://www.fragrancenet.com/blog/images/fragrancenet_dior_homme_intenso%202.jpg"
   },
   {
     "id": "dior-jadore-edp",
@@ -210,7 +215,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 140
+    "price_usd": 140,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/dior-dior-jadore-edp-577216.jpg?v=1694259992&width=1056"
   },
   {
     "id": "dior-hypnotic-poison",
@@ -245,7 +251,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 125
+    "price_usd": 125,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/dior-hypnotic-poison-edp-perfume-cologne-258853.jpg?v=1664045739&width=1200"
   },
   {
     "id": "bleu-de-chanel-edp",
@@ -282,7 +289,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2018/09/Bleu-De-chanel-500x500-product_thumb.jpg"
   },
   {
     "id": "bleu-de-chanel-edt",
@@ -318,7 +326,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 135
+    "price_usd": 135,
+    "image_url": "https://b.thumbs.redditmedia.com/RAGmWEz1EPILduEzK8DcJ2bUhPCe3msQg0i9RbrmnII.jpg"
   },
   {
     "id": "chanel-allure-homme-sport",
@@ -353,7 +362,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 145
+    "price_usd": 145,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/chanel-allure-homme-sport-cologne-edt-perfume-cologne-114546.jpg?v=1725093726&width=540"
   },
   {
     "id": "chanel-no5",
@@ -388,7 +398,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 150
+    "price_usd": 150,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.126361.jpg"
   },
   {
     "id": "chanel-coco-mademoiselle",
@@ -423,7 +434,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://i0.wp.com/elviraedison.com/wp-content/uploads/2020/05/DSC06894.jpg?resize=1280,853&ssl=1"
   },
   {
     "id": "chanel-coco-edp",
@@ -460,7 +472,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/chanel-coco-edp-perfume-perfume-cologne-511779.jpg?v=1676020085&width=960"
   },
   {
     "id": "chanel-chance-tendre",
@@ -493,7 +506,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 160
+    "price_usd": 160,
+    "image_url": "https://perfumereverie.com/wp-content/uploads/2025/05/chanel-chance-eau-tendre-05-300x300.jpg"
   },
   {
     "id": "chanel-gabrielle",
@@ -528,7 +542,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 160
+    "price_usd": 160,
+    "image_url": "https://b.thumbs.redditmedia.com/PtIXAju8ys0k-6SHGwy4EkQYTrVHZ8gJgRfBV0Ybkwc.jpg"
   },
   {
     "id": "tom-ford-oud-wood",
@@ -563,7 +578,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://users-photos.b-cdn.net/185269/media/asset/IMG_0524.jpg?width=1080"
   },
   {
     "id": "tf-tobacco-vanille",
@@ -598,7 +614,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 310
+    "price_usd": 310,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/tf1.jpg?v=1608492342&width=1000"
   },
   {
     "id": "tf-tuscan-leather",
@@ -630,7 +647,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://media.parfumo.com/perfumes/da/da2e85-tuscan-leather-intense-tom-ford_1200.jpg?width=720&aspect_ratio=1:1"
   },
   {
     "id": "tf-black-orchid",
@@ -665,7 +683,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/tom-ford-black-orchid-edp-perfume-for-them-650585.png?v=1681932347&width=2800"
   },
   {
     "id": "tf-noir-edp",
@@ -700,7 +719,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2018/09/amber-500x500-product_thumb.jpg"
   },
   {
     "id": "tf-grey-vetiver",
@@ -733,7 +753,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://ifragranceofficial.com/wp-content/uploads/2024/03/grey-vetiver-parfum-tom-ford-e1709648820488.png"
   },
   {
     "id": "tf-neroli-portofino",
@@ -768,7 +789,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://www.venbafragrance.com/cdn/shop/files/5_a644734e-4364-4447-b707-183159dc1e8a_900x.png?v=1773133953"
   },
   {
     "id": "ysl-y-edp",
@@ -803,7 +825,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://www.yslbeautyus.com/on/demandware.static/-/Sites-ysl-us-Library/default/dwf25ec6c0/pdp/images/727YSL/Y%20EDP%20Bottle%20Image.jpg"
   },
   {
     "id": "ysl-y-edt",
@@ -837,7 +860,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-us-Library/default/dw299d6709/pdp/images/WW-42200YSL/Y%20EDT%20About%20Image.jpg?sw=640&sh=640&sm=cut&q=85"
   },
   {
     "id": "ysl-la-nuit-de-lhomme",
@@ -870,7 +894,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://www.yslbeauty.co.uk/dw/image/v2/AAQP_PRD/on/demandware.static/-/Sites-ysl-emea-west-ng-Library/default/dw1b21e4fb/pdp/images/522YSL/section7_visual4.jpg?sw=270&sh=270&sm=cut&sfrm=jpg&q=85"
   },
   {
     "id": "ysl-lhomme",
@@ -904,7 +929,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.11614.jpg"
   },
   {
     "id": "ysl-black-opium",
@@ -939,7 +965,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 120
+    "price_usd": 120,
+    "image_url": "https://i.ebayimg.com/images/g/8mYAAeSwfSZoSuv-/s-l400.webp"
   },
   {
     "id": "ysl-libre",
@@ -974,7 +1001,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 120
+    "price_usd": 120,
+    "image_url": "https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-us-Library/default/dw3825b1ee/landing-pages/libre-collection/Libre%20EDP%20Image.jpg?sw=585&sh=585&sm=cut&q=85"
   },
   {
     "id": "ysl-mon-paris",
@@ -1009,7 +1037,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://i.ebayimg.com/images/g/j0YAAOSwcv9lUCWg/s-l500.jpg"
   },
   {
     "id": "pdm-layton",
@@ -1044,7 +1073,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 255
+    "price_usd": 255,
+    "image_url": "https://cdn.50-ml.media/media/catalog/product/p/a/parfum_de_marly_layton_eau_de_parfum_75_ml_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=540&width=540"
   },
   {
     "id": "pdm-percival",
@@ -1077,7 +1107,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 255
+    "price_usd": 255,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.51037.jpg"
   },
   {
     "id": "pdm-godolphin",
@@ -1112,7 +1143,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 255
+    "price_usd": 255,
+    "image_url": "https://i.ebayimg.com/images/g/ugQAAOSwX8Bl~r6E/s-l140.jpg"
   },
   {
     "id": "pdm-pegasus",
@@ -1147,7 +1179,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://zgoperfumery.com/cdn/shop/files/parfums-de-marly-pegasus-eau-de-parfum__48758.1694911622.1280.1280.jpg?v=1750623341&width=1200"
   },
   {
     "id": "pdm-herod",
@@ -1181,7 +1214,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 255
+    "price_usd": 255,
+    "image_url": "https://smelltoimpress.com/cdn/shop/products/ParfumsdeMarlyHerod1.5ml-2-206571.jpg?v=1679459615&width=1946"
   },
   {
     "id": "pdm-sedley",
@@ -1215,7 +1249,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 255
+    "price_usd": 255,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/pdm22.jpg?v=1677076307&width=720"
   },
   {
     "id": "amouage-jubilation-xxv",
@@ -1287,7 +1322,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 330
+    "price_usd": 330,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2025/05/Interlude-Man-By-Amouage-EDP-Perfume-50ml-Retail-Pack-130x130.webp"
   },
   {
     "id": "amouage-reflection-man",
@@ -1321,7 +1357,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 320
+    "price_usd": 320,
+    "image_url": "https://cdn.50-ml.media/media/catalog/product/a/m/amouage_reflection_man_eau_de_parfum_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=540&width=540"
   },
   {
     "id": "amouage-epic-man",
@@ -1356,7 +1393,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 320
+    "price_usd": 320,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.6538.jpg"
   },
   {
     "id": "amouage-gold-woman",
@@ -1392,7 +1430,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 355
+    "price_usd": 355,
+    "image_url": "https://zgoperfumery.com/cdn/shop/files/amouage-gold-woman-eau-de-parfum__26094.1693787032.1280.1280.jpg?v=1754857562&width=450"
   },
   {
     "id": "armaf-cdni",
@@ -1429,7 +1468,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 45
+    "price_usd": 45,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/armaf36.jpg?v=1677052179&width=1080"
   },
   {
     "id": "armaf-cdni-milestone",
@@ -1464,7 +1504,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 45
+    "price_usd": 45,
+    "image_url": "https://i5.walmartimages.com/seo/Armaf-Club-de-Nuit-Milestone-Eau-de-Parfum-for-Men-105ml-Spray-Bottle_974badcf-3ecd-4469-82ec-0b21d4691d40.8612f38745dbda62e339764370e8b0b9.jpeg?odnHeight=573&odnWidth=573&odnBg=FFFFFF"
   },
   {
     "id": "armaf-ventana",
@@ -1499,7 +1540,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 40
+    "price_usd": 40,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/armaf-club-de-nuit-intense-man-limited-edition-parfum-perfume-cologne-970714_1800x.png?v=1733349483"
   },
   {
     "id": "armaf-shades-blue",
@@ -1533,7 +1575,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 40
+    "price_usd": 40,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.68064.jpg"
   },
   {
     "id": "adg-profondo",
@@ -1568,7 +1611,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://www.venbafragrance.com/cdn/shop/files/4_8b7a92f3-b16f-47a2-b626-ad93a6494ecc_900x.png?v=1773430690"
   },
   {
     "id": "adg-edt",
@@ -1602,7 +1646,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://www.armanibeauty.co.uk/on/demandware.static/-/Sites-gac-emea-west-Library/default/dw5cc36ee4/images/pdp/ww-00854-arm/ww-00854-arm-ADG-profondo-parfum.jpg"
   },
   {
     "id": "armani-code-edp",
@@ -1634,7 +1679,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2023/02/Code-Parfum-By-Giorgio-Armani-Perfume-For-Men-min.jpg"
   },
   {
     "id": "armani-stronger-with-you",
@@ -1669,7 +1715,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.102519.jpg"
   },
   {
     "id": "armani-si-edp",
@@ -1704,7 +1751,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 120
+    "price_usd": 120,
+    "image_url": "https://i5.walmartimages.com/seo/Giorgio-Armani-Si-by-Giorgio-Armani-for-Women-5-1-oz-EDP-Spray_61784d53-4362-405f-960b-50266f6bcc5e.8bca4f7291fca5f663cfbdb8b81e442e.jpeg?odnHeight=448&odnWidth=448&odnBg=FFFFFF"
   },
   {
     "id": "armani-my-way-edp",
@@ -1737,7 +1785,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2024/04/Giorgio-Armani-My-Way-Floral-Edp-15ml-Travel-Spray.webp"
   },
   {
     "id": "pr-invictus-platinum",
@@ -1772,7 +1821,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://fragrancehouse.co.uk/wp-content/uploads/2023/02/Paco-Rabanne-Invictus-Victory-Elixir-Eau-de-Parfum-Intense-Bottle-Sizes.jpg"
   },
   {
     "id": "pr-invictus-edt",
@@ -1806,7 +1856,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/paco-rabanne-invictus-edt-perfume-for-him-941778.jpg?v=1669280152&width=1000"
   },
   {
     "id": "pr-1-million",
@@ -1841,7 +1892,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://fimgs.net/photogram/p180/zl/0i/Br0QdGoODB5mbUAE.jpg"
   },
   {
     "id": "pr-1-million-parfum",
@@ -1875,7 +1927,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://scentgrail.com/wp-content/uploads/2023/05/Paco-Rabanne-1-Million-Parfum-Bottle-1024x683.jpg"
   },
   {
     "id": "pr-phantom",
@@ -1908,7 +1961,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/paco-rabanne-phantom-legion-collector-edition-edt-perfume-cologne-915500.jpg?v=1719364090&width=1200"
   },
   {
     "id": "pr-lady-million",
@@ -1943,7 +1997,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://fragrancehouse.co.uk/wp-content/uploads/2018/03/Paco-Rabanne-Lady-Million-Eau-de-Parfum-50ml-Pack-Shot-300x300.jpg"
   },
   {
     "id": "jpgaultier-le-male",
@@ -1978,7 +2033,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.87350.jpg"
   },
   {
     "id": "jpgaultier-le-male-elixir",
@@ -2013,7 +2069,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://i.ebayimg.com/images/g/3bcAAOSwnXFlHDl~/s-l1600.png"
   },
   {
     "id": "versace-eros",
@@ -2048,7 +2105,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://fimgs.net/photogram/p180/cl/cy/qscUT9NF1TxbN9bV.jpg"
   },
   {
     "id": "versace-eros-flame",
@@ -2082,7 +2140,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/versace63.jpg?v=1674136698&width=720"
   },
   {
     "id": "versace-dylan-blue",
@@ -2117,7 +2176,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.40031.jpg"
   },
   {
     "id": "versace-pour-homme",
@@ -2151,7 +2211,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 75
+    "price_usd": 75,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.40031.jpg"
   },
   {
     "id": "dg-the-one",
@@ -2186,7 +2247,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://www.dolcegabbana.com/dw/image/v2/BKDB_PRD/on/demandware.static/-/Sites-15/default/dw675f8053/images/zoom/VT034DVT000_9V000_0.jpg?sw=366&sh=504&sm=fit"
   },
   {
     "id": "dg-the-one-edp",
@@ -2220,7 +2282,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://www.perfume-empire.com/cdn/shop/files/The-One-Gold-by-Dolce-Gabbana-perfume-intense-EDP-17-oz-New-In-Box.jpg?v=1747812079&width=2048"
   },
   {
     "id": "dg-k-edt",
@@ -2254,7 +2317,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://smelltoimpress.com/cdn/shop/products/Dolce-Gabbana-K-6ml-655980.jpg?v=1679450095&width=1946"
   },
   {
     "id": "dg-light-blue-homme",
@@ -2288,7 +2352,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 75
+    "price_usd": 75,
+    "image_url": "https://www.dolcegabbana.com/dw/image/v2/BKDB_PRD/on/demandware.static/-/Sites-15/default/dwbfb80831/images/zoom/VT01HPVT000_9V000_0.jpg?sw=366&sh=504&sm=fit"
   },
   {
     "id": "montblanc-explorer",
@@ -2320,7 +2385,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://scentgrail.com/wp-content/uploads/2020/09/IMG_9541-min-1024x559.jpg"
   },
   {
     "id": "montblanc-legend-edp",
@@ -2355,7 +2421,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 75
+    "price_usd": 75,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.71652.jpg"
   },
   {
     "id": "montblanc-legend-night",
@@ -2390,7 +2457,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://www.montblanc.com/dw/image/v2/BHDB_PRD/on/demandware.static/-/Sites-montblanc-master/default/dw03da0ba5/images/all-images/MB116979/2036578_9c061ca6.png?sw=628&q=90"
   },
   {
     "id": "burberry-hero-edp",
@@ -2422,7 +2490,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/BurberryHeroEDP100ml-GoogleSearch-228.jpg?v=1682575606&width=2500"
   },
   {
     "id": "burberry-mr-burberry-edp",
@@ -2454,7 +2523,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.49095.jpg"
   },
   {
     "id": "burberry-brit-men",
@@ -2487,7 +2557,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://i.etsystatic.com/45167619/r/il/891073/6386290645/il_794xN.6386290645_19z9.jpg"
   },
   {
     "id": "givenchy-gentleman-boisee",
@@ -2519,7 +2590,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.59009.jpg"
   },
   {
     "id": "givenchy-gentleman-edt",
@@ -2552,7 +2624,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://u-mercari-images.mercdn.net/photos/m93876791156_1.jpg?width=2560&quality=75&_=1726840021"
   },
   {
     "id": "givenchy-linterdit-edp",
@@ -2586,7 +2659,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2024/02/Givenchy-LInterdit-Perfume-For-Women-EDP-12.5ml-Travel-Spray.jpg"
   },
   {
     "id": "givenchy-irresistible",
@@ -2619,7 +2693,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://fimgs.net/mdimg/news/en/20147/social.20147-640x335.jpg"
   },
   {
     "id": "guerlain-mon-guerlain",
@@ -2651,7 +2726,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.55748.jpg"
   },
   {
     "id": "guerlain-la-petite-robe-noire",
@@ -2686,7 +2762,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/guerlain-la-petite-robe-noire-edp-perfume-cologne-431681.jpg?v=1715613369&width=960"
   },
   {
     "id": "hermes-terre-edp",
@@ -2719,7 +2796,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 135
+    "price_usd": 135,
+    "image_url": "https://b.thumbs.redditmedia.com/FS46kISeQ-bEgu1W9oYLhRCh7_JuMDHLZcMY5rDtgDo.jpg"
   },
   {
     "id": "hermes-voyage",
@@ -2753,7 +2831,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 125
+    "price_usd": 125,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/hermes-voyage-dhermes-edt-perfume-cologne-992715.jpg?v=1708382641&width=1200"
   },
   {
     "id": "hermes-h24",
@@ -2784,7 +2863,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 150
+    "price_usd": 150,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/hermes-h24-edp-perfume-cologne-342207.png?v=1700730524&width=1000"
   },
   {
     "id": "hermes-twilly",
@@ -2815,7 +2895,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 125
+    "price_usd": 125,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/Hermes-Twilly-D-Hermes-EDP-W-85ml-1.jpg?v=1584148090"
   },
   {
     "id": "prada-luna-rossa-carbon",
@@ -2849,7 +2930,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://fragrancehouse.co.uk/wp-content/uploads/2017/05/Prada-Luna-Rossa-Carbon-Eau-de-Toilette-100ml-Pack-Shot-300x300.jpg"
   },
   {
     "id": "prada-amber-pour-homme",
@@ -2884,7 +2966,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://i.ebayimg.com/thumbs/images/g/6lIAAeSw9QBpB4vg/s-l400.webp"
   },
   {
     "id": "prada-candy-edp",
@@ -2916,7 +2999,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://i.ebayimg.com/thumbs/images/g/b7MAAOSwbU5kDLZa/s-l400.webp"
   },
   {
     "id": "hugo-boss-bottled",
@@ -2952,7 +3036,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 65
+    "price_usd": 65,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.96246.jpg"
   },
   {
     "id": "hugo-boss-the-scent",
@@ -2982,7 +3067,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 75
+    "price_usd": 75,
+    "image_url": "https://images.hugoboss.com/is/image/boss/hbna58089321_999_241?$large$=&fit=crop,1&align=1,1&lastModified=1774290754000"
   },
   {
     "id": "hugo-boss-alive-edp",
@@ -3014,7 +3100,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 75
+    "price_usd": 75,
+    "image_url": "https://www.perfume-empire.com/cdn/shop/files/Boss-Alive-by-Hugo-Boss-for-women-EDP-27-oz-New-in-Box.jpg?v=1747812265&width=2048"
   },
   {
     "id": "ck-one",
@@ -3051,7 +3138,8 @@
     },
     "longevity": 2,
     "sillage": 2,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.62846.jpg"
   },
   {
     "id": "ck-eternity-men",
@@ -3087,7 +3175,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 50
+    "price_usd": 50,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.24790.jpg"
   },
   {
     "id": "ck-obsession-men",
@@ -3122,7 +3211,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.249.jpg"
   },
   {
     "id": "valentino-uomo-born-in-roma-intense",
@@ -3154,7 +3244,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.84445.jpg"
   },
   {
     "id": "valentino-donna-born-in-roma",
@@ -3187,7 +3278,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://perfumeloftstore.com/cdn/shop/files/Valentino-borrn.webp?v=1726025540&width=1946"
   },
   {
     "id": "gucci-guilty-men-edp",
@@ -3220,7 +3312,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.59987.jpg"
   },
   {
     "id": "gucci-bloom-edp",
@@ -3251,7 +3344,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/gucci-gucci-bloom-edp-499362.jpg?v=1609925260&width=960"
   },
   {
     "id": "gucci-flora-gorgeous",
@@ -3283,7 +3377,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://i.ebayimg.com/images/g/0MEAAeSwDt5o4RVq/s-l400.webp"
   },
   {
     "id": "carolinaherrera-212-vip-men",
@@ -3317,7 +3412,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.101559.jpg"
   },
   {
     "id": "carolinaherrera-good-girl",
@@ -3350,7 +3446,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/carolina-herrera-good-girl-superstars-edp-perfume-perfume-cologne-119731.jpg?v=1647556081&width=1200"
   },
   {
     "id": "carolinaherrera-bad-boy",
@@ -3382,7 +3479,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/carolina-herrera-bad-boy-dazzling-garden-edt-perfume-cologne-257015.jpg?v=1703355013&width=1167"
   },
   {
     "id": "narciso-for-him-bleu-noir",
@@ -3414,7 +3512,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://fragrancehouse.co.uk/wp-content/uploads/2019/03/Narciso-Rodriguez-For-Him-Bleu-Noir-Eau-De-Parfum-50ml-Pack-Shot-300x300.jpg"
   },
   {
     "id": "narciso-for-her-edp",
@@ -3449,7 +3548,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.18827.jpg"
   },
   {
     "id": "narciso-for-her-musc-noir",
@@ -3517,7 +3617,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 75
+    "price_usd": 75,
+    "image_url": "https://us.isseymiyake.com/cdn/shop/products/IP55AZ101-01-02.jpg?v=1721331568&width=1200"
   },
   {
     "id": "issey-miyake-fusion",
@@ -3550,7 +3651,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2021/04/Cuir-Curcuma-By-Affinessence-Edp-Perfume-1.jpg"
   },
   {
     "id": "bvlgari-man-in-black",
@@ -3585,7 +3687,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://i.pinimg.com/originals/90/ac/6f/90ac6f962250794862ab0503ef1e711c.jpg"
   },
   {
     "id": "bvlgari-aqva",
@@ -3619,7 +3722,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.153.jpg"
   },
   {
     "id": "bvlgari-man-wood-essence",
@@ -3653,7 +3757,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://media.bulgari.com/image/upload/c_pad,h_851,w_1090/q_auto/f_auto/1303348.png"
   },
   {
     "id": "ralph-lauren-polo-blue-edp",
@@ -3685,7 +3790,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://www.ralphlaurenfragrances.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ralphlauren-master-catalog/default/dw930a7821/images/pdp/RLFE002/ralph-lauren-fragrances-polo-blue-eau-de-parfum-bottle-in-hand-with-railing-rope.jpg?sw=270&sfrm=jpg&q=70"
   },
   {
     "id": "ralph-lauren-polo-black",
@@ -3719,7 +3825,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://www.lexormiami.com/cdn/shop/products/Ralph_Lauren_Polo_Black_4.2_oz._EDT_Men_Perfume_Lexor_Miami-1_800x.png?v=1750787786"
   },
   {
     "id": "mugler-amen",
@@ -3754,7 +3861,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://myoras.com/cdn/shop/files/thierry-mugler-a-men-eau-de-toilette-oras-official-2.png?v=1686923696&width=600"
   },
   {
     "id": "mugler-angel-edp",
@@ -3790,7 +3898,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://i.ebayimg.com/images/g/KjAAAeSwpwBpC7Dy/s-l225.jpg"
   },
   {
     "id": "mugler-alien-edp",
@@ -3820,7 +3929,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://i.ebayimg.com/images/g/jzwAAOSwabxkwuQA/s-l225.jpg"
   },
   {
     "id": "vr-spicebomb-extreme",
@@ -3853,7 +3963,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://www.viktor-rolf.com/cdn/shop/files/model_back_0008_Spicebomb-Night-vision-EDP-V50ml.jpg?v=1758035871&width=900"
   },
   {
     "id": "vr-spicebomb-edt",
@@ -3887,7 +3998,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://www.viktor-rolf.com/cdn/shop/files/model_back_0010_Spicebomb-EDT-V50ml.jpg?v=1758036047&width=900"
   },
   {
     "id": "vr-flowerbomb-edp",
@@ -3922,7 +4034,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://www.viktor-rolf.com/cdn/shop/files/Untitled-17.jpg?v=1760520187&width=900"
   },
   {
     "id": "lancome-la-vie-est-belle",
@@ -3956,7 +4069,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://www.lancome.ca/dw/image/v2/AATL_PRD/on/demandware.static/-/Sites-lancome-master-catalog/default/dw76bf9e1a/01105-LAC/lan_dmi_fragrance_lveb_collector_edition_la_vie_est_belle_collector_edition_50ml_product_3614274336252_resized.jpg?sw=640&sh=640&sm=cut&sfrm=jpg&q=70"
   },
   {
     "id": "lancome-idole-edp",
@@ -3988,7 +4102,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/lancome-idole-edp-mascara-gift-set-gift-set-819447.jpg?v=1727490490&width=2000"
   },
   {
     "id": "marc-jacobs-daisy-edt",
@@ -4022,7 +4137,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://fragrancehouse.co.uk/wp-content/uploads/2019/07/Marc-Jacobs-Daisy-Eau-de-Toilette-100ml-Pack-Shot-300x300.jpg"
   },
   {
     "id": "marc-jacobs-daisy-love",
@@ -4056,7 +4172,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://u-mercari-images.mercdn.net/photos/m11454601000_1.jpg?width=2560&quality=75&_=1759972520"
   },
   {
     "id": "jimmy-choo-edp",
@@ -4091,7 +4208,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://b.thumbs.redditmedia.com/Zp6p-BTHNhKK3-ds0B2XrLUpaU21XRoiMrLOZtkIDFo.jpg"
   },
   {
     "id": "davidoff-cool-water",
@@ -4126,7 +4244,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 45
+    "price_usd": 45,
+    "image_url": "https://5.imimg.com/data5/NV/IJ/DQ/SELLER-39201442/buy-perfume-in-india-online-at-officialperfumes-1000x1000.jpg"
   },
   {
     "id": "azzaro-chrome",
@@ -4160,7 +4279,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 50
+    "price_usd": 50,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.59020.jpg"
   },
   {
     "id": "azzaro-wanted-edt",
@@ -4194,7 +4314,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/azzaro-men-s-aftershave-azzaro-the-most-wanted-intense-eau-de-toilette-men-s-aftershave-spray-50ml-100ml-1197510360.webp?v=1775535128&width=1000"
   },
   {
     "id": "jm-wood-sage-sea-salt",
@@ -4225,7 +4346,8 @@
     },
     "longevity": 2,
     "sillage": 2,
-    "price_usd": 140
+    "price_usd": 140,
+    "image_url": "https://us.oilperfumery.com/cdn/shop/files/jm-wood-6.jpg?v=1717069912"
   },
   {
     "id": "jm-lime-basil-mandarin",
@@ -4259,7 +4381,8 @@
     },
     "longevity": 2,
     "sillage": 2,
-    "price_usd": 140
+    "price_usd": 140,
+    "image_url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhAEpRM3SRbxnnifHH8jCZKRqHvaotBgkxzd3IB3u3VuXceVxsuygxVOAgcoCpvl0_WnjYYCwbdhJlnQ9EPLmlWW0HtkKo1Q7cu86WsOlUDS7bvk6P_4SsTQvShRazLiXes8Cl1PmsnyAAP/s1600/Jo+Malone+Lime+Basil+Mandarin+Official+Visual+stephanmatthews.com.jpg"
   },
   {
     "id": "jm-peony-blush-suede",
@@ -4291,7 +4414,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 140
+    "price_usd": 140,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/jo-malone-peony-blush-suede-cologne-perfume-cologne-724766.png?v=1707341342&width=1000"
   },
   {
     "id": "mm-replica-jazz-club",
@@ -4325,7 +4449,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 150
+    "price_usd": 150,
+    "image_url": "https://i.ebayimg.com/images/g/xGQAAeSwplNn3Un-/s-l500.webp"
   },
   {
     "id": "mm-replica-by-the-fireplace",
@@ -4357,7 +4482,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 150
+    "price_usd": 150,
+    "image_url": "https://www.venbafragrance.com/cdn/shop/files/4_e1e5d640-6ac2-4383-afa0-938c9d20e27e_900x.png?v=1773198160"
   },
   {
     "id": "mm-replica-under-the-lemon-trees",
@@ -4389,7 +4515,8 @@
     },
     "longevity": 2,
     "sillage": 2,
-    "price_usd": 150
+    "price_usd": 150,
+    "image_url": "https://cdn.shopify.com/s/files/1/0766/8183/8904/files/replica_2_1024x1024.png?v=1757775621"
   },
   {
     "id": "creed-green-irish-tweed",
@@ -4421,7 +4548,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 440
+    "price_usd": 440,
+    "image_url": "https://zgoperfumery.com/cdn/shop/files/creed-green-irish-tweed-eau-de-parfum__93956.1693344469.1280.1280.jpg?v=1750624497&width=1280"
   },
   {
     "id": "creed-silver-mountain-water",
@@ -4454,7 +4582,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 440
+    "price_usd": 440,
+    "image_url": "https://i.ebayimg.com/images/g/mxcAAOSwpsFng4lZ/s-l960.webp"
   },
   {
     "id": "creed-original-vetiver",
@@ -4488,7 +4617,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 440
+    "price_usd": 440,
+    "image_url": "https://creedboutique.com/cdn/shop/files/1500x1500__0001_Oud-Zarian_Bottle_100ml_1--1-_jpg.jpg?v=1752777419&width=465"
   },
   {
     "id": "creed-himalaya",
@@ -4522,7 +4652,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 465
+    "price_usd": 465,
+    "image_url": "https://creedboutique.com/cdn/shop/files/absolu-navigation.webp?v=1729786233&width=750"
   },
   {
     "id": "creed-millesime-imperial",
@@ -4556,7 +4687,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 500
+    "price_usd": 500,
+    "image_url": "https://i.ebayimg.com/images/g/PokAAeSw1eRpHnqO/s-l400.webp"
   },
   {
     "id": "mfk-baccarat-rouge-540",
@@ -4587,7 +4719,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 375
+    "price_usd": 375,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.33519.jpg"
   },
   {
     "id": "mfk-grand-soir",
@@ -4619,7 +4752,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 310
+    "price_usd": 310,
+    "image_url": "https://www.perfumelounge.eu/_next/image?url=https://media.perfumelounge.eu/file/perfumelounge/perfumelounge/original_images/Maison_Francis_Kurkdjian_-_Grand_Soir_eau_de_parfum_70_ml.jpg&w=3840&q=75"
   },
   {
     "id": "mfk-amyris-homme",
@@ -4651,7 +4785,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 220
+    "price_usd": 220,
+    "image_url": "https://zgoperfumery.com/cdn/shop/files/maison-francis-kurkdjian-amyris-homme-eau-de-toilette__59998.1685831624.1280.1280.jpg?v=1750625784&width=1024"
   },
   {
     "id": "initio-oud-for-greatness",
@@ -4684,7 +4819,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 375
+    "price_usd": 375,
+    "image_url": "https://cdn.shopify.com/s/files/1/1813/5149/products/InitioOudForGreatness1.5ml-0.05fl.oz.Officialperfumesample-553058.jpg?v=1679454512"
   },
   {
     "id": "initio-side-effect",
@@ -4717,7 +4853,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 310
+    "price_usd": 310,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/InitioSideEffect3.jpg?v=1675517481"
   },
   {
     "id": "initio-psychedelic-love",
@@ -4749,7 +4886,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 310
+    "price_usd": 310,
+    "image_url": "https://i.ebayimg.com/thumbs/images/g/78MAAOSwrmdkZP1b/s-l300.jpg"
   },
   {
     "id": "le-labo-santal-33",
@@ -4782,7 +4920,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://cdn.shopify.com/s/files/1/1813/5149/products/le-labo-santal-33-1ml-806927.jpg?v=1679455991"
   },
   {
     "id": "le-labo-rose-31",
@@ -4816,7 +4955,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://cdn.shopify.com/s/files/1/0047/4067/7699/products/floral-rose-unisex-inspired-by-le-labo-fragrances-rose-31-808875.jpg?v=1712930452&width=640&height=640&crop=center"
   },
   {
     "id": "le-labo-another-13",
@@ -4847,7 +4987,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2026/03/Another-13-By-Le-Labo-EDP-Perfume.webp"
   },
   {
     "id": "byredo-bal-dafrique",
@@ -4881,7 +5022,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 235
+    "price_usd": 235,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/files/byredo11.jpg?v=1683124446"
   },
   {
     "id": "byredo-super-cedar",
@@ -4910,7 +5052,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 235
+    "price_usd": 235,
+    "image_url": "https://cdn.50-ml.com/media/catalog/product/b/y/byredo_super_cedar_50_ml_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=540&width=540"
   },
   {
     "id": "byredo-mojave-ghost",
@@ -4944,7 +5087,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 235
+    "price_usd": 235,
+    "image_url": "https://zgoperfumery.com/cdn/shop/articles/BYR-MOJAVE-GHOSTABSOLUPARFUM_SBY-20126_MOJAVE-GHOST-ABSOLU-STILL-LIFE-IMAGE1-04-1200-X-1000-CLEAN.jpg?v=1753056324&width=2500"
   },
   {
     "id": "xerjoff-naxos",
@@ -4978,7 +5122,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 280
+    "price_usd": 280,
+    "image_url": "https://cdn4.beautinow.com/wp-content/uploads/2023/09/Xerjoff_Torino21_-2.webp"
   },
   {
     "id": "xerjoff-erba-pura",
@@ -5012,7 +5157,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://cdn4.beautinow.com/wp-content/uploads/2024/04/8054320902607-Xerjoff-Erba-Pura-EDP-100ml-Tester.webp"
   },
   {
     "id": "xerjoff-nira-austalis",
@@ -5046,7 +5192,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://perfumology.com/cdn/shop/products/375x500.70789_375x500.jpg?v=1706118873"
   },
   {
     "id": "nishane-hacivat",
@@ -5081,7 +5228,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 235
+    "price_usd": 235,
+    "image_url": "https://cdn4.beautinow.com/wp-content/uploads/2023/08/8681008055388-1.webp"
   },
   {
     "id": "nishane-ani",
@@ -5149,7 +5297,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 220
+    "price_usd": 220,
+    "image_url": "https://papaduk.com/wp-content/uploads/2024/07/Nishane-papaduk-ibiza-wulong-cha-50ml-757x1024.jpg"
   },
   {
     "id": "nishane-zenne",
@@ -5181,7 +5330,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 235
+    "price_usd": 235,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.37603.jpg"
   },
   {
     "id": "diptyque-philosykos",
@@ -5212,7 +5362,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 170
+    "price_usd": 170,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.56405.jpg"
   },
   {
     "id": "diptyque-tam-dao",
@@ -5245,7 +5396,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 170
+    "price_usd": 170,
+    "image_url": "https://i.ebayimg.com/images/g/hHMAAeSwXBJpxcLC/s-l960.webp"
   },
   {
     "id": "diptyque-do-son",
@@ -5279,7 +5431,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://cdn.50-ml.media/media/catalog/product/d/i/diptyque_do_son_edt_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=540&width=540"
   },
   {
     "id": "diptyque-eau-duelle",
@@ -5313,7 +5466,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/diptyque-eau-duelle-edt-perfume-cologne-986264.jpg?v=1684533553&width=1080"
   },
   {
     "id": "penhaligons-halfeti",
@@ -5348,7 +5502,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 250
+    "price_usd": 250,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.31396.jpg"
   },
   {
     "id": "penhaligons-empressa",
@@ -5382,7 +5537,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 235
+    "price_usd": 235,
+    "image_url": "https://www.gosupps.com/media/catalog/product/cache/25/small_image/1500x1650/9df78eab33525d08d6e5fb8d27136e95/6/1/61TCrGIZiCL.jpg"
   },
   {
     "id": "kilian-black-phantom",
@@ -5414,7 +5570,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 370
+    "price_usd": 370,
+    "image_url": "https://i.etsystatic.com/30029119/r/il/093477/4856750985/il_340x270.4856750985_23nq.jpg"
   },
   {
     "id": "kilian-good-girl-gone-bad",
@@ -5447,7 +5604,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 370
+    "price_usd": 370,
+    "image_url": "https://smelltoimpress.com/cdn/shop/products/KilianGoodGirlGoneBad1.5ml0.05fl.o.z.officialperfumesample2_eb921a24-8180-49c6-923e-36dc46c729ac-365327.jpg?v=1679455286&width=1946"
   },
   {
     "id": "kilian-apple-brandy",
@@ -5480,7 +5638,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 370
+    "price_usd": 370,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2022/12/apple-brandy-min.jpg"
   },
   {
     "id": "frederic-malle-portrait-of-a-lady",
@@ -5515,7 +5674,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 335
+    "price_usd": 335,
+    "image_url": "https://cdn.50-ml.media/media/catalog/product/f/r/frederic_malle_portrait_of_a_lady_eau_de_parfum_100_ml_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=540&width=540"
   },
   {
     "id": "frederic-malle-musc-ravageur",
@@ -5550,7 +5710,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 280
+    "price_usd": 280,
+    "image_url": "https://scentgrail.com/wp-content/uploads/2020/08/IMG_9127-min-1-1024x836.jpg"
   },
   {
     "id": "frederic-malle-carnal-flower",
@@ -5584,7 +5745,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 355
+    "price_usd": 355,
+    "image_url": "https://i.etsystatic.com/55502426/r/il/0b16b6/6434499563/il_794xN.6434499563_h57e.jpg"
   },
   {
     "id": "serge-lutens-chergui",
@@ -5620,7 +5782,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.2762.jpg"
   },
   {
     "id": "serge-lutens-amber-sultan",
@@ -5654,7 +5817,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.60630.jpg"
   },
   {
     "id": "serge-lutens-fille-de-berlin",
@@ -5687,7 +5851,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://i.etsystatic.com/5417511/r/il/7fd8aa/6435425374/il_300x300.6435425374_cxq1.jpg"
   },
   {
     "id": "acqua-di-parma-colonia",
@@ -5722,7 +5887,8 @@
     },
     "longevity": 2,
     "sillage": 2,
-    "price_usd": 140
+    "price_usd": 140,
+    "image_url": "https://smelltoimpress.com/cdn/shop/products/AcquaDiParmaColoniaAssoluta1.5ml-0.05fl.oz.officialperfumesamples2.jpg?v=1668790104&width=1445"
   },
   {
     "id": "acqua-di-parma-colonia-intensa",
@@ -5757,7 +5923,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://fimgs.net/mdimg/news/en/17939/social.17939-640x335.jpg"
   },
   {
     "id": "acqua-di-parma-bergamotto",
@@ -5788,7 +5955,8 @@
     },
     "longevity": 2,
     "sillage": 2,
-    "price_usd": 145
+    "price_usd": 145,
+    "image_url": "https://cdn.shopify.com/s/files/1/1813/5149/files/AcquaDiParmaBluMediterraneoBergamottodiCalabria1.2ml0.04fl.oz..jpg?v=1709328061"
   },
   {
     "id": "juliette-has-a-gun-not-a-perfume",
@@ -5816,7 +5984,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2020/05/Not-a-Perfume-By-Juliette-Has-A-Gun-EDP-Perfume.jpg"
   },
   {
     "id": "juliette-has-a-gun-romantina",
@@ -5849,7 +6018,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 115
+    "price_usd": 115,
+    "image_url": "https://www.edulge.com/cdn/shop/products/Juliette_Has_A_Gun_Romantina_Eau_de_Parfum_100ml_1024x1024.jpg?v=1758711515"
   },
   {
     "id": "memo-irish-leather",
@@ -5884,7 +6054,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 310
+    "price_usd": 310,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.18393.jpg"
   },
   {
     "id": "dior-miss-dior-edp",
@@ -5917,7 +6088,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 135
+    "price_usd": 135,
+    "image_url": "https://i.ebayimg.com/images/g/Fc8AAeSwU-pntk9L/s-l225.jpg"
   },
   {
     "id": "dior-miss-dior-edt",
@@ -5951,7 +6123,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 110
+    "price_usd": 110,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.89584.jpg"
   },
   {
     "id": "roja-parfums-elysium",
@@ -5987,7 +6160,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 375
+    "price_usd": 375,
+    "image_url": "https://rojalondon.com/cdn/shop/files/elysium-pour-homme-parfum-roja-parfums-50ml-parfum-929185.jpg?v=1758552883&width=1100"
   },
   {
     "id": "roja-parfums-enigma",
@@ -6023,7 +6197,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 500
+    "price_usd": 500,
+    "image_url": "https://rojalondon.com/cdn/shop/files/enigma-pour-homme-parfum-roja-parfums-503880.jpg?v=1753369987&width=360"
   },
   {
     "id": "roja-parfums-danger",
@@ -6058,7 +6233,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 375
+    "price_usd": 375,
+    "image_url": "https://rojalondon.com/cdn/shop/files/danger-pour-homme-eau-de-parfum-roja-parfums-50ml-parfum-281510.jpg?v=1758553009&width=2000"
   },
   {
     "id": "montale-black-aoud",
@@ -6090,7 +6266,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 120
+    "price_usd": 120,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.1142.jpg"
   },
   {
     "id": "montale-intense-cafe",
@@ -6123,7 +6300,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://www.lexormiami.com/cdn/shop/files/Montale-Intense-Cafe-3-4-oz-EDP-Unisex-Perfume-Lexor-Miami_800x.png?v=1755206403"
   },
   {
     "id": "montale-roses-musk",
@@ -6157,7 +6335,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 95
+    "price_usd": 95,
+    "image_url": "https://www.fragrancesline.com/cdn/shop/products/Intense-Roses-Musk-Montale-perfume-sample-decants-fragrancesline_1024x1024.jpg?v=1605226526"
   },
   {
     "id": "lattafa-khamrah",
@@ -6192,7 +6371,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 35
+    "price_usd": 35,
+    "image_url": "https://media.parfumo.com/perfumes/e9/e963b2-khamrah-qahwa-lattafa_1200.jpg?width=140&aspect_ratio=1:1"
   },
   {
     "id": "lattafa-oud-mood",
@@ -6225,7 +6405,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 30
+    "price_usd": 30,
+    "image_url": "https://myoras.com/cdn/shop/files/lattafa-oud-mood-eau-de-parfum-oras-official-2.png?v=1686923728&width=600"
   },
   {
     "id": "lattafa-badee-al-oud-amethyst",
@@ -6260,7 +6441,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 25
+    "price_usd": 25,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/amethyst12.jpg?v=1676382340"
   },
   {
     "id": "lattafa-asad",
@@ -6294,7 +6476,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 30
+    "price_usd": 30,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.117616.jpg"
   },
   {
     "id": "lattafa-yara",
@@ -6329,7 +6512,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 30
+    "price_usd": 30,
+    "image_url": "https://b.thumbs.redditmedia.com/ZWqS_f1lUFheUGAIt8ZtNBIiGAL29U_W31Fy52k91fA.jpg"
   },
   {
     "id": "al-haramain-laventure",
@@ -6364,7 +6548,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 40
+    "price_usd": 40,
+    "image_url": "https://alharamainperfumes.co.uk/cdn/shop/files/L_aventure-Bottle.jpg?v=1722338755&width=150"
   },
   {
     "id": "al-haramain-amber-oud",
@@ -6398,7 +6583,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 35
+    "price_usd": 35,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2019/01/Amber-Oud-by-Al-Haramain-Perfumes.webp"
   },
   {
     "id": "rasasi-hawas",
@@ -6432,7 +6618,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 50
+    "price_usd": 50,
+    "image_url": "https://cdn.salla.sa/lGDEen/98b604b4-4639-4b79-90be-1f3030363c9e-1000x1000-MUucHhAFAxFsEco50YIM2Z309JBIF7Xg7FinLJJD.jpg"
   },
   {
     "id": "rasasi-la-yuqawam-homme",
@@ -6467,7 +6654,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 45
+    "price_usd": 45,
+    "image_url": "https://ample.pk/wp-content/uploads/2024/01/41t37GtBKaL.webp"
   },
   {
     "id": "afnan-9pm",
@@ -6502,7 +6690,8 @@
     },
     "longevity": 5,
     "sillage": 5,
-    "price_usd": 25
+    "price_usd": 25,
+    "image_url": "https://i.ebayimg.com/images/g/d-kAAeSwZqJp7NZr/s-l960.webp"
   },
   {
     "id": "afnan-supremacy-silver",
@@ -6537,7 +6726,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 25
+    "price_usd": 25,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/afnan-supremacy-purple-edp-perfume-cologne-292031.jpg?v=1705176301&width=489"
   },
   {
     "id": "swiss-arabian-shaghaf-oud",
@@ -6570,7 +6760,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://i.etsystatic.com/25843238/r/il/f49600/6853377899/il_794xN.6853377899_g33e.jpg"
   },
   {
     "id": "swiss-arabian-wajd",
@@ -6604,7 +6795,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 50
+    "price_usd": 50,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.56245.jpg"
   },
   {
     "id": "versace-bright-crystal",
@@ -6638,7 +6830,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://images-na.ssl-images-amazon.com/images/I/61b3YlWzedL.jpg"
   },
   {
     "id": "versace-crystal-noir",
@@ -6671,7 +6864,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/versace-crystal-noir-edp-perfume-cologne-708899.jpg?v=1725518057&width=1000"
   },
   {
     "id": "burberry-my-burberry-edp",
@@ -6704,7 +6898,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/files/burberry-my-burberry-edp-perfume-cologne-181872.webp?v=1733349823&width=1445"
   },
   {
     "id": "guerlain-homme-ideal",
@@ -6738,7 +6933,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://bespokeunit.com/wp-content/uploads/2018/05/Guerlain-LHomme-Ideal-Eau-de-Parfum-Bottle-Stone.jpg"
   },
   {
     "id": "givenchy-pi",
@@ -6773,7 +6969,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 65
+    "price_usd": 65,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.2984.jpg"
   },
   {
     "id": "hugo-boss-nuit-homme",
@@ -6807,7 +7004,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 65
+    "price_usd": 65,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.24083.jpg"
   },
   {
     "id": "zara-nuit-homme",
@@ -6841,7 +7039,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 20
+    "price_usd": 20,
+    "image_url": "https://images.unsplash.com/photo-1759793500110-e3cb1f0fe6ae?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA=="
   },
   {
     "id": "zara-twilight-mauve",
@@ -6874,7 +7073,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 20
+    "price_usd": 20,
+    "image_url": "https://static.zara.net/assets/public/0396/d71d/dfa34e76b42a/923a3ecd7aac/20120511999-e1/20120511999-e1.jpg?ts=1774869354051&w=145"
   },
   {
     "id": "riiffs-oud-assam",
@@ -6907,7 +7107,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 45
+    "price_usd": 45,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.18027.jpg"
   },
   {
     "id": "dunhill-icon-racing",
@@ -6942,7 +7143,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://www.fridaycharm.com/cdn/shop/products/dunhill14.jpg?v=1669279586"
   },
   {
     "id": "lacoste-blanc-edt",
@@ -6975,7 +7177,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://cdn11.bigcommerce.com/s-ldjp3gsdj3/images/stencil/500x659/products/39177/387112/7c78cc3b-efd6-4462-8590-68320bca66a0__80719.1763502444.jpg?c=1"
   },
   {
     "id": "fragrance-world-supremacy-noir",
@@ -7009,7 +7212,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 25
+    "price_usd": 25,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/s.98939.jpg"
   },
   {
     "id": "kenzo-flower",
@@ -7043,7 +7247,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 75
+    "price_usd": 75,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/270x270.92565.jpg"
   },
   {
     "id": "prada-la-femme",
@@ -7078,7 +7283,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/prada-la-femme-intense-edp-perfume-for-her-819758.jpg?v=1626843990&width=1000"
   },
   {
     "id": "aesop-hwyl",
@@ -7110,7 +7316,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 190
+    "price_usd": 190,
+    "image_url": "http://yapayzekada.com/wp-content/uploads/2024/10/aesop-hwyl-incelemesi-3.png"
   },
   {
     "id": "atelier-cologne-rose-anonyme",
@@ -7144,7 +7351,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 210
+    "price_usd": 210,
+    "image_url": "https://www.edulge.com/cdn/shop/products/Atelier_Cologne_Rose_Anonyme_Cologne_Absolue_100ml_1024x1024.jpg?v=1758195839"
   },
   {
     "id": "histoires-de-parfums-1969",
@@ -7179,7 +7387,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 150
+    "price_usd": 150,
+    "image_url": "https://www.peonymelbourne.com.au/cdn/shop/files/HDP-1969-60ml.webp?v=1744016690&width=150"
   },
   {
     "id": "nasomatto-black-afgano",
@@ -7210,7 +7419,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 185
+    "price_usd": 185,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/nasomatto-black-afgano-extrait-de-parfum-perfume-cologne-210022.png?v=1706908742&width=1000"
   },
   {
     "id": "nasomatto-absinth",
@@ -7241,7 +7451,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 165
+    "price_usd": 165,
+    "image_url": "https://nasomatto.com/cdn/shop/files/Duro-ProductPage3-30ML.jpg?v=1739801654&width=1700"
   },
   {
     "id": "tauer-leau-du-desert-marocain",
@@ -7277,7 +7488,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 140
+    "price_usd": 140,
+    "image_url": "https://fimgs.net/mdimg/secundar/o.12026.jpg"
   },
   {
     "id": "carolina-herrera-212-men",
@@ -7311,7 +7523,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 65
+    "price_usd": 65,
+    "image_url": "https://www.intenseoud.com/cdn/shop/files/Untitleddesign-2023-06-25T103703.195_1200x.png?v=1774720094"
   },
   {
     "id": "lanvin-arpege",
@@ -7347,7 +7560,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2022/01/product-logo-website-editing-9-2.jpg"
   },
   {
     "id": "nina-ricci-lair-du-temps",
@@ -7383,7 +7597,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://a.1stdibscdn.com/1948-marc-lalique-giant-bottle-lair-du-temps-original-perfume-nina-ricci-for-sale/1121189/f_239458621622272282497/23945862_master.jpeg?width=240"
   },
   {
     "id": "ysl-opium-edp",
@@ -7420,7 +7635,8 @@
     },
     "longevity": 5,
     "sillage": 4,
-    "price_usd": 100
+    "price_usd": 100,
+    "image_url": "https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-us-Library/default/dwd65d7e20/landing-pages/black-opium-range-lp/compare%20image%204%20-%20EDP.jpg?sw=270&q=85"
   },
   {
     "id": "chanel-allure-edp",
@@ -7488,7 +7704,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://www.thescentsstore.com/cdn/shop/products/lacoste_pour_femme_1946x.jpg?v=1753700266"
   },
   {
     "id": "michael-kors-gorgeous",
@@ -7521,7 +7738,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 90
+    "price_usd": 90,
+    "image_url": "https://u-mercari-images.mercdn.net/photos/m77939190579_1.jpg?width=2560&quality=75&_=1760295285"
   },
   {
     "id": "bvlgari-aqva-divina",
@@ -7555,7 +7773,8 @@
     },
     "longevity": 3,
     "sillage": 2,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://nstperfume.com/wp-content/uploads/2015/04/bvlgari-ad-bots.jpg"
   },
   {
     "id": "gucci-rush",
@@ -7589,7 +7808,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 85
+    "price_usd": 85,
+    "image_url": "https://i.etsystatic.com/15020274/r/il/ad8f27/6822321065/il_300x300.6822321065_dy57.jpg"
   },
   {
     "id": "jimmy-choo-man-ice",
@@ -7622,7 +7842,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 65
+    "price_usd": 65,
+    "image_url": "https://www.myperfumeshop.com/cdn/shop/products/jimmy-choo-man-ice-edt-perfume-cologne-837335.jpg?v=1707341218&width=1024"
   },
   {
     "id": "abercrombie-first-instinct-blue",
@@ -7654,7 +7875,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://fimgs.net/mdimg/perfume-thumbs/375x500.50034.jpg"
   },
   {
     "id": "fragrance-world-blue-de-blue",
@@ -7688,7 +7910,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 25
+    "price_usd": 25,
+    "image_url": "https://i0.wp.com/frencharabianperfume.com/wp-content/uploads/so-nice-29-1.png?fit=1080,1080&ssl=1"
   },
   {
     "id": "mercedes-benz-le-parfum",
@@ -7721,7 +7944,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 55
+    "price_usd": 55,
+    "image_url": "https://cdn-product-images.revolutionparts.io/assets/4e35bcd1fe3734cd274ebee163fc16e6.gif"
   },
   {
     "id": "azzaro-wanted-by-night",
@@ -7755,7 +7979,8 @@
     },
     "longevity": 4,
     "sillage": 4,
-    "price_usd": 70
+    "price_usd": 70,
+    "image_url": "https://i.redd.it/m9dcpsavopsc1.jpeg"
   },
   {
     "id": "lalique-encre-noire",
@@ -7787,7 +8012,8 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 50
+    "price_usd": 50,
+    "image_url": "https://splashfragrance.in/wp-content/uploads/2020/07/product-logo-website-editing-12-3.jpg"
   },
   {
     "id": "parfums-de-rosine-rose-d-homme",
@@ -7821,7 +8047,8 @@
     },
     "longevity": 3,
     "sillage": 3,
-    "price_usd": 125
+    "price_usd": 125,
+    "image_url": "https://hparfums.com/cdn/shop/files/Houbigant_Rose_du_D_sert_H_Parfums_Format_10ML.jpg?v=1747499583&width=2539"
   },
   {
     "id": "vilhelm-room-service",
@@ -7855,6 +8082,7 @@
     },
     "longevity": 4,
     "sillage": 3,
-    "price_usd": 195
+    "price_usd": 195,
+    "image_url": "https://www.nicchialuxury.com/cdn/shop/files/000243750043-01.jpg?v=1758210318&width=320"
   }
 ]

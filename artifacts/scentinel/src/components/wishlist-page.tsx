@@ -34,61 +34,70 @@ function WishlistCard({ item, onRemove, onNoteUpdate, onOpenDrawer }: {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="flex gap-3">
+      {/* Product image strip */}
+      <div
+        className="w-full rounded overflow-hidden flex items-center justify-center relative -mx-4"
+        style={{
+          width: "calc(100% + 2rem)",
+          height: 180,
+          background: "linear-gradient(160deg, hsl(34 17% 10%) 0%, hsl(34 12% 6%) 100%)",
+        }}
+      >
+        {item.image_url ? (
+          <img
+            src={item.image_url}
+            alt={item.name}
+            className="h-full w-full object-contain"
+            style={{ padding: "8px 40px" }}
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+          />
+        ) : (
+          <BottlePlaceholder size={60} />
+        )}
         <div
-          className="shrink-0 rounded overflow-hidden flex items-center justify-center"
-          style={{ width: 64, height: 88, background: "hsl(34 12% 11%)", border: "1px solid hsl(34 10% 18%)" }}
-        >
-          {item.image_url ? (
-            <img
-              src={item.image_url}
-              alt={item.name}
-              className="w-full h-full object-contain"
-              onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
-            />
-          ) : (
-            <BottlePlaceholder size={48} />
-          )}
-        </div>
-
-        <div className="flex-1 min-w-0">
-          <p className="text-xs font-mono tracking-widest uppercase" style={{ color: "hsl(40 10% 42%)" }}>
-            {item.house}
-          </p>
-          <p className="font-serif text-lg leading-tight mt-0.5 truncate" style={{ color: "hsl(40 20% 90%)" }}>
-            {item.name}
-          </p>
-          <div className="flex items-center gap-2 mt-1.5">
-            <span className="text-xs font-mono" style={{ color: "hsl(42 54% 60%)" }}>${item.price_usd}</span>
-            <span className="text-xs" style={{ color: "hsl(40 10% 35%)" }}>·</span>
-            <span className="text-xs font-mono" style={{ color: "hsl(40 10% 40%)" }}>{item.concentration}</span>
-            <span className="text-xs" style={{ color: "hsl(40 10% 35%)" }}>·</span>
-            <span className="text-xs font-mono" style={{ color: "hsl(40 10% 40%)" }}>{item.year}</span>
-          </div>
-          <div className="flex flex-wrap gap-1 mt-2">
-            {item.accords.slice(0, 4).map((accord) => {
-              const color = ACCORD_COLORS[accord] ?? "#7a7a7a";
-              return (
-                <span
-                  key={accord}
-                  className="text-xs px-1.5 py-0.5 rounded capitalize"
-                  style={{ background: `${color}18`, color, border: `1px solid ${color}30` }}
-                >
-                  {accord}
-                </span>
-              );
-            })}
-          </div>
-        </div>
-
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "linear-gradient(to bottom, transparent 55%, hsl(34 17% 8% / 0.92) 100%)" }}
+        />
+        {/* Remove button floated over image */}
         <button
           onClick={(e) => { e.stopPropagation(); onRemove(item.id); }}
-          className="shrink-0 p-1.5 rounded transition-colors self-start"
-          style={{ color: "hsl(40 10% 35%)" }}
+          className="absolute top-2 right-2 p-1.5 rounded-full transition-colors"
+          style={{ background: "hsl(30 14% 4% / 0.65)", color: "hsl(40 10% 45%)", backdropFilter: "blur(4px)" }}
           title="Remove from wishlist"
         >
-          <Trash2 size={14} />
+          <Trash2 size={13} />
         </button>
+      </div>
+
+      {/* Identity */}
+      <div className="flex-1 min-w-0 mt-1">
+        <p className="text-xs font-mono tracking-widest uppercase" style={{ color: "hsl(40 10% 42%)" }}>
+          {item.house}
+        </p>
+        <p className="font-serif text-lg leading-tight mt-0.5 truncate" style={{ color: "hsl(40 20% 90%)" }}>
+          {item.name}
+        </p>
+        <div className="flex items-center gap-2 mt-1.5">
+          <span className="text-xs font-mono" style={{ color: "hsl(42 54% 60%)" }}>${item.price_usd}</span>
+          <span className="text-xs" style={{ color: "hsl(40 10% 35%)" }}>·</span>
+          <span className="text-xs font-mono" style={{ color: "hsl(40 10% 40%)" }}>{item.concentration}</span>
+          <span className="text-xs" style={{ color: "hsl(40 10% 35%)" }}>·</span>
+          <span className="text-xs font-mono" style={{ color: "hsl(40 10% 40%)" }}>{item.year}</span>
+        </div>
+        <div className="flex flex-wrap gap-1 mt-2">
+          {item.accords.slice(0, 4).map((accord) => {
+            const color = ACCORD_COLORS[accord] ?? "#7a7a7a";
+            return (
+              <span
+                key={accord}
+                className="text-xs px-1.5 py-0.5 rounded capitalize"
+                style={{ background: `${color}18`, color, border: `1px solid ${color}30` }}
+              >
+                {accord}
+              </span>
+            );
+          })}
+        </div>
       </div>
 
       {/* Personal note */}
