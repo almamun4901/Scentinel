@@ -165,7 +165,24 @@ async function execScoreBlindBuy(fragranceName: string, ownedFragrances: string[
     .map((f) => `${f.house} ${f.name} (accords: ${f.accords.join(", ")})`);
 
   const redditPosts = await searchFragranceDiscussion(`${target.house} ${target.name} review`);
-  const communityContext = summarisePosts(redditPosts, 1000);
+  let communityContext = summarisePosts(redditPosts, 1000);
+
+  // If live Reddit is unavailable, use Claude's knowledge of r/fragrance
+  if (!communityContext) {
+    try {
+      const sentimentMsg = await anthropic.messages.create({
+        model: "claude-sonnet-4-6",
+        max_tokens: 512,
+        system: "You are a fragrance community expert with deep knowledge of r/fragrance discussions.",
+        messages: [{
+          role: "user",
+          content: `Summarise in 3-4 bullet points what r/fragrance says about ${target.house} ${target.name}: reception, longevity reports, batch issues, and value opinion. Be specific and concise.`,
+        }],
+      });
+      const c = sentimentMsg.content[0];
+      if (c.type === "text") communityContext = c.text.trim();
+    } catch { /* skip */ }
+  }
 
   const message = await anthropic.messages.create({
     model: "claude-sonnet-4-6",
@@ -192,17 +209,54 @@ Return JSON: { "overall_score": 0-100, "breakdown": { "accord_compatibility": 0-
 
 async function execCommunityDiscussion(query: string) {
   const posts = await searchFragranceDiscussion(query, 8);
-  if (posts.length === 0) return { posts: [], summary: "No r/fragrance discussions found for this query." };
-  return {
-    posts: posts.map((p) => ({
-      title: p.title,
-      score: p.score,
-      comments: p.num_comments,
-      url: `https://reddit.com${p.permalink}`,
-      snippet: p.selftext?.slice(0, 400).replace(/\n+/g, " ").trim() || null,
-    })),
-    summary: summarisePosts(posts, 800),
-  };
+
+  if (posts.length > 0) {
+    return {
+      source: "live",
+      posts: posts.map((p) => ({
+        title: p.title,
+        score: p.score,
+        comments: p.num_comments,
+        url: `https://reddit.com${p.permalink}`,
+        snippet: p.selftext?.slice(0, 400).replace(/\n+/g, " ").trim() || null,
+      })),
+      summary: summarisePosts(posts, 800),
+    };
+  }
+
+  // Live Reddit unavailable — use Claude's training knowledge of r/fragrance
+  try {
+    const msg = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 1024,
+      system: `You are a fragrance community expert with deep knowledge of r/fragrance discussions, common opinions, batch variation reports, and community consensus on popular fragrances. You have read thousands of r/fragrance threads.`,
+      messages: [{
+        role: "user",
+        content: `Based on your knowledge of r/fragrance discussions, summarise what the community says about: "${query}"
+
+Include:
+- Overall community reception and consensus
+- Common praises and criticisms
+- Any batch variation or reformulation concerns mentioned
+- Performance (longevity/projection) reports from real users
+- How it compares to alternatives per community opinion
+- Any insider tips (best batch, application tips, etc.)
+
+Write 3-5 concise, specific, opinionated bullet points as if summarising actual Reddit threads you've read. Be specific and realistic — avoid generic filler. If the topic is obscure, say so honestly.`,
+      }],
+    });
+
+    const content = msg.content[0];
+    const text = content.type === "text" ? content.text.trim() : "";
+
+    return {
+      source: "ai_knowledge",
+      posts: [],
+      summary: text,
+    };
+  } catch {
+    return { source: "unavailable", posts: [], summary: "Community discussion data is currently unavailable." };
+  }
 }
 
 function execRecommendForContext(
@@ -343,7 +397,7 @@ Current context:
 
 Use tools whenever relevant. After tool results, give a short, direct synthesis — don't just repeat the data. Highlight the single best choice when asked. Mention prices in USD. Do not mention tool names in your response. Keep responses concise.
 
-You have access to r/fragrance community data. Use the community_discussion tool when the user asks for opinions, reviews, real-world performance, batch variation issues, or community consensus on any fragrance. Blend community sentiment naturally into your answer.`;
+You have access to r/fragrance community knowledge. Use the community_discussion tool when the user asks for opinions, reviews, real-world performance, batch variation issues, or community consensus on any fragrance. The tool returns either live Reddit posts (source: "live") or AI-synthesised community knowledge (source: "ai_knowledge") — treat both as real community insight and blend naturally into your answer without mentioning the source mechanism.`;
 
   const claudeMessages: MessageParam[] = [
     ...history.map((h) => ({ role: h.role, content: h.content } as MessageParam)),
