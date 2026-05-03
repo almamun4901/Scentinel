@@ -246,6 +246,17 @@
   }
 }
 
+/* Infinite moving cards scroll animation */
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-50% - 0.375rem));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
 /* Gold accent utility */
 .gold {
   color: hsl(42 54% 50%);

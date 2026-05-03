@@ -18,6 +18,7 @@ import { OnboardingModal } from "@/components/onboarding-modal";
 import { WishlistPage } from "@/components/wishlist-page";
 import { SemanticSearchView } from "@/components/semantic-search-view";
 import { ShootingStars } from "@/components/shooting-stars";
+import { InfiniteMovingCards, type FragranceCardItem } from "@/components/ui/infinite-moving-cards";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import ChatPage from "@/pages/chat";
 import { useWishlist } from "@/hooks/use-wishlist";
@@ -163,7 +164,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen overflow-hidden relative" style={{ background: "hsl(30 14% 3%)" }}>
-      <ShootingStars minSpeed={8} maxSpeed={20} minDelay={800} maxDelay={4000} />
+      <ShootingStars minSpeed={1.5} maxSpeed={4} minDelay={1500} maxDelay={5500} />
       <div className="relative flex flex-1 overflow-hidden" style={{ zIndex: 1 }}>
       <Sidebar {...sidebarProps} />
 
@@ -422,16 +423,39 @@ function pickRandom<T>(arr: T[], count: number): T[] {
   return shuffled.slice(0, count);
 }
 
+const ROW_ONE: FragranceCardItem[] = [
+  { name: "Aventus", house: "Creed", accords: ["fruity", "woody", "smoky"], notes: ["Blackcurrant", "Bergamot", "Birch"], season: "spring", seasonColor: "#7ba864", year: 2010 },
+  { name: "Sauvage EDP", house: "Dior", accords: ["spicy", "aromatic", "woody"], notes: ["Pepper", "Lavender", "Ambroxan"], season: "fall", seasonColor: "#c4703c", year: 2018 },
+  { name: "Oud Wood", house: "Tom Ford", accords: ["woody", "oud", "spicy"], notes: ["Oud", "Rosewood", "Cardamom"], season: "winter", seasonColor: "#4a9fb5", year: 2007 },
+  { name: "Bleu de Chanel EDP", house: "Chanel", accords: ["woody", "aromatic", "fresh"], notes: ["Citrus", "Labdanum", "Sandalwood"], season: "all year", seasonColor: "#c4923c", year: 2014 },
+  { name: "Layton", house: "Parfums de Marly", accords: ["spicy", "sweet", "vanilla"], notes: ["Apple", "Cardamom", "Vanilla"], season: "fall", seasonColor: "#c4703c", year: 2016 },
+  { name: "Interlude Man", house: "Amouage", accords: ["spicy", "smoky", "oriental"], notes: ["Oregano", "Amber", "Oud"], season: "winter", seasonColor: "#4a9fb5", year: 2012 },
+  { name: "Naxos", house: "Xerjoff", accords: ["sweet", "vanilla", "lavender"], notes: ["Lavender", "Tonka Bean", "Honey"], season: "summer", seasonColor: "#e4c04a", year: 2019 },
+  { name: "Tobacco Vanille", house: "Tom Ford", accords: ["sweet", "spicy", "vanilla"], notes: ["Tobacco", "Vanilla", "Tonka Bean"], season: "winter", seasonColor: "#4a9fb5", year: 2007 },
+  { name: "Y EDP", house: "YSL", accords: ["fresh", "spicy", "woody"], notes: ["Bergamot", "Sage", "Amberwood"], season: "spring", seasonColor: "#7ba864", year: 2017 },
+];
+
+const ROW_TWO: FragranceCardItem[] = [
+  { name: "Club de Nuit Intense Man", house: "Armaf", accords: ["fruity", "woody", "smoky"], notes: ["Blackcurrant", "Birch", "Musk"], season: "spring", seasonColor: "#7ba864", year: 2015 },
+  { name: "Jazz Club", house: "Maison Margiela", accords: ["spicy", "sweet", "woody"], notes: ["Rum", "Tobacco", "Vetiver"], season: "fall", seasonColor: "#c4703c", year: 2013 },
+  { name: "Acqua di Gio Profondo", house: "Giorgio Armani", accords: ["aquatic", "fresh", "mineral"], notes: ["Bergamot", "Sea Notes", "Patchouli"], season: "summer", seasonColor: "#e4c04a", year: 2021 },
+  { name: "Santal 33", house: "Le Labo", accords: ["woody", "earthy", "spicy"], notes: ["Sandalwood", "Cedarwood", "Cardamom"], season: "all year", seasonColor: "#c4923c", year: 2011 },
+  { name: "Oud for Greatness", house: "Initio", accords: ["oud", "spicy", "smoky"], notes: ["Oud", "Saffron", "Musk"], season: "winter", seasonColor: "#4a9fb5", year: 2018 },
+  { name: "Bal d'Afrique", house: "Byredo", accords: ["floral", "woody", "citrus"], notes: ["Marigold", "Violet", "Vetiver"], season: "summer", seasonColor: "#e4c04a", year: 2009 },
+  { name: "Wood Sage & Sea Salt", house: "Jo Malone", accords: ["aromatic", "aquatic", "earthy"], notes: ["Sea Salt", "Sage", "Ambrette"], season: "spring", seasonColor: "#7ba864", year: 2014 },
+  { name: "Invictus Platinum", house: "Paco Rabanne", accords: ["fresh", "woody", "spicy"], notes: ["Grapefruit", "Cardamom", "Vetiver"], season: "spring", seasonColor: "#7ba864", year: 2021 },
+  { name: "Percival", house: "Parfums de Marly", accords: ["aromatic", "sweet", "spicy"], notes: ["Cinnamon", "Lavender", "Musk"], season: "fall", seasonColor: "#c4703c", year: 2020 },
+];
+
 function EmptyState({ onSelect }: { onSelect: (f: Fragrance) => void }) {
-  const suggestions = useMemo(() => pickRandom(ALL_SUGGESTIONS, 6), []);
   const [loadingKey, setLoadingKey] = useState<string | null>(null);
 
-  const handleClick = async (name: string, house: string) => {
-    const key = `${house}-${name}`;
+  const handleCardSelect = async (item: FragranceCardItem) => {
+    const key = `${item.house}-${item.name}`;
     if (loadingKey) return;
     setLoadingKey(key);
     try {
-      const res = await fetch(`${import.meta.env.BASE_URL}api/search?q=${encodeURIComponent(name)}`);
+      const res = await fetch(`${import.meta.env.BASE_URL}api/search?q=${encodeURIComponent(item.name)}`);
       const data = await res.json() as Fragrance[];
       if (data.length > 0) onSelect(data[0]);
     } catch { /* ignore */ } finally {
@@ -440,44 +464,36 @@ function EmptyState({ onSelect }: { onSelect: (f: Fragrance) => void }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center px-4">
-      <h2 className="font-serif text-3xl sm:text-4xl mb-3 leading-tight" style={{ color: "hsl(40 15% 55%)" }}>
-        What are you wearing tonight?
-      </h2>
-      <p className="text-sm mb-8 max-w-sm" style={{ color: "hsl(40 10% 35%)" }}>
-        Search any fragrance to discover alternatives, get context recommendations, and assess blind buy risk.
-      </p>
-      <div className="flex flex-wrap justify-center gap-2">
-        {suggestions.map((s) => {
-          const key = `${s.house}-${s.name}`;
-          const isLoading = loadingKey === key;
-          return (
-            <button
-              key={key}
-              data-testid={`suggestion-${s.name.replace(/\s+/g, "-").toLowerCase()}`}
-              onClick={() => handleClick(s.name, s.house)}
-              disabled={loadingKey !== null}
-              className="px-4 py-2 rounded border text-sm transition-all"
-              style={{
-                borderColor: isLoading ? "hsl(42 54% 35%)" : "hsl(34 10% 18%)",
-                color: isLoading ? "hsl(42 54% 60%)" : "hsl(40 10% 52%)",
-                background: isLoading ? "hsl(42 54% 50% / 0.08)" : "hsl(34 12% 9%)",
-                cursor: loadingKey ? "default" : "pointer",
-                opacity: loadingKey && !isLoading ? 0.5 : 1,
-              }}
-            >
-              {isLoading ? (
-                <span style={{ color: "hsl(42 54% 50%)" }}>loading…</span>
-              ) : (
-                <>
-                  <span style={{ color: "hsl(40 10% 35%)" }}>{s.house} · </span>
-                  {s.name}
-                </>
-              )}
-            </button>
-          );
-        })}
+    <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center">
+      <div className="px-4 mb-10">
+        <h2 className="font-serif text-3xl sm:text-4xl mb-3 leading-tight" style={{ color: "hsl(40 15% 55%)" }}>
+          What are you wearing tonight?
+        </h2>
+        <p className="text-sm max-w-sm mx-auto" style={{ color: "hsl(40 10% 35%)" }}>
+          Click any fragrance below or search above to explore alternatives, context picks, and blind buy risk.
+        </p>
       </div>
+
+      <div className="w-full flex flex-col gap-3 overflow-hidden">
+        <InfiniteMovingCards
+          items={ROW_ONE}
+          direction="left"
+          speed="slow"
+          onSelect={handleCardSelect}
+        />
+        <InfiniteMovingCards
+          items={ROW_TWO}
+          direction="right"
+          speed="slow"
+          onSelect={handleCardSelect}
+        />
+      </div>
+
+      {loadingKey && (
+        <p className="mt-6 text-xs font-mono" style={{ color: "hsl(42 54% 50%)" }}>
+          Loading profile…
+        </p>
+      )}
     </div>
   );
 }
