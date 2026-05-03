@@ -213,6 +213,7 @@ function SemanticResultCard({
   rank: number;
   onSelect?: (f: Fragrance) => void;
 }) {
+  const [hovered, setHovered] = useState(false);
   const isTop = rank === 0;
   const scoreColor =
     frag.match_score >= 80 ? "hsl(142 50% 50%)" :
@@ -221,12 +222,21 @@ function SemanticResultCard({
 
   return (
     <button
-      className="rounded border p-4 flex flex-col gap-3 text-left relative overflow-hidden transition-all group"
+      className="rounded border p-4 flex flex-col gap-3 text-left relative overflow-hidden"
       style={{
-        background: "hsl(34 17% 8%)",
-        borderColor: isTop ? "hsl(42 54% 35%)" : "hsl(34 10% 14%)",
+        background: hovered ? "hsl(34 17% 11%)" : "hsl(34 17% 8%)",
+        borderColor: hovered
+          ? "hsl(42 54% 40%)"
+          : isTop ? "hsl(42 54% 35%)" : "hsl(34 10% 14%)",
         borderTopWidth: isTop ? "2px" : "1px",
+        transform: hovered ? "translateY(-2px) scale(1.01)" : "translateY(0) scale(1)",
+        boxShadow: hovered
+          ? "0 8px 32px hsl(42 54% 30% / 0.18), 0 0 0 1px hsl(42 54% 40% / 0.15)"
+          : "none",
+        transition: "background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s",
       }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       onClick={() => onSelect?.(frag)}
       title="View fragrance details"
     >
