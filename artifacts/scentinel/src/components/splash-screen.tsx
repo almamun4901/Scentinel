@@ -7,8 +7,14 @@ const MESSAGES = [
   "YOUR SIGNATURE\nAWAITS",
 ];
 
+const SESSION_KEY = "scentinel-splash-seen";
+
 export function shouldShowSplash(): boolean {
-  return true;
+  try {
+    return !sessionStorage.getItem(SESSION_KEY);
+  } catch {
+    return false;
+  }
 }
 
 interface SplashScreenProps {
@@ -23,6 +29,7 @@ export function SplashScreen({ onDone }: SplashScreenProps) {
   const dismiss = useCallback(() => {
     if (fading) return;
     setFading(true);
+    try { sessionStorage.setItem(SESSION_KEY, "1"); } catch { /* ignore */ }
     setTimeout(onDone, 680);
   }, [fading, onDone]);
 
