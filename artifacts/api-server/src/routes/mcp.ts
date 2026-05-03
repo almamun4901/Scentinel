@@ -29,6 +29,7 @@ import {
   isInitializeRequest,
 } from "@modelcontextprotocol/sdk/types.js";
 import { logger } from "../lib/logger.js";
+import { searchFragranceDiscussion, searchDupeDiscussion, summarisePosts } from "../lib/reddit.js";
 
 // ─── Fragrance data ───────────────────────────────────────────────────────────
 
@@ -103,17 +104,32 @@ async function toolFindDupes(fragranceName: string, priceCeiling?: number) {
   const target = await findFragranceByName(fragranceName);
   if (!target) return { error: `Fragrance not found: ${fragranceName}` };
   const tv = accordVec(target);
-  return fragrances
-    .filter((f) => f.id !== target.id && (priceCeiling == null || f.price_usd <= priceCeiling))
-    .map((f) => ({
-      name: f.name, house: f.house,
-      similarity_pct: Math.round(cosineSim(tv, accordVec(f)) * 100),
-      price_usd: f.price_usd,
-      savings_usd: target.price_usd - f.price_usd,
-      accords: f.accords,
-    }))
-    .sort((a, b) => b.similarity_pct - a.similarity_pct)
-    .slice(0, 5);
+  const [algorithmic, redditPosts] = await Promise.all([
+    Promise.resolve(
+      fragrances
+        .filter((f) => f.id !== target.id && (priceCeiling == null || f.price_usd <= priceCeiling))
+        .map((f) => ({
+          name: f.name, house: f.house,
+          similarity_pct: Math.round(cosineSim(tv, accordVec(f)) * 100),
+          price_usd: f.price_usd,
+          savings_usd: target.price_usd - f.price_usd,
+          accords: f.accords,
+        }))
+        .sort((a, b) => b.similarity_pct - a.similarity_pct)
+        .slice(0, 5)
+    ),
+    searchDupeDiscussion(`${target.house} ${target.name}`),
+  ]);
+  return {
+    algorithmic_matches: algorithmic,
+    community_threads: redditPosts.slice(0, 4).map((p) => ({
+      title: p.title,
+      score: p.score,
+      comments: p.num_comments,
+      url: `https://reddit.com${p.permalink}`,
+      snippet: p.selftext?.slice(0, 250).replace(/\n+/g, " ").trim() || null,
+    })),
+  };
 }
 
 async function toolScoreBlindBuy(
@@ -131,6 +147,9 @@ async function toolScoreBlindBuy(
     ))
     .map((f) => `${f.house} ${f.name} (accords: ${f.accords.join(", ")})`);
 
+  const redditPosts = await searchFragranceDiscussion(`${target.house} ${target.name} review`);
+  const communityContext = summarisePosts(redditPosts, 1000);
+
   const msg = await anthropic.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 2048,
@@ -143,14 +162,30 @@ Notes — Top: ${target.notes.top.join(", ")}; Heart: ${target.notes.heart.join(
 Longevity: ${target.longevity}/5, Sillage: ${target.sillage}/5
 ${budget ? `Budget: $${budget}` : ""}
 ${ownedDetails.length ? `User collection:\n${ownedDetails.join("\n")}` : "No collection provided."}
+${communityContext ? `\nr/fragrance community sentiment:\n${communityContext}` : ""}
 
-Return JSON: { "overall_score": 0-100, "verdict": "Strong buy"|"Buy"|"Try first"|"Avoid", "risk_flags": [{"level":"ok"|"info"|"warn","message":"..."}], "recommendation": "2-3 sentences" }`,
+Return JSON: { "overall_score": 0-100, "verdict": "Strong buy"|"Buy"|"Try first"|"Avoid", "risk_flags": [{"level":"ok"|"info"|"warn","message":"..."}], "recommendation": "2-3 sentences", "community_sentiment": "brief summary of what r/fragrance says, or null" }`,
     }],
   });
   const content = msg.content[0];
   if (content.type !== "text") return { error: "AI error" };
   const json = content.text.trim().replace(/^```json\n?/, "").replace(/\n?```$/, "");
   return JSON.parse(json);
+}
+
+async function toolCommunityDiscussion(query: string) {
+  const posts = await searchFragranceDiscussion(query, 8);
+  if (posts.length === 0) return { posts: [], summary: "No r/fragrance discussions found for this query." };
+  return {
+    posts: posts.map((p) => ({
+      title: p.title,
+      score: p.score,
+      comments: p.num_comments,
+      url: `https://reddit.com${p.permalink}`,
+      snippet: p.selftext?.slice(0, 400).replace(/\n+/g, " ").trim() || null,
+    })),
+    summary: summarisePosts(posts, 800),
+  };
 }
 
 function toolRecommendForContext(
@@ -274,6 +309,17 @@ const TOOLS = [
       required: ["occasion", "time_of_day", "owned_fragrances"],
     },
   },
+  {
+    name: "community_discussion",
+    description: "Fetch real r/fragrance community posts and discussions about a fragrance — reviews, opinions, batch variation issues, real-world performance, and comparisons.",
+    inputSchema: {
+      type: "object" as const,
+      properties: {
+        query: { type: "string", description: "Fragrance name or topic to search r/fragrance for (e.g. 'Creed Aventus batch variation', 'Bleu de Chanel longevity')" },
+      },
+      required: ["query"],
+    },
+  },
 ];
 
 function createMcpServer(): Server {
@@ -308,6 +354,8 @@ function createMcpServer(): Server {
           a.owned_fragrances as string[],
           a.weather_temp_c as number | undefined
         );
+      } else if (name === "community_discussion") {
+        result = await toolCommunityDiscussion(a.query as string);
       } else {
         return { content: [{ type: "text" as const, text: `Unknown tool: ${name}` }], isError: true };
       }
