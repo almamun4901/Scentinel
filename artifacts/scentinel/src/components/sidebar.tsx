@@ -9,6 +9,7 @@ interface SidebarProps {
   onClose?: () => void;
   recentChats?: string[];
   wishlistCount?: number;
+  onHomeClick?: () => void;
 }
 
 const NAV_DISCOVER = [
@@ -94,10 +95,12 @@ export function SidebarContent({
   onClose,
   recentChats = [],
   wishlistCount = 0,
+  onHomeClick,
 }: SidebarProps) {
   const { isAuthenticated, login, logout, isLoading } = useAuth();
 
   const handleNav = (id: string) => { onSectionChange(id); onClose?.(); };
+  const handleLogoClick = () => { onHomeClick?.(); onClose?.(); };
 
   const navButton = (item: typeof NAV_DISCOVER[number], badge?: number) => {
     const active = activeSection === item.id;
@@ -131,10 +134,16 @@ export function SidebarContent({
     <div className="flex flex-col h-full py-6 pr-4 pl-5">
       {/* Logo */}
       <div className="mb-7 px-2">
-        <h1 className="font-serif text-2xl tracking-wide" style={{ color: "hsl(42 54% 55%)", letterSpacing: "0.12em" }}>
-          Scen<span style={{ color: "hsl(40 10% 35%)", fontWeight: 300 }}>tinel</span>
-        </h1>
-        <p className="text-xs mt-0.5" style={{ color: "hsl(40 10% 32%)" }}>Fragrance Intelligence</p>
+        <button
+          onClick={handleLogoClick}
+          className="text-left group"
+          style={{ cursor: onHomeClick ? "pointer" : "default" }}
+        >
+          <h1 className="font-serif text-2xl tracking-wide transition-opacity group-hover:opacity-80" style={{ color: "hsl(42 54% 55%)", letterSpacing: "0.12em" }}>
+            Scen<span style={{ color: "hsl(40 10% 35%)", fontWeight: 300 }}>tinel</span>
+          </h1>
+          <p className="text-xs mt-0.5" style={{ color: "hsl(40 10% 32%)" }}>Fragrance Intelligence</p>
+        </button>
       </div>
 
       {/* Discover nav */}

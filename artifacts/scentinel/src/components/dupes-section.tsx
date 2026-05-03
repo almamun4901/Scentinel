@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { DupeResult, ACCORD_COLORS } from "@/types";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Loader2 } from "lucide-react";
 
 interface DupesSectionProps {
   dupes: DupeResult[] | null;
   isLoading: boolean;
+  onSelect?: (name: string, house: string) => void;
 }
 
 function SimilarityBar({ pct, animate }: { pct: number; animate: boolean }) {
@@ -33,18 +35,51 @@ function SimilarityBar({ pct, animate }: { pct: number; animate: boolean }) {
   );
 }
 
-function DupeCard({ dupe, index, animate }: { dupe: DupeResult; index: number; animate: boolean }) {
+function DupeCard({
+  dupe,
+  index,
+  animate,
+  onSelect,
+}: {
+  dupe: DupeResult;
+  index: number;
+  animate: boolean;
+  onSelect?: (name: string, house: string) => void;
+}) {
+  const [loading, setLoading] = useState(false);
   const isTopPick = index === 0;
   const savings = dupe.price_delta ?? 0;
+  const clickable = !!onSelect;
+
+  const handleClick = async () => {
+    if (!onSelect || loading) return;
+    setLoading(true);
+    try {
+      await onSelect(dupe.name, dupe.house);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div
       data-testid={`dupe-card-${index}`}
-      className="rounded border p-4 flex flex-col gap-3 relative overflow-hidden"
+      onClick={handleClick}
+      className="rounded border p-4 flex flex-col gap-3 relative overflow-hidden transition-all"
       style={{
         background: "hsl(34 17% 8%)",
         borderColor: isTopPick ? "hsl(42 54% 35%)" : "hsl(34 10% 14%)",
         borderTopWidth: isTopPick ? "2px" : "1px",
+        cursor: clickable ? "pointer" : "default",
+      }}
+      onMouseEnter={(e) => {
+        if (clickable) (e.currentTarget as HTMLDivElement).style.borderColor = "hsl(42 54% 28%)";
+      }}
+      onMouseLeave={(e) => {
+        if (clickable)
+          (e.currentTarget as HTMLDivElement).style.borderColor = isTopPick
+            ? "hsl(42 54% 35%)"
+            : "hsl(34 10% 14%)";
       }}
     >
       {isTopPick && (
@@ -56,11 +91,28 @@ function DupeCard({ dupe, index, animate }: { dupe: DupeResult; index: number; a
         </span>
       )}
 
-      <div>
-        <p className="text-xs" style={{ color: "hsl(40 10% 45%)" }}>{dupe.house}</p>
-        <p className="font-serif text-lg leading-tight mt-0.5" style={{ color: "hsl(40 20% 88%)" }}>
-          {dupe.name}
-        </p>
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <p className="text-xs" style={{ color: "hsl(40 10% 45%)" }}>{dupe.house}</p>
+          <p className="font-serif text-lg leading-tight mt-0.5" style={{ color: "hsl(40 20% 88%)" }}>
+            {dupe.name}
+          </p>
+        </div>
+        {loading && <Loader2 size={14} className="animate-spin shrink-0 mt-1" style={{ color: "hsl(42 54% 50%)" }} />}
+        {clickable && !loading && (
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="shrink-0 mt-1 opacity-40"
+            style={{ color: "hsl(42 54% 50%)" }}
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        )}
       </div>
 
       <div className="space-y-1.5">
@@ -107,7 +159,7 @@ function DupeCard({ dupe, index, animate }: { dupe: DupeResult; index: number; a
   );
 }
 
-export function DupesSection({ dupes, isLoading }: DupesSectionProps) {
+export function DupesSection({ dupes, isLoading, onSelect }: DupesSectionProps) {
   const [animated, setAnimated] = useState(false);
 
   useEffect(() => {
@@ -124,6 +176,11 @@ export function DupesSection({ dupes, isLoading }: DupesSectionProps) {
         <h2 className="font-serif text-xl" style={{ color: "hsl(40 20% 85%)" }}>
           Alternatives & Dupes
         </h2>
+        {onSelect && (
+          <span className="text-xs" style={{ color: "hsl(40 10% 32%)" }}>
+            Click to explore
+          </span>
+        )}
       </div>
 
       {isLoading ? (
@@ -135,7 +192,7 @@ export function DupesSection({ dupes, isLoading }: DupesSectionProps) {
       ) : dupes && dupes.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {dupes.slice(0, 3).map((dupe, i) => (
-            <DupeCard key={`${dupe.name}-${i}`} dupe={dupe} index={i} animate={animated} />
+            <DupeCard key={`${dupe.name}-${i}`} dupe={dupe} index={i} animate={animated} onSelect={onSelect} />
           ))}
         </div>
       ) : null}
