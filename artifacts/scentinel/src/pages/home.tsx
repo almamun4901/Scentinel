@@ -18,6 +18,7 @@ import { OnboardingModal } from "@/components/onboarding-modal";
 import { WishlistPage } from "@/components/wishlist-page";
 import { SemanticSearchView } from "@/components/semantic-search-view";
 import { ShootingStars } from "@/components/shooting-stars";
+import { SplashScreen, shouldShowSplash } from "@/components/splash-screen";
 import { InfiniteMovingCards, type FragranceCardItem } from "@/components/ui/infinite-moving-cards";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import ChatPage from "@/pages/chat";
@@ -38,6 +39,7 @@ export default function Home() {
   const [dupes, setDupes] = useState<DupeResult[] | null>(null);
   const [contextPicks, setContextPicks] = useState<ContextPick[] | null>(null);
   const [blindBuyScore, setBlindBuyScore] = useState<BlindBuyScore | null>(null);
+  const [showSplash, setShowSplash] = useState(() => shouldShowSplash());
   const [activeSection, setActiveSection] = useState("explore");
   const [slideDir, setSlideDir] = useState<"right" | "left" | null>(null);
   const [occasion, setOccasion] = useState("casual");
@@ -176,7 +178,8 @@ export default function Home() {
 
   return (
     <div className="flex h-screen overflow-hidden relative" style={{ background: "hsl(30 14% 3%)" }}>
-      <ShootingStars minSpeed={1.5} maxSpeed={4} minDelay={1500} maxDelay={5500} />
+      {showSplash && <SplashScreen onDone={() => setShowSplash(false)} />}
+      {!showSplash && <ShootingStars minSpeed={1.5} maxSpeed={4} minDelay={1500} maxDelay={5500} />}
       <div className="relative flex flex-1 overflow-hidden" style={{ zIndex: 1 }}>
       <Sidebar {...sidebarProps} />
 
