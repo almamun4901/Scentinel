@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sparkles, Search, Loader2 } from "lucide-react";
+import { Sparkles, Search, Loader2, ShoppingBag } from "lucide-react";
 import { ACCORD_COLORS } from "@/types";
 import { BottlePlaceholder } from "@/components/bottle-placeholder";
 import type { Fragrance } from "@/types";

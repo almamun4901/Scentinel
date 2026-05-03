@@ -1,7 +1,47 @@
 import { useState, useEffect, useCallback } from "react";
-import { X, Bookmark, BookmarkCheck, ArrowRight, Loader2, Users } from "lucide-react";
+import { X, Bookmark, BookmarkCheck, ArrowRight, Loader2, Users, ExternalLink, ShoppingBag } from "lucide-react";
 import { Fragrance, ACCORD_COLORS, LONGEVITY_LABELS, SILLAGE_LABELS } from "@/types";
 import { BottlePlaceholder } from "@/components/bottle-placeholder";
+
+interface Retailer {
+  name: string;
+  tag: string;
+  accent: string;
+  buildUrl: (query: string) => string;
+}
+
+const RETAILERS: Retailer[] = [
+  {
+    name: "FragranceNet",
+    tag: "Up to 70% off MSRP",
+    accent: "hsl(210 70% 52%)",
+    buildUrl: (q) => `https://www.fragrancenet.com/search?q=${q}`,
+  },
+  {
+    name: "Notino",
+    tag: "Competitive global pricing",
+    accent: "hsl(340 65% 52%)",
+    buildUrl: (q) => `https://www.notino.com/search/?q=${q}`,
+  },
+  {
+    name: "Sephora",
+    tag: "Official US retailer",
+    accent: "hsl(330 60% 48%)",
+    buildUrl: (q) => `https://www.sephora.com/search?keyword=${q}`,
+  },
+  {
+    name: "Amazon",
+    tag: "Prime eligible · Fast shipping",
+    accent: "hsl(36 90% 50%)",
+    buildUrl: (q) => `https://www.amazon.com/s?k=${q}+perfume`,
+  },
+  {
+    name: "Nordstrom",
+    tag: "Free shipping over $89",
+    accent: "hsl(220 15% 52%)",
+    buildUrl: (q) => `https://www.nordstrom.com/sr?origin=keywordsearch&keyword=${q}`,
+  },
+];
 
 const NOTE_ICONS: Record<string, string> = {
   bergamot: "🍋", lemon: "🍋", lime: "🍋", grapefruit: "🍊", mandarin: "🍊", orange: "🍊",
@@ -322,6 +362,70 @@ export function FragranceDetailDrawer({
                   <PyramidRow label="TOP" notes={f.notes.top} maxWidthPct={54} color="hsl(42,54%,50%)" />
                   <PyramidRow label="HEART" notes={f.notes.heart} maxWidthPct={78} color="hsl(35,55%,52%)" />
                   <PyramidRow label="BASE" notes={f.notes.base} maxWidthPct={100} color="hsl(28,45%,44%)" />
+                </div>
+              </div>
+
+              {/* Where to Buy */}
+              <div className="px-6 py-4" style={{ borderBottom: "1px solid hsl(34 10% 11%)" }}>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <ShoppingBag size={12} style={{ color: "hsl(40 10% 32%)" }} />
+                    <p className="text-xs font-mono tracking-widest" style={{ color: "hsl(40 10% 32%)" }}>
+                      WHERE TO BUY
+                    </p>
+                  </div>
+                  <span className="text-xs font-mono" style={{ color: "hsl(40 10% 30%)" }}>
+                    MSRP ${f.price_usd}
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  {RETAILERS.map((r) => {
+                    const query = encodeURIComponent(`${f.house} ${f.name}`);
+                    return (
+                      <a
+                        key={r.name}
+                        href={r.buildUrl(query)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 px-3 py-2.5 rounded transition-all group"
+                        style={{
+                          background: "hsl(34 12% 9%)",
+                          border: "1px solid hsl(34 10% 14%)",
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.borderColor = `${r.accent}55`;
+                          (e.currentTarget as HTMLAnchorElement).style.background = `${r.accent}0a`;
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLAnchorElement).style.borderColor = "hsl(34 10% 14%)";
+                          (e.currentTarget as HTMLAnchorElement).style.background = "hsl(34 12% 9%)";
+                        }}
+                      >
+                        {/* Accent dot */}
+                        <div
+                          className="shrink-0 w-2 h-2 rounded-full"
+                          style={{ background: r.accent, opacity: 0.8 }}
+                        />
+
+                        <div className="flex-1 min-w-0">
+                          <span className="text-sm font-medium block" style={{ color: "hsl(40 15% 78%)" }}>
+                            {r.name}
+                          </span>
+                          <span className="text-xs" style={{ color: "hsl(40 10% 38%)" }}>
+                            {r.tag}
+                          </span>
+                        </div>
+
+                        <ExternalLink
+                          size={13}
+                          className="shrink-0"
+                          style={{ color: "hsl(40 10% 32%)" }}
+                        />
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
 
