@@ -92,7 +92,7 @@ export function CollectionPage({ onSelectFragrance }: CollectionPageProps) {
 
   return (
     <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-6">
-      <div className="max-w-3xl">
+      <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="flex items-start justify-between mb-6">
           <div>

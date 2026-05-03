@@ -181,7 +181,7 @@ export function WishlistPage({ onOpenDrawer }: { onOpenDrawer?: (f: Fragrance) =
 
   return (
     <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-6">
-      <div className="max-w-3xl">
+      <div className="max-w-3xl mx-auto">
         <div className="flex items-baseline justify-between mb-6">
           <h2 className="font-serif text-2xl" style={{ color: "hsl(40 20% 85%)" }}>
             Wishlist
