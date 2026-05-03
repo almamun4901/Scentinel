@@ -1,17 +1,17 @@
 import { Router } from "express";
 import { eq } from "drizzle-orm";
+import { getAuth } from "@clerk/express";
 import { db, userProfilesTable } from "@workspace/db";
 import { SaveProfileBody } from "@workspace/api-zod";
 
 const router = Router();
 
 router.get("/profile", async (req, res) => {
-  if (!req.isAuthenticated()) {
-    // Return guest profile
+  const { userId } = getAuth(req);
+  if (!userId) {
     res.json({ ownedFragrances: [], budget: null });
     return;
   }
-  const userId = req.user.id;
   try {
     const [profile] = await db
       .select()
@@ -29,7 +29,8 @@ router.get("/profile", async (req, res) => {
 });
 
 router.put("/profile", async (req, res) => {
-  if (!req.isAuthenticated()) {
+  const { userId } = getAuth(req);
+  if (!userId) {
     res.status(401).json({ error: "Authentication required" });
     return;
   }
@@ -38,7 +39,6 @@ router.put("/profile", async (req, res) => {
     res.status(400).json({ error: "Invalid request body" });
     return;
   }
-  const userId = req.user.id;
   const { ownedFragrances, budget } = parsed.data;
   try {
     const [upserted] = await db

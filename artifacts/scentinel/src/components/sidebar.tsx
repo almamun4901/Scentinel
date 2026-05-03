@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useAuth } from "@workspace/replit-auth-web";
+import { useUser, useClerk } from "@clerk/react";
+import { useLocation } from "wouter";
 
 interface SidebarProps {
   ownedFragrances: string[];
@@ -194,7 +195,9 @@ export function SidebarContent({
   onHomeClick,
   expanded = true,
 }: SidebarProps & { expanded?: boolean }) {
-  const { isAuthenticated, login, logout, isLoading } = useAuth();
+  const { isSignedIn, isLoaded } = useUser();
+  const { signOut } = useClerk();
+  const [, setLocation] = useLocation();
 
   const handleNav = (id: string) => { onSectionChange(id); onClose?.(); };
   const handleLogoClick = () => { onHomeClick?.(); onClose?.(); };
@@ -374,11 +377,11 @@ export function SidebarContent({
         }}
       >
         <div style={{ padding: "0 12px" }}>
-          {!isLoading && (
-            isAuthenticated ? (
+          {isLoaded && (
+            isSignedIn ? (
               <button
                 data-testid="btn-logout"
-                onClick={logout}
+                onClick={() => signOut()}
                 className="w-full text-left text-xs py-1 transition-colors whitespace-nowrap"
                 style={{ color: "hsl(40 10% 36%)" }}
               >
@@ -387,7 +390,7 @@ export function SidebarContent({
             ) : (
               <button
                 data-testid="btn-login"
-                onClick={login}
+                onClick={() => setLocation("/sign-in")}
                 className="w-full text-left text-xs py-1 transition-colors whitespace-nowrap"
                 style={{ color: "hsl(42 54% 42%)" }}
               >

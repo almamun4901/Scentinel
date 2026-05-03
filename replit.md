@@ -10,11 +10,10 @@
 | Scentinel Web | `artifacts/scentinel` | `/` | 25575 |
 
 **Shared libraries:**
-- `lib/db` — Drizzle ORM + PostgreSQL schema (auth sessions, user profiles, ai_fragrances cache)
+- `lib/db` — Drizzle ORM + PostgreSQL schema (user profiles, ai_fragrances cache)
 - `lib/api-spec` — OpenAPI spec + Orval codegen
 - `lib/api-client-react` — Generated React Query hooks
 - `lib/api-zod` — Generated Zod validation schemas
-- `lib/replit-auth-web` — Browser auth hook (`useAuth()`)
 - `lib/integrations-anthropic-ai` — Anthropic AI client via Replit AI Integrations
 
 ## Features
@@ -28,7 +27,7 @@
 - **Live Weather** — OpenWeatherMap proxy (GET /api/weather)
 - **User Profiles** — Owned fragrance collection + budget, persisted in PostgreSQL (GET/PUT /api/profile)
 - **Wishlist** — localStorage-based wishlist with add/remove, personal notes per fragrance, bookmark button on every fragrance hero card
-- **Auth** — Replit OIDC via openid-client v6
+- **Auth** — Clerk (email + Google) with dark luxury branded sign-in/sign-up pages at `/sign-in` and `/sign-up`
 - **Onboarding** — 3-step modal on first visit
 
 ## Visual Components
@@ -52,7 +51,9 @@ Image URLs use official brand CDNs (Dior, Chanel, Tom Ford, YSL, Jo Malone) and 
 | Secret | Purpose |
 |---|---|
 | `DATABASE_URL` | PostgreSQL connection (Replit managed) |
-| `SESSION_SECRET` | Express session signing |
+| `CLERK_SECRET_KEY` | Clerk backend secret key |
+| `CLERK_PUBLISHABLE_KEY` | Clerk publishable key (server-side ref) |
+| `VITE_CLERK_PUBLISHABLE_KEY` | Clerk publishable key exposed to Vite frontend |
 | `AI_INTEGRATIONS_ANTHROPIC_BASE_URL` | Replit AI proxy for Claude |
 | `AI_INTEGRATIONS_ANTHROPIC_API_KEY` | Replit AI proxy key (dummy value) |
 | `OPENWEATHER_KEY` | OpenWeatherMap free API key |
@@ -67,9 +68,8 @@ Dark luxury theme:
 
 ## Database Schema
 
-- `sessions` — Auth session store (from replit-auth)
-- `users` — Authenticated user records
-- `user_profiles` — Owned fragrances (JSONB) + budget string
+- `user_profiles` — Owned fragrances (JSONB) + budget string, keyed by Clerk userId
+- `ai_fragrances` — AI-generated fragrance cache
 
 ## API Routes
 
@@ -78,10 +78,7 @@ All routes served under `/api`:
 | Method | Path | Description |
 |---|---|---|
 | GET | `/healthz` | Health check |
-| GET | `/auth/user` | Current auth user |
-| GET | `/login` | Start OIDC login |
-| GET | `/callback` | OIDC callback |
-| GET | `/logout` | Clear session |
+| GET | `/auth/user` | Current auth user (Clerk userId) |
 | GET | `/search?q=` | Fuzzy fragrance search |
 | POST | `/dupes` | Find accord-similar fragrances |
 | POST | `/context` | Context-aware picks |
