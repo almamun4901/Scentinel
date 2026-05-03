@@ -5,6 +5,7 @@ interface SidebarProps {
   activeSection: string;
   onSectionChange: (s: string) => void;
   onOpenOnboarding: () => void;
+  onClose?: () => void;
 }
 
 const NAV_ITEMS = [
@@ -32,14 +33,22 @@ function InitialsDot({ name }: { name: string }) {
   );
 }
 
-export function Sidebar({ ownedFragrances, activeSection, onSectionChange, onOpenOnboarding }: SidebarProps) {
+export function SidebarContent({
+  ownedFragrances,
+  activeSection,
+  onSectionChange,
+  onOpenOnboarding,
+  onClose,
+}: SidebarProps) {
   const { isAuthenticated, login, logout, isLoading } = useAuth();
 
+  const handleNav = (id: string) => {
+    onSectionChange(id);
+    onClose?.();
+  };
+
   return (
-    <aside
-      className="w-[200px] shrink-0 flex flex-col py-6 pr-4"
-      style={{ borderRight: "1px solid hsl(34 10% 12%)" }}
-    >
+    <div className="flex flex-col h-full py-6 pr-4 pl-5">
       {/* Logo */}
       <div className="mb-8 px-2">
         <h1 className="font-serif text-2xl tracking-wide" style={{ color: "hsl(42 54% 55%)" }}>
@@ -56,7 +65,7 @@ export function Sidebar({ ownedFragrances, activeSection, onSectionChange, onOpe
           <button
             key={item.id}
             data-testid={`nav-${item.id}`}
-            onClick={() => onSectionChange(item.id)}
+            onClick={() => handleNav(item.id)}
             className="text-left px-3 py-2 rounded text-sm transition-all"
             style={{
               background: activeSection === item.id ? "hsl(34 17% 11%)" : "transparent",
@@ -70,14 +79,14 @@ export function Sidebar({ ownedFragrances, activeSection, onSectionChange, onOpe
       </nav>
 
       {/* Collection preview */}
-      <div className="flex-1">
+      <div className="flex-1 overflow-hidden">
         <div className="flex items-center justify-between mb-2 px-2">
           <p className="text-xs font-mono tracking-widest" style={{ color: "hsl(40 10% 35%)" }}>
             COLLECTION
           </p>
           <button
             data-testid="btn-edit-collection"
-            onClick={onOpenOnboarding}
+            onClick={() => { onOpenOnboarding(); onClose?.(); }}
             className="text-xs transition-colors"
             style={{ color: "hsl(42 54% 45%)" }}
           >
@@ -121,6 +130,17 @@ export function Sidebar({ ownedFragrances, activeSection, onSectionChange, onOpe
           )
         )}
       </div>
+    </div>
+  );
+}
+
+export function Sidebar(props: SidebarProps) {
+  return (
+    <aside
+      className="hidden md:flex w-[200px] shrink-0 flex-col"
+      style={{ borderRight: "1px solid hsl(34 10% 12%)" }}
+    >
+      <SidebarContent {...props} />
     </aside>
   );
 }

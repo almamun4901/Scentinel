@@ -6,6 +6,7 @@ interface BlindBuyScorerProps {
   score: BlindBuyScore | null;
   isLoading: boolean;
   fragranceName?: string;
+  inline?: boolean;
 }
 
 const CIRCUMFERENCE = 2 * Math.PI * 52;
@@ -29,53 +30,20 @@ function ScoreRing({ score, animated }: { score: number; animated: boolean }) {
           <stop offset="100%" stopColor={verdictColor(score)} />
         </linearGradient>
       </defs>
-      {/* Track */}
+      <circle cx="64" cy="64" r="52" fill="none" stroke="hsl(34 10% 16%)" strokeWidth="8" />
       <circle
-        cx="64"
-        cy="64"
-        r="52"
-        fill="none"
-        stroke="hsl(34 10% 16%)"
-        strokeWidth="8"
-      />
-      {/* Score arc */}
-      <circle
-        cx="64"
-        cy="64"
-        r="52"
-        fill="none"
+        cx="64" cy="64" r="52" fill="none"
         stroke={`url(#${gradientId})`}
-        strokeWidth="8"
-        strokeLinecap="round"
+        strokeWidth="8" strokeLinecap="round"
         strokeDasharray={CIRCUMFERENCE}
         strokeDashoffset={animated ? dashOffset : CIRCUMFERENCE}
         transform="rotate(-90 64 64)"
-        style={{
-          transition: animated ? "stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
-        }}
+        style={{ transition: animated ? "stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1)" : "none" }}
       />
-      {/* Score label */}
-      <text
-        x="64"
-        y="58"
-        textAnchor="middle"
-        fill="hsl(40 20% 88%)"
-        fontSize="28"
-        fontFamily="'DM Mono', monospace"
-        fontWeight="400"
-      >
-        {score}
-      </text>
-      <text
-        x="64"
-        y="76"
-        textAnchor="middle"
-        fill="hsl(40 10% 45%)"
-        fontSize="10"
-        fontFamily="'DM Mono', monospace"
-      >
-        / 100
-      </text>
+      <text x="64" y="58" textAnchor="middle" fill="hsl(40 20% 88%)" fontSize="28"
+        fontFamily="'DM Mono', monospace" fontWeight="400">{score}</text>
+      <text x="64" y="76" textAnchor="middle" fill="hsl(40 10% 45%)" fontSize="10"
+        fontFamily="'DM Mono', monospace">/ 100</text>
     </svg>
   );
 }
@@ -99,9 +67,7 @@ function BreakdownRow({ label, value }: { label: string; value: number }) {
       <span className="text-xs capitalize" style={{ color: "hsl(40 10% 50%)" }}>
         {label.replace(/_/g, " ")}
       </span>
-      <span className="text-sm font-mono" style={{ color: "hsl(40 20% 80%)" }}>
-        {value}
-      </span>
+      <span className="text-sm font-mono" style={{ color: "hsl(40 20% 80%)" }}>{value}</span>
     </div>
   );
 }
@@ -111,22 +77,15 @@ function RiskFlagItem({ flag }: { flag: RiskFlag }) {
   return (
     <div
       className="flex gap-2.5 px-3 py-2 rounded border-l-2 text-xs"
-      style={{
-        borderLeftColor: styles.borderColor,
-        background: "hsl(34 12% 10%)",
-        color: "hsl(40 15% 65%)",
-      }}
+      style={{ borderLeftColor: styles.borderColor, background: "hsl(34 12% 10%)", color: "hsl(40 15% 65%)" }}
     >
-      <span
-        className="w-1.5 h-1.5 rounded-full shrink-0 mt-0.5"
-        style={{ background: styles.dotColor }}
-      />
+      <span className="w-1.5 h-1.5 rounded-full shrink-0 mt-0.5" style={{ background: styles.dotColor }} />
       {flag.message}
     </div>
   );
 }
 
-export function BlindBuyScorer({ score, isLoading, fragranceName }: BlindBuyScorerProps) {
+export function BlindBuyScorer({ score, isLoading, fragranceName, inline = false }: BlindBuyScorerProps) {
   const scoreRef = useRef(false);
 
   useEffect(() => {
@@ -137,17 +96,22 @@ export function BlindBuyScorer({ score, isLoading, fragranceName }: BlindBuyScor
     }
   }, [score]);
 
+  const wrapperClass = inline
+    ? "flex flex-col rounded border p-5"
+    : "h-full flex flex-col";
+
+  const wrapperStyle = inline
+    ? { background: "hsl(34 17% 8%)", borderColor: "hsl(34 10% 14%)" }
+    : { borderLeft: "1px solid hsl(34 10% 12%)", paddingLeft: "20px" };
+
   return (
-    <div
-      className="h-full flex flex-col"
-      style={{ borderLeft: "1px solid hsl(34 10% 12%)", paddingLeft: "20px" }}
-    >
+    <div className={wrapperClass} style={wrapperStyle}>
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-serif text-lg" style={{ color: "hsl(40 20% 82%)" }}>
           Blind Buy Score
         </h3>
         {fragranceName && (
-          <span className="text-xs" style={{ color: "hsl(40 10% 40%)" }}>
+          <span className="text-xs truncate ml-2 max-w-[120px]" style={{ color: "hsl(40 10% 40%)" }}>
             {fragranceName}
           </span>
         )}
@@ -165,10 +129,8 @@ export function BlindBuyScorer({ score, isLoading, fragranceName }: BlindBuyScor
         </div>
       ) : score ? (
         <div className="flex flex-col gap-4 overflow-y-auto">
-          {/* Score ring */}
           <ScoreRing score={score.overall_score} animated />
 
-          {/* Verdict */}
           {(() => {
             const vs = VERDICT_STYLES[score.verdict] ?? VERDICT_STYLES["Buy"];
             return (
@@ -182,7 +144,6 @@ export function BlindBuyScorer({ score, isLoading, fragranceName }: BlindBuyScor
             );
           })()}
 
-          {/* Breakdown */}
           <div className="border-t pt-3" style={{ borderColor: "hsl(34 10% 14%)" }}>
             <p className="text-xs font-mono tracking-widest mb-2" style={{ color: "hsl(40 10% 38%)" }}>
               BREAKDOWN
@@ -192,7 +153,6 @@ export function BlindBuyScorer({ score, isLoading, fragranceName }: BlindBuyScor
             ))}
           </div>
 
-          {/* Risk flags */}
           {score.risk_flags.length > 0 && (
             <div>
               <p className="text-xs font-mono tracking-widest mb-2" style={{ color: "hsl(40 10% 38%)" }}>
@@ -206,14 +166,12 @@ export function BlindBuyScorer({ score, isLoading, fragranceName }: BlindBuyScor
             </div>
           )}
 
-          {/* Recommendation */}
           {score.recommendation && (
             <div className="text-xs leading-relaxed" style={{ color: "hsl(40 10% 50%)" }}>
               {score.recommendation}
             </div>
           )}
 
-          {/* CTAs */}
           <div className="space-y-2 mt-auto pt-2">
             <button
               data-testid="btn-find-best-price"
@@ -241,12 +199,10 @@ export function BlindBuyScorer({ score, isLoading, fragranceName }: BlindBuyScor
         </div>
       ) : (
         <div
-          className="flex-1 flex flex-col items-center justify-center text-center px-4"
+          className="flex-1 flex flex-col items-center justify-center text-center px-4 py-8"
           style={{ color: "hsl(40 10% 35%)" }}
         >
-          <div className="mb-3 text-3xl font-serif" style={{ color: "hsl(34 10% 25%)" }}>
-            —
-          </div>
+          <div className="mb-3 text-3xl font-serif" style={{ color: "hsl(34 10% 25%)" }}>—</div>
           <p className="text-sm">Select a fragrance to generate a blind buy score</p>
         </div>
       )}

@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import { Menu } from "lucide-react";
 import {
   useFindDupes,
   useGetContextRecommendations,
@@ -12,8 +13,9 @@ import { FragranceHero } from "@/components/fragrance-hero";
 import { DupesSection } from "@/components/dupes-section";
 import { ContextPicks } from "@/components/context-picks";
 import { BlindBuyScorer } from "@/components/blind-buy-scorer";
-import { Sidebar } from "@/components/sidebar";
+import { Sidebar, SidebarContent } from "@/components/sidebar";
 import { OnboardingModal } from "@/components/onboarding-modal";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import {
   Fragrance,
   DupeResult,
@@ -31,17 +33,16 @@ export default function Home() {
   const [occasion, setOccasion] = useState("casual");
   const [timeOfDay, setTimeOfDay] = useState("daytime");
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [onboardingDismissed, setOnboardingDismissed] = useState(
     () => localStorage.getItem("scentinel-onboarding-done") === "1"
   );
 
-  // Profile data
   const { data: profileData, refetch: refetchProfile } = useGetProfile({
     query: { queryKey: ["profile"] },
   });
   const profile: UserProfile = profileData ?? { ownedFragrances: [], budget: null };
 
-  // Weather — use a neutral default lat/lon (London)
   const weatherParams = { lat: "51.5", lon: "-0.12" };
   const { data: weatherData } = useGetWeather(weatherParams, {
     query: { queryKey: getGetWeatherQueryKey(weatherParams) },
@@ -49,14 +50,12 @@ export default function Home() {
   const weatherTemp = weatherData?.temp_c ?? 18;
   const weatherDesc = weatherData?.description ?? "partly cloudy";
 
-  // Show onboarding on first visit or empty collection
   useEffect(() => {
     if (!onboardingDismissed) {
       setShowOnboarding(true);
     }
   }, [onboardingDismissed]);
 
-  // Mutations
   const dupesMutation = useFindDupes();
   const contextMutation = useGetContextRecommendations();
   const scoreMutation = useGetBlindBuyScore();
@@ -70,7 +69,6 @@ export default function Home() {
 
       const ownedFragrances = profile.ownedFragrances ?? [];
 
-      // Fire all three in parallel
       dupesMutation.mutate(
         { data: { fragranceName: fragrance.name } },
         { onSuccess: (data) => setDupes(data as DupeResult[]) }
@@ -104,7 +102,7 @@ export default function Home() {
     [profile, occasion, timeOfDay, weatherTemp, weatherDesc, dupesMutation, contextMutation, scoreMutation]
   );
 
-  const handleOnboardingComplete = (p: { ownedFragrances: string[]; budget: string | null }) => {
+  const handleOnboardingComplete = (_p: { ownedFragrances: string[]; budget: string | null }) => {
     localStorage.setItem("scentinel-onboarding-done", "1");
     setOnboardingDismissed(true);
     setShowOnboarding(false);
@@ -117,32 +115,51 @@ export default function Home() {
     setShowOnboarding(false);
   };
 
+  const sidebarProps = {
+    ownedFragrances: profile.ownedFragrances,
+    activeSection,
+    onSectionChange: setActiveSection,
+    onOpenOnboarding: () => setShowOnboarding(true),
+  };
+
   return (
-    <div
-      className="flex h-screen overflow-hidden"
-      style={{ background: "hsl(30 14% 3%)" }}
-    >
-      {/* Left Sidebar */}
-      <Sidebar
-        ownedFragrances={profile.ownedFragrances}
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-        onOpenOnboarding={() => setShowOnboarding(true)}
-      />
+    <div className="flex h-screen overflow-hidden" style={{ background: "hsl(30 14% 3%)" }}>
+      {/* Left Sidebar — hidden on mobile, shown on md+ */}
+      <Sidebar {...sidebarProps} />
 
       {/* Main content */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top bar */}
         <header
-          className="shrink-0 flex items-center gap-4 px-6 py-3 border-b"
+          className="shrink-0 flex items-center gap-2 sm:gap-4 px-3 sm:px-6 py-3 border-b"
           style={{ borderColor: "hsl(34 10% 12%)" }}
         >
-          <SearchBar onSelect={handleFragranceSelect} />
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden shrink-0 p-1.5 rounded transition-colors"
+            style={{ color: "hsl(40 10% 48%)" }}
+            onClick={() => setMobileSidebarOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu size={20} />
+          </button>
 
-          {/* Context chips in top bar */}
-          <div className="flex items-center gap-2 ml-2 shrink-0">
+          {/* Mobile logo (hidden on md+ since sidebar shows it) */}
+          <div className="md:hidden shrink-0 mr-1">
+            <span className="font-serif text-lg tracking-wide" style={{ color: "hsl(42 54% 55%)" }}>
+              Scentinel
+            </span>
+          </div>
+
+          {/* Search bar — full remaining width */}
+          <div className="flex-1 min-w-0">
+            <SearchBar onSelect={handleFragranceSelect} />
+          </div>
+
+          {/* Context chips — temp always, desc hidden on small screens */}
+          <div className="flex items-center gap-1.5 shrink-0">
             <div
-              className="text-xs px-2.5 py-1.5 rounded border font-mono"
+              className="text-xs px-2 py-1.5 rounded border font-mono"
               style={{
                 borderColor: "hsl(34 10% 18%)",
                 color: "hsl(40 10% 48%)",
@@ -152,7 +169,7 @@ export default function Home() {
               {weatherTemp}°C
             </div>
             <div
-              className="text-xs px-2.5 py-1.5 rounded border capitalize"
+              className="hidden sm:block text-xs px-2.5 py-1.5 rounded border capitalize"
               style={{
                 borderColor: "hsl(34 10% 18%)",
                 color: "hsl(40 10% 48%)",
@@ -165,7 +182,7 @@ export default function Home() {
         </header>
 
         {/* Scrollable main area */}
-        <div className="flex-1 overflow-y-auto px-6 py-6">
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
           {!selectedFragrance ? (
             <EmptyState onFragranceSelect={handleFragranceSelect} />
           ) : (
@@ -221,14 +238,24 @@ export default function Home() {
                   }
                 }}
               />
+
+              {/* Blind Buy Scorer — inline on mobile/tablet, hidden when right panel shows */}
+              <div className="xl:hidden mb-6">
+                <BlindBuyScorer
+                  inline
+                  score={blindBuyScore}
+                  isLoading={scoreMutation.isPending}
+                  fragranceName={selectedFragrance?.name}
+                />
+              </div>
             </div>
           )}
         </div>
       </main>
 
-      {/* Right panel — Blind Buy Scorer */}
+      {/* Right panel — Blind Buy Scorer, only on xl+ */}
       <aside
-        className="w-[280px] shrink-0 flex flex-col py-6 px-5 overflow-y-auto"
+        className="hidden xl:flex w-[280px] shrink-0 flex-col py-6 px-5 overflow-y-auto"
         style={{ borderLeft: "1px solid hsl(34 10% 12%)" }}
       >
         <BlindBuyScorer
@@ -237,6 +264,24 @@ export default function Home() {
           fragranceName={selectedFragrance?.name}
         />
       </aside>
+
+      {/* Mobile Sidebar Sheet */}
+      <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>
+        <SheetContent
+          side="left"
+          className="p-0 border-r"
+          style={{
+            background: "hsl(30 14% 3%)",
+            borderColor: "hsl(34 10% 12%)",
+            width: 240,
+          }}
+        >
+          <SidebarContent
+            {...sidebarProps}
+            onClose={() => setMobileSidebarOpen(false)}
+          />
+        </SheetContent>
+      </Sheet>
 
       {/* Onboarding */}
       <OnboardingModal
@@ -259,7 +304,7 @@ function parseBudget(budget: string | null): number | null {
   return map[budget] ?? null;
 }
 
-function EmptyState({ onFragranceSelect }: { onFragranceSelect: (f: Fragrance) => void }) {
+function EmptyState({ onFragranceSelect: _ }: { onFragranceSelect: (f: Fragrance) => void }) {
   const SUGGESTIONS = [
     { name: "Aventus", house: "Creed" },
     { name: "Sauvage EDP", house: "Dior" },
@@ -268,14 +313,14 @@ function EmptyState({ onFragranceSelect }: { onFragranceSelect: (f: Fragrance) =
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center">
+    <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center px-4">
       <h2
-        className="font-serif text-4xl mb-3 leading-tight"
+        className="font-serif text-3xl sm:text-4xl mb-3 leading-tight"
         style={{ color: "hsl(40 15% 55%)" }}
       >
         What are you wearing tonight?
       </h2>
-      <p className="text-sm mb-8" style={{ color: "hsl(40 10% 35%)" }}>
+      <p className="text-sm mb-8 max-w-sm" style={{ color: "hsl(40 10% 35%)" }}>
         Search any fragrance to discover alternatives, get context recommendations, and assess blind buy risk.
       </p>
       <div className="flex flex-wrap justify-center gap-2">
@@ -283,10 +328,6 @@ function EmptyState({ onFragranceSelect }: { onFragranceSelect: (f: Fragrance) =
           <button
             key={s.name}
             data-testid={`suggestion-${s.name.replace(/\s+/g, "-").toLowerCase()}`}
-            onClick={() => {
-              // We can't directly select without a full Fragrance object,
-              // but we can populate the search — let the user click
-            }}
             className="px-4 py-2 rounded border text-sm transition-all"
             style={{
               borderColor: "hsl(34 10% 18%)",
