@@ -25,6 +25,8 @@ export interface DupeResult {
   price_usd: number;
   price_delta: number;
   accords: string[];
+  buy_link?: string;
+  is_dua?: boolean;
 }
 
 export interface ContextPick {

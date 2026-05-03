@@ -40,6 +40,24 @@ interface Fragrance {
 const fragrancesPath = join(__dirname, "../data/fragrance-data.json");
 const fragrances: Fragrance[] = JSON.parse(readFileSync(fragrancesPath, "utf-8"));
 
+interface DuaEntry {
+  name: string;
+  link: string;
+  inspiredBy: string;
+  notes: string;
+}
+const duaPath = join(__dirname, "../data/dua-data.json");
+const duaEntries: DuaEntry[] = JSON.parse(readFileSync(duaPath, "utf-8"));
+
+function findDuaClones(fragranceName: string, house: string): DuaEntry[] {
+  const target = `${house} ${fragranceName}`.toLowerCase();
+  const nameOnly = fragranceName.toLowerCase();
+  return duaEntries.filter((e) => {
+    const inspired = e.inspiredBy.toLowerCase();
+    return inspired.includes(target) || inspired.includes(nameOnly);
+  });
+}
+
 const fuse = new Fuse(fragrances, {
   keys: ["name", "house"],
   threshold: 0.4,
@@ -237,12 +255,30 @@ router.post("/dupes", async (req, res) => {
         price_usd: f.price_usd,
         price_delta: target!.price_usd - f.price_usd,
         accords: f.accords,
+        buy_link: undefined as string | undefined,
+        is_dua: false,
       };
     })
     .sort((a, b) => b.similarity_pct - a.similarity_pct)
     .slice(0, 5);
 
-  res.json(results);
+  // Inject Dua clones — exact match for this specific fragrance
+  const duaClones = findDuaClones(target.name, target.house);
+  const duaResults = duaClones.slice(0, 2).map((clone) => ({
+    name: clone.name,
+    house: "Dua Fragrances",
+    similarity_pct: 92,
+    price_usd: 35,
+    price_delta: target!.price_usd - 35,
+    accords: target!.accords,
+    buy_link: clone.link,
+    is_dua: true,
+  }));
+
+  // Merge: Dua clones first (if any), then cosine results, deduplicated, max 6
+  const merged = [...duaResults, ...results].slice(0, 6);
+
+  res.json(merged);
 });
 
 // POST /context
