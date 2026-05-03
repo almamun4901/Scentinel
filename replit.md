@@ -78,6 +78,9 @@ All routes served under `/api`:
 | POST | `/context` | Context-aware picks |
 | POST | `/score` | AI blind buy score |
 | POST | `/chat` | Conversational AI with Claude tool_use |
+| POST | `/mcp` | MCP Streamable HTTP — initialize / tool calls |
+| GET | `/mcp` | MCP SSE stream (server → client) |
+| DELETE | `/mcp` | MCP session teardown |
 | GET | `/weather?lat=&lon=` | Weather proxy |
 | GET | `/profile` | Get user profile |
 | PUT | `/profile` | Save user profile |
